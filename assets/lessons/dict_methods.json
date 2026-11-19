@@ -1,0 +1,83 @@
+{
+  "id": "dict_methods",
+  "title": "Dictionary-Methoden",
+  "icon": "construction",
+  "intro": "Weitere nützliche Methoden: fromkeys() baut ein Dictionary aus einer Liste von Schlüsseln, setdefault() setzt einen Wert nur, wenn der Schlüssel fehlt, und get() liefert einen Ersatzwert. Auch len() und in funktionieren.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Baue ein Dictionary, in dem jeder Schlüssel den Wert 0 hat.",
+      "code": "schluessel = [\"a\", \"b\", \"c\"]\nd = dict.___(schluessel, 0)\nprint(d)",
+      "answers": [
+        [
+          "fromkeys"
+        ]
+      ],
+      "explain": "dict.fromkeys(schlüssel, wert) gibt jedem Schlüssel denselben Startwert.",
+      "notes": {},
+      "hint": "",
+      "output": "{'a': 0, 'b': 0, 'c': 0}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "d = {\"a\": 1}\nprint(d.get(\"b\", \"fehlt\"))",
+      "options": [
+        "fehlt",
+        "None",
+        "KeyError"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "get() mit zweitem Wert liefert diesen Ersatz, wenn der Schlüssel fehlt.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "d = {\"a\": 1, \"b\": 2, \"c\": 3}\nprint(len(d), list(d.keys())[-1])",
+      "options": [
+        "3 c",
+        "3 3",
+        "6 c"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "len() zählt die Paare. list(d.keys()) macht aus den Schlüsseln eine Liste – davon das letzte Element.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Baue mit einer Dictionary Comprehension die Quadratzahlen.",
+      "code": "quadrate = {x: x * x ___ x in range(1, 4)}\nprint(quadrate)",
+      "answers": [
+        [
+          "for"
+        ]
+      ],
+      "explain": "Wie bei Listen gibt es auch Dictionary Comprehensions: {schlüssel: wert for …}.",
+      "notes": {},
+      "hint": "",
+      "output": "{1: 1, 2: 4, 3: 9}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "d = {\"a\": 1}\nx = d.setdefault(\"a\", 50)\nprint(x)",
+      "options": [
+        "1",
+        "50",
+        "None"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Den Schlüssel gibt es schon – setdefault() ändert nichts und gibt den vorhandenen Wert zurück.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 59,
+  "chapter": "Dictionaries"
+}

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../state/providers.dart';
 import 'sfx.dart';
+import 'web_sfx_stub.dart' if (dart.library.js_interop) 'web_sfx_web.dart';
 
 /// Spielt Soundeffekte ab. Austauschbar, damit Tests stumm laufen.
 abstract interface class SoundPlayer {
@@ -36,6 +37,16 @@ class AudioSoundPlayer implements SoundPlayer {
   }
 }
 
+/// Im Browser: Wiedergabe über `web/sfx.js` (Web Audio). Das funktioniert auch auf
+/// dem iPhone, wo `audioplayers` Töne blockiert, die nicht direkt im Tipp starten.
+class WebSoundPlayer implements SoundPlayer {
+  @override
+  void play(Sfx sfx) => webPlaySfx(sfx.name);
+
+  @override
+  void dispose() {}
+}
+
 /// Stumm – für Tests.
 class SilentSoundPlayer implements SoundPlayer {
   final played = <Sfx>[];
@@ -48,6 +59,7 @@ class SilentSoundPlayer implements SoundPlayer {
 }
 
 final soundPlayerProvider = Provider<SoundPlayer>((ref) {
+  if (kIsWeb && webSfxAvailable) return WebSoundPlayer();
   final player = AudioSoundPlayer();
   ref.onDispose(player.dispose);
   return player;

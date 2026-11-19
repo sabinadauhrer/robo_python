@@ -8,9 +8,13 @@ warum der Code so ist.
 - **Aufgabentypen:** Lücke füllen · Was passiert? (Auswahl) · Zeilen in Reihenfolge bringen
 - **Erklärungen:** Robo-Erklärung zur Aufgabe, antippbare Zeilen (?) mit eigener Erklärung, kostenloser Tipp
 - **Probelauf:** spielt den Code Schritt für Schritt ab (markierte Zeile, Variablen-Kästchen, Ausgabe, Erklärung je Schritt)
-- **Spiel:** 3 Herzen pro Insel, XP mit Combo-Bonus, Sterne, Münzen, Tages-Serie, Shop mit Outfits für Robo
-- **20 Inseln, 100 Aufgaben:** print, Variablen, Datentypen, Zahlen, Casting, Strings, String-Methoden, f-Strings,
-  Booleans, if/elif/else, while, for, Listen, Listen-Methoden, Tupel, Sets, Dictionaries, Funktionen, Lambda, Iteratoren
+- **Spiel:** Herzen bestimmen die Sterne, XP mit Combo-Bonus, Münzen, Tages-Serie, Shop mit Outfits für Robo
+- **Tipp-Leiter statt Neustart:** Nach jedem Fehler verrät Robo mehr (Hinweis → Anfangsbuchstaben/erste Zeile → Lösung anbieten)
+- **107 Inseln in 15 Kapiteln, 535 Aufgaben** – wie das Python-Tutorial von W3Schools: Grundlagen, Variablen, Datentypen,
+  Strings, Operatoren, Listen, Tupel, Sets, Dictionaries, if/match, Schleifen, Funktionen (auch *args, Dekoratoren,
+  Generatoren), Module (math, json, datetime, re), try/except, input(), Klassen (Vererbung, Kapselung …) und Dateien
+- **Spielstand sichern:** Der Fortschritt liegt im Browser; über 💾 bekommt man einen Code zum Sichern/Wiederherstellen
+- **Sound:** Web Audio (`web/sfx.js`), wird beim ersten Tippen freigeschaltet – funktioniert auch auf dem iPhone
 
 ## Starten
 
@@ -45,7 +49,7 @@ Lokal testen: `cd build/web && python3 -m http.server 8080` → http://localhost
 
 | Ordner | Inhalt |
 |---|---|
-| `lib/python/` | Eigener Python-Interpreter (reines Dart): Lexer, Parser, Werte, Operatoren, Builtins, Methoden. Zeichnet jeden Schritt mit deutscher Erklärung auf (Trace). |
+| `lib/python/` | Eigener Python-Interpreter (reines Dart): Lexer, Parser, Werte, Operatoren, Builtins, Methoden, Module (math, json, datetime, re, os), Klassen, Fehler, virtuelle Dateien. Zeichnet jeden Schritt mit deutscher Erklärung auf (Trace). |
 | `lib/exercises/` | Aufgaben- und Lektions-Modelle, Prüflogik, Punkte/Serie, Outfits (reines Dart). |
 | `lib/data/` | Lektionen aus `assets/lessons/` laden, Spielstand in `shared_preferences` (Browser-Speicher). |
 | `lib/state/` | Riverpod: Profil, Einstellungen, Ablauf einer Lektion (`LessonSession`). |

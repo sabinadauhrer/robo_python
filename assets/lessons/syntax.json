@@ -1,0 +1,90 @@
+{
+  "id": "syntax",
+  "title": "Syntax & Einrückung",
+  "icon": "code",
+  "intro": "Die Syntax sind die Regeln, wie Python-Code geschrieben wird. Besonders wichtig: die Einrückung. Code, der zu einem if oder einer Schleife gehört, wird mit Leerzeichen eingerückt (meist 4). So weiß Python, was zusammengehört.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze das Zeichen, mit dem ein eingerückter Block beginnt.",
+      "code": "if 5 > 2___\n    print(\"Fünf ist größer als zwei!\")",
+      "answers": [
+        [
+          ":"
+        ]
+      ],
+      "explain": "Nach einer Zeile mit Doppelpunkt kommt ein eingerückter Block. Die Einrückung zeigt: Diese Zeile gehört zum if.",
+      "notes": {
+        "1": "Der Doppelpunkt sagt: Jetzt kommt ein Block.",
+        "2": "Eingerückt (4 Leerzeichen) → gehört zum if."
+      },
+      "hint": "Zwei Punkte übereinander.",
+      "output": "Fünf ist größer als zwei!"
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "if 5 > 2:\nprint(\"Fünf ist größer als zwei!\")",
+      "options": [
+        "IndentationError (Einrückung fehlt)",
+        "Fünf ist größer als zwei!",
+        "Es passiert nichts"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Nach dem Doppelpunkt MUSS eingerückt werden. Sonst meldet Python einen Einrückungsfehler (IndentationError).",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "if 5 > 2:\n    print(\"A\")\n    print(\"B\")\nprint(\"C\")",
+      "options": [
+        "A\nB\nC",
+        "A\nC",
+        "C"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Beide eingerückten Zeilen gehören zum if. Die Bedingung ist wahr, also laufen beide. print(\"C\") steht nicht eingerückt – es läuft immer.",
+      "notes": {
+        "2": "Gehört zum if.",
+        "3": "Gehört auch zum if.",
+        "4": "Nicht eingerückt → gehört nicht mehr dazu."
+      },
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "if 2 > 5:\n    print(\"A\")\nprint(\"B\")",
+      "options": [
+        "B",
+        "A\nB",
+        "A"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "2 > 5 ist falsch, also wird der eingerückte Teil übersprungen. Die letzte Zeile ist nicht eingerückt und läuft trotzdem.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Python unterscheidet Groß- und Kleinschreibung. Schreibe den Befehl richtig.",
+      "code": "___(\"Klein geschrieben!\")",
+      "answers": [
+        [
+          "print"
+        ]
+      ],
+      "explain": "Print oder PRINT kennt Python nicht – Befehle werden genau so geschrieben, wie sie heißen: print.",
+      "notes": {},
+      "hint": "Alles kleingeschrieben.",
+      "output": "Klein geschrieben!"
+    }
+  ],
+  "order": 3,
+  "chapter": "Grundlagen"
+}

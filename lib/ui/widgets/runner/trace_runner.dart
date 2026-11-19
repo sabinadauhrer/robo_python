@@ -13,9 +13,11 @@ import 'variable_box.dart';
 
 /// Probelauf: spielt Python-Code Schritt für Schritt ab und erklärt jeden Schritt.
 class TraceRunner extends ConsumerStatefulWidget {
-  const TraceRunner({super.key, required this.code});
+  const TraceRunner({super.key, required this.code, this.inputs = const [], this.files = const {}});
 
   final String code;
+  final List<String> inputs;
+  final Map<String, String> files;
 
   @override
   ConsumerState<TraceRunner> createState() => _TraceRunnerState();
@@ -42,7 +44,7 @@ class _TraceRunnerState extends ConsumerState<TraceRunner> {
 
   void _run() {
     _timer?.cancel();
-    _result = const Interpreter().run(widget.code);
+    _result = const Interpreter().run(widget.code, inputs: widget.inputs, files: widget.files);
     _index = 0;
   }
 

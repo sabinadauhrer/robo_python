@@ -1,0 +1,84 @@
+{
+  "id": "operators_bit",
+  "title": "Bit-Operatoren & Rangfolge",
+  "icon": "memory",
+  "intro": "Computer speichern Zahlen als Bits (0 und 1). Bit-Operatoren arbeiten direkt damit: & (UND), | (ODER), ^ (entweder-oder), ~ (umdrehen), << und >> (verschieben). Und: Es gibt eine feste Rangfolge – ** vor * / vor + - vor Vergleichen vor not, and, or.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(bin(5))\nprint(bin(3))",
+      "options": [
+        "0b101\n0b11",
+        "101\n11",
+        "0b5\n0b3"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "bin() zeigt eine Zahl als Bits. 5 ist 4 + 1 → 101. 3 ist 2 + 1 → 11. Das 0b davor bedeutet „binär“.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(6 & 3)",
+      "options": [
+        "2",
+        "9",
+        "7"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "6 ist 110, 3 ist 011. & behält nur die Bits, die in BEIDEN 1 sind: 010 = 2.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Verbinde die Bits mit ODER, sodass 7 herauskommt.",
+      "code": "print(6 ___ 3)",
+      "answers": [
+        [
+          "|"
+        ]
+      ],
+      "explain": "| setzt ein Bit, wenn es in mindestens einer Zahl 1 ist: 110 | 011 = 111 = 7.",
+      "notes": {},
+      "hint": "",
+      "output": "7"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(3 << 2)",
+      "options": [
+        "12",
+        "6",
+        "1"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "<< schiebt die Bits nach links. Jede Stelle verdoppelt die Zahl: 3 → 6 → 12.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(100 + 5 * 3)\nprint(5 > 3 or 1 > 2 and 1 > 2)",
+      "options": [
+        "115\nTrue",
+        "315\nTrue",
+        "115\nFalse"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "* kommt vor +. Und and wird vor or ausgewertet: erst 1 > 2 and 1 > 2 (False), dann 5 > 3 or False → True.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 24,
+  "chapter": "Booleans & Operatoren"
+}

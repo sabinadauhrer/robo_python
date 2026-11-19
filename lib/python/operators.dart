@@ -14,7 +14,26 @@ abstract final class Ops {
   static Object? binary(String op, Object? a, Object? b, int line) {
     final x = asNumber(a);
     final y = asNumber(b);
-    if (x != null && y != null) return _numeric(op, x, y, a is PyFloat || b is PyFloat, line);
+    if (x != null && y != null) {
+      if (const {'&', '|', '^', '<<', '>>'}.contains(op)) return _bits(op, a, b, line);
+      return _numeric(op, x, y, a is PyFloat || b is PyFloat, line);
+    }
+    if (a is PySet && b is PySet) {
+      final frozen = a.frozen;
+      switch (op) {
+        case '|':
+          return PySet([...a.items, ...b.items], frozen);
+        case '&':
+          return PySet(a.items.where(b.items.contains), frozen);
+        case '^':
+          return PySet([...a.items.where((e) => !b.items.contains(e)), ...b.items.where((e) => !a.items.contains(e))], frozen);
+      }
+    }
+    if (op == '|' && a is PyDict && b is PyDict) {
+      return PyDict()
+        ..map.addAll(a.map)
+        ..map.addAll(b.map);
+    }
 
     switch (op) {
       case '+':
@@ -38,6 +57,29 @@ abstract final class Ops {
         }
     }
     throw typeError(line, 'Der Operator "$op" passt nicht zu ${_t(a)} und ${_t(b)}.');
+  }
+
+  static Object? _bits(String op, Object? a, Object? b, int line) {
+    if (a is PyFloat || b is PyFloat) {
+      throw typeError(line, 'Der Operator "$op" funktioniert nur mit ganzen Zahlen, nicht mit Kommazahlen.');
+    }
+    final x = asNumber(a)!.toInt();
+    final y = asNumber(b)!.toInt();
+    final bothBool = a is bool && b is bool;
+    switch (op) {
+      case '&':
+        return bothBool ? (a && b) : x & y;
+      case '|':
+        return bothBool ? (a || b) : x | y;
+      case '^':
+        return bothBool ? (a != b) : x ^ y;
+      case '<<':
+        if (y < 0) throw PyError(line, 'ValueError', 'Man kann nicht um eine negative Anzahl Stellen verschieben.');
+        return x << y;
+      default:
+        if (y < 0) throw PyError(line, 'ValueError', 'Man kann nicht um eine negative Anzahl Stellen verschieben.');
+        return x >> y;
+    }
   }
 
   static Object? _numeric(String op, num x, num y, bool isFloat, int line) {
@@ -80,6 +122,10 @@ abstract final class Ops {
     if (op == 'not') return !pyTruthy(v);
     final n = asNumber(v);
     if (n == null) throw typeError(line, 'Vor ${_t(v)} kann kein "$op" stehen.');
+    if (op == '~') {
+      if (v is PyFloat) throw typeError(line, '~ funktioniert nur mit ganzen Zahlen.');
+      return ~n.toInt();
+    }
     if (op == '+') return number(n);
     return v is PyFloat ? PyFloat(-v.value) : -(n as int);
   }
@@ -114,7 +160,17 @@ abstract final class Ops {
     final x = asNumber(a);
     final y = asNumber(b);
     if (x != null && y != null) return x.compareTo(y);
-    if (a is String && b is String) return a.compareTo(b);
+    if (a is String && b is String) return _compareStrings(a, b);
+    if (a is PyDateTime && b is PyDateTime) return a.value.compareTo(b.value);
+    if (a is PySet && b is PySet) {
+      // Teilmenge: a <= b
+      final sub = a.items.every(b.items.contains);
+      final sup = b.items.every(a.items.contains);
+      if (sub && sup) return 0;
+      if (sub) return -1;
+      if (sup) return 1;
+      return op == '<' || op == '<=' ? 1 : -1;
+    }
     if ((a is PyList && b is PyList) || (a is PyTuple && b is PyTuple)) {
       final l1 = a is PyList ? a.items : (a as PyTuple).items;
       final l2 = b is PyList ? b.items : (b as PyTuple).items;
@@ -125,6 +181,16 @@ abstract final class Ops {
       return l1.length.compareTo(l2.length);
     }
     throw typeError(line, '${_t(a)} und ${_t(b)} kann man nicht mit "$op" vergleichen.');
+  }
+
+  /// Vergleicht nach Unicode-Codepunkten (wie Python).
+  static int _compareStrings(String a, String b) {
+    final x = a.runes.toList();
+    final y = b.runes.toList();
+    for (var i = 0; i < math.min(x.length, y.length); i++) {
+      if (x[i] != y[i]) return x[i].compareTo(y[i]);
+    }
+    return x.length.compareTo(y.length);
   }
 
   static bool contains(Object? container, Object? item, int line) {

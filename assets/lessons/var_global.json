@@ -1,0 +1,88 @@
+{
+  "id": "var_global",
+  "title": "Globale Variablen",
+  "icon": "public",
+  "intro": "Eine Variable außerhalb von Funktionen ist global: Jeder Teil des Programms kann sie lesen. Eine Variable, die IN einer Funktion einen Wert bekommt, ist lokal – sie gibt es nur dort. Mit global name sagst du der Funktion: Ich meine die Variable von außen.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = \"toll\"\n\ndef meine_funktion():\n    print(\"Python ist \" + x)\n\nmeine_funktion()",
+      "options": [
+        "Python ist toll",
+        "Fehler",
+        "Python ist x"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "x ist global. Die Funktion darf es lesen, auch wenn x außerhalb definiert wurde.",
+      "notes": {
+        "1": "Globale Variable – überall sichtbar.",
+        "4": "Hier wird das globale x gelesen."
+      },
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = \"toll\"\n\ndef f():\n    x = \"super\"\n    print(\"Python ist \" + x)\n\nf()\nprint(\"Python ist \" + x)",
+      "options": [
+        "Python ist super\nPython ist toll",
+        "Python ist super\nPython ist super",
+        "Python ist toll\nPython ist toll"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "In der Funktion entsteht ein neues, lokales x. Das globale x bleibt „toll“.",
+      "notes": {
+        "4": "Lokales x – nur innerhalb von f().",
+        "8": "Hier zählt wieder das globale x."
+      },
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Sorge dafür, dass die Funktion das globale x ändert.",
+      "code": "x = \"toll\"\n\ndef f():\n    ___ x\n    x = \"fantastisch\"\n\nf()\nprint(\"Python ist \" + x)",
+      "answers": [
+        [
+          "global"
+        ]
+      ],
+      "explain": "Mit global x sagt man: In dieser Funktion ist das x von außen gemeint. Dann ändert die Zuweisung die globale Variable.",
+      "notes": {},
+      "hint": "",
+      "output": "Python ist fantastisch"
+    },
+    {
+      "type": "fill",
+      "task": "Erstelle in der Funktion eine globale Variable.",
+      "code": "def f():\n    global farbe\n    farbe = \"___\"\n\nf()\nprint(farbe)",
+      "answers": [
+        [
+          "blau"
+        ]
+      ],
+      "explain": "Mit global kann eine Funktion sogar eine neue globale Variable anlegen, die danach überall existiert.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "punkte = 0\n\ndef mehr():\n    global punkte\n    punkte = punkte + 10\n\nmehr()\nmehr()\nprint(punkte)",
+      "options": [
+        "20",
+        "10",
+        "0"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Wegen global ändert jeder Aufruf die gleiche Variable. Zweimal +10 ergibt 20.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 10,
+  "chapter": "Variablen"
+}

@@ -76,7 +76,7 @@ class _FillExerciseViewState extends State<FillExerciseView> {
 
   BlankState get _state => switch (widget.status) {
     SessionStatus.correct || SessionStatus.finished => BlankState.correct,
-    SessionStatus.wrong || SessionStatus.failed => BlankState.wrong,
+    SessionStatus.wrong => BlankState.wrong,
     SessionStatus.revealed => BlankState.revealed,
     SessionStatus.answering => BlankState.open,
   };

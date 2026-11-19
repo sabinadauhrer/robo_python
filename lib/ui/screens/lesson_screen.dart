@@ -69,7 +69,6 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
         SessionStatus.correct => Sfx.correct,
         SessionStatus.wrong => Sfx.wrong,
         SessionStatus.finished => Sfx.success,
-        SessionStatus.failed => Sfx.error,
         _ => null,
       };
       if (previous != status) playSfx(ref, sfx);
@@ -87,12 +86,6 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
         ),
       );
     }
-    if (state.status == SessionStatus.failed) {
-      return Scaffold(
-        body: SafeArea(child: LessonFailedView(onRetry: session.restart, onDone: () => Navigator.of(context).pop())),
-      );
-    }
-
     final exercise = widget.lesson.exercises[state.exerciseIndex];
     final runnable = _runnableCode(exercise, state);
 
@@ -124,7 +117,7 @@ class _LessonScreenState extends ConsumerState<LessonScreen> {
                     onCloseNote: () => setState(() => _selectedLine = null),
                   );
                   final runner = _showRunner && runnable != null
-                      ? KeyedSubtree(key: _runnerKey, child: TraceRunner(code: runnable))
+                      ? KeyedSubtree(key: _runnerKey, child: TraceRunner(code: runnable, inputs: exercise.inputs, files: exercise.files))
                       : null;
                   final header = _TaskHeader(exercise: exercise);
                   if (!wide) {

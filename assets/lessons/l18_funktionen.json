@@ -1,6 +1,5 @@
 {
   "id": "l18_funktionen",
-  "order": 18,
   "title": "Funktionen",
   "icon": "functions",
   "intro": "Eine Funktion ist ein Stück Code mit Namen, das du immer wieder aufrufen kannst. Mit def definierst du sie, mit name() rufst du sie auf. Parameter sind Werte, die du mitgibst, und return gibt ein Ergebnis zurück.",
@@ -91,5 +90,7 @@
       "hint": "",
       "why": "Möchtest du das äußere x ändern, schreibe in der Funktion zuerst: global x"
     }
-  ]
+  ],
+  "order": 73,
+  "chapter": "Funktionen"
 }

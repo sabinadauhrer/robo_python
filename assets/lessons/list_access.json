@@ -1,0 +1,83 @@
+{
+  "id": "list_access",
+  "title": "Auf Listen zugreifen",
+  "icon": "search",
+  "intro": "Jedes Element einer Liste hat eine Position (Index), beginnend bei 0. Mit liste[1] holst du das zweite Element, mit liste[-1] das letzte. Mit liste[2:5] bekommst du einen Ausschnitt, und mit in prüfst du, ob etwas drin ist.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Gib das letzte Element aus – mit einem negativen Index.",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\"]\nprint(obst[___])",
+      "answers": [
+        [
+          "-1"
+        ]
+      ],
+      "explain": "Negative Indizes zählen von hinten. -1 ist immer das letzte Element, egal wie lang die Liste ist.",
+      "notes": {},
+      "hint": "",
+      "output": "Kirsche"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\", \"Orange\", \"Kiwi\"]\nprint(obst[2:4])",
+      "options": [
+        "['Kirsche', 'Orange']",
+        "['Banane', 'Kirsche', 'Orange']",
+        "['Kirsche', 'Orange', 'Kiwi']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Der Ausschnitt [2:4] beginnt bei Index 2 und endet VOR Index 4. Das Ergebnis ist wieder eine Liste.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\", \"Orange\"]\nprint(obst[:2])\nprint(obst[2:])",
+      "options": [
+        "['Apfel', 'Banane']\n['Kirsche', 'Orange']",
+        "['Apfel']\n['Kirsche', 'Orange']",
+        "['Apfel', 'Banane', 'Kirsche']\n['Orange']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ohne Start geht es ab dem Anfang los, ohne Ende bis zum Schluss.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Prüfe, ob „Apfel“ in der Liste steht.",
+      "code": "obst = [\"Apfel\", \"Banane\"]\nif \"Apfel\" ___ obst:\n    print(\"Ja, Apfel ist dabei!\")",
+      "answers": [
+        [
+          "in"
+        ]
+      ],
+      "explain": "Mit in fragst du: Ist dieser Wert irgendwo in der Liste? Das Ergebnis ist True oder False.",
+      "notes": {},
+      "hint": "",
+      "output": "Ja, Apfel ist dabei!"
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "obst = [\"Apfel\", \"Banane\"]\nprint(obst[2])",
+      "options": [
+        "IndexError",
+        "Banane",
+        "None"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Die Liste hat nur die Indizes 0 und 1. Index 2 gibt es nicht → IndexError.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 26,
+  "chapter": "Listen"
+}

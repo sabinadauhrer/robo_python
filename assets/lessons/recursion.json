@@ -1,0 +1,87 @@
+{
+  "id": "recursion",
+  "title": "Rekursion",
+  "icon": "all_inclusive",
+  "intro": "Eine rekursive Funktion ruft sich selbst auf – jedes Mal mit einem kleineren Problem. Wichtig ist eine Abbruchbedingung (Basisfall), sonst ruft sie sich endlos auf.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def countdown(n):\n    if n <= 0:\n        print(\"Start!\")\n    else:\n        print(n)\n        countdown(n - 1)\n\ncountdown(3)",
+      "options": [
+        "3\n2\n1\nStart!",
+        "1\n2\n3\nStart!",
+        "Start!"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "countdown(3) gibt 3 aus und ruft countdown(2) auf, usw. Bei 0 greift der Basisfall.",
+      "notes": {
+        "2": "Der Basisfall: Hier hört die Rekursion auf.",
+        "6": "Die Funktion ruft sich selbst auf – mit n - 1."
+      },
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Ergänze den rekursiven Aufruf für die Fakultät (5! = 5·4·3·2·1).",
+      "code": "def fakultaet(n):\n    if n == 1:\n        return 1\n    return n * ___(n - 1)\n\nprint(fakultaet(5))",
+      "answers": [
+        [
+          "fakultaet"
+        ]
+      ],
+      "explain": "n! = n · (n-1)!. Die Funktion berechnet den kleineren Teil, indem sie sich selbst aufruft.",
+      "notes": {},
+      "hint": "",
+      "output": "120"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def summe(n):\n    if n == 0:\n        return 0\n    return n + summe(n - 1)\n\nprint(summe(4))",
+      "options": [
+        "10",
+        "4",
+        "0"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "4 + 3 + 2 + 1 + 0 = 10.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Ergänze die Abbruchbedingung.",
+      "code": "def zaehle(n):\n    if n ___ 0:\n        return\n    print(n)\n    zaehle(n - 1)\n\nzaehle(2)",
+      "answers": [
+        [
+          "==",
+          "<="
+        ]
+      ],
+      "explain": "Ohne Abbruch würde die Funktion sich unendlich oft aufrufen (RecursionError).",
+      "notes": {},
+      "hint": "",
+      "output": "2\n1"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def fib(n):\n    if n < 2:\n        return n\n    return fib(n - 1) + fib(n - 2)\n\nprint(fib(6))",
+      "options": [
+        "8",
+        "6",
+        "13"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Fibonacci-Zahlen: 0, 1, 1, 2, 3, 5, 8 – jede ist die Summe der zwei davor.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 79,
+  "chapter": "Funktionen"
+}

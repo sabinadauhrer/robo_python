@@ -1,0 +1,83 @@
+{
+  "id": "regex",
+  "title": "RegEx (Suchmuster)",
+  "icon": "manage_search",
+  "intro": "Eine RegEx (regular expression) ist ein Suchmuster für Texte. Das Modul re kann damit suchen und ersetzen: re.findall() findet alle Treffer, re.search() den ersten, re.split() teilt, re.sub() ersetzt. Wichtige Zeichen: \\d Ziffer, \\s Leerzeichen, \\w Buchstabe/Ziffer, + „ein- oder mehrmals“, ^ Anfang, $ Ende.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Finde alle Vorkommen von „ai“.",
+      "code": "import re\ntxt = \"The rain in Spain\"\nprint(re.___(\"ai\", txt))",
+      "answers": [
+        [
+          "findall"
+        ]
+      ],
+      "explain": "findall() liefert eine Liste mit allen Treffern.",
+      "notes": {},
+      "hint": "",
+      "output": "['ai', 'ai']"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "import re\nprint(re.findall(r\"\\d+\", \"3 Äpfel und 12 Birnen\"))",
+      "options": [
+        "['3', '12']",
+        "['3', '1', '2']",
+        "[3, 12]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "\\d+ heißt „eine oder mehrere Ziffern hintereinander“. Die Treffer sind Texte.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Ersetze jedes Leerzeichen durch einen Bindestrich.",
+      "code": "import re\nprint(re.___(r\"\\s\", \"-\", \"Ich lerne Python\"))",
+      "answers": [
+        [
+          "sub"
+        ]
+      ],
+      "explain": "sub() = substitute (ersetzen): Muster, Ersatz, Text.",
+      "notes": {},
+      "hint": "",
+      "output": "Ich-lerne-Python"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "import re\nx = re.search(\"Spain$\", \"The rain in Spain\")\nprint(x.span())",
+      "options": [
+        "(12, 17)",
+        "(0, 17)",
+        "True"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "search() liefert ein Treffer-Objekt. span() zeigt Start- und Endposition. $ heißt: am Ende des Texts.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "import re\nprint(re.split(r\"\\s\", \"eins zwei drei\"))\nprint(re.search(\"xyz\", \"abc\"))",
+      "options": [
+        "['eins', 'zwei', 'drei']\nNone",
+        "['eins zwei drei']\nNone",
+        "['eins', 'zwei', 'drei']\nFalse"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "split() teilt bei jedem Treffer. Findet search() nichts, kommt None zurück.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 87,
+  "chapter": "Werkzeugkiste"
+}

@@ -1,6 +1,5 @@
 {
   "id": "l19_lambda",
-  "order": 19,
   "title": "Lambda",
   "icon": "bolt",
   "intro": "Ein lambda ist eine kleine Funktion ohne Namen in einer einzigen Zeile: lambda x: x * 2. Vor dem Doppelpunkt stehen die Parameter, dahinter das Ergebnis – ganz ohne return.",
@@ -82,5 +81,7 @@
       "hint": "",
       "output": "['Hai', 'Katze', 'Elefant']"
     }
-  ]
+  ],
+  "order": 78,
+  "chapter": "Funktionen"
 }

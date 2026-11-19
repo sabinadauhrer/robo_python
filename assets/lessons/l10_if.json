@@ -1,6 +1,5 @@
 {
   "id": "l10_if",
-  "order": 10,
   "title": "if / elif / else",
   "icon": "call_split",
   "intro": "Mit if entscheidet dein Programm: Wenn die Bedingung True ist, läuft der eingerückte Code. elif prüft eine weitere Bedingung, else fängt alle anderen Fälle auf. Die Einrückung (4 Leerzeichen) zeigt, was dazugehört!",
@@ -85,5 +84,7 @@
       "hint": "Die eingerückten Zeilen gehören direkt unter die Zeile mit Doppelpunkt.",
       "notes": {}
     }
-  ]
+  ],
+  "order": 60,
+  "chapter": "Entscheidungen"
 }

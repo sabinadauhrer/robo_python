@@ -1,6 +1,5 @@
 {
   "id": "l08_fstrings",
-  "order": 8,
   "title": "f-Strings",
   "icon": "format_quote",
   "intro": "Mit einem f vor dem Text kannst du Variablen direkt einsetzen: f\"Hallo {name}\". Alles in geschweiften Klammern wird ausgerechnet und eingefügt.",
@@ -84,5 +83,7 @@
       "hint": "",
       "why": "Mit print(f\"Hallo {name}\") käme Hallo Max heraus."
     }
-  ]
+  ],
+  "order": 18,
+  "chapter": "Strings"
 }

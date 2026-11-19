@@ -50,13 +50,41 @@ class DictExpr extends Expr {
   final List<Expr> values;
 }
 
-/// [ausdruck for ziel in iterable if bedingung]
-class ListCompExpr extends Expr {
-  const ListCompExpr(this.element, this.targets, this.iterable, this.condition);
-  final Expr element;
+/// Teil einer Comprehension: `for ziele in iterable` oder `if bedingung`.
+sealed class CompClause {
+  const CompClause();
+}
+
+class CompFor extends CompClause {
+  const CompFor(this.targets, this.iterable);
   final List<String> targets;
   final Expr iterable;
-  final Expr? condition;
+}
+
+class CompIf extends CompClause {
+  const CompIf(this.condition);
+  final Expr condition;
+}
+
+enum CompKind { list, set, dict, generator }
+
+/// [x for x in a if b], {x for ...}, {k: v for ...}, (x for ...)
+class CompExpr extends Expr {
+  const CompExpr(this.kind, this.element, this.clauses, {this.value});
+  final CompKind kind;
+
+  /// Element bzw. Schlüssel (bei dict).
+  final Expr element;
+
+  /// Wert (nur bei dict).
+  final Expr? value;
+  final List<CompClause> clauses;
+}
+
+/// *liste in einem Aufruf oder links vom "=".
+class StarredExpr extends Expr {
+  const StarredExpr(this.value);
+  final Expr value;
 }
 
 class IndexExpr extends Expr {
@@ -73,7 +101,7 @@ class SliceExpr extends Expr {
   final Expr? step;
 }
 
-/// obj.name – nur als Methodenaufruf erlaubt.
+/// obj.name
 class AttributeExpr extends Expr {
   const AttributeExpr(this.target, this.name);
   final Expr target;
@@ -81,10 +109,15 @@ class AttributeExpr extends Expr {
 }
 
 class CallExpr extends Expr {
-  const CallExpr(this.callee, this.args, this.kwargs);
+  const CallExpr(this.callee, this.args, this.kwargs, [this.starKwargs = const []]);
   final Expr callee;
+
+  /// Kann [StarredExpr] enthalten (*liste).
   final List<Expr> args;
   final Map<String, Expr> kwargs;
+
+  /// **dict
+  final List<Expr> starKwargs;
 }
 
 /// + - * / // % ** and or
@@ -168,25 +201,148 @@ class IfStmt extends Stmt {
 }
 
 class WhileStmt extends Stmt {
-  const WhileStmt(super.line, this.condition, this.conditionText, this.body);
+  const WhileStmt(super.line, this.condition, this.conditionText, this.body, [this.elseBody]);
   final Expr condition;
   final String conditionText;
   final List<Stmt> body;
+
+  /// läuft, wenn die Schleife ohne break endet
+  final List<Stmt>? elseBody;
 }
 
 class ForStmt extends Stmt {
-  const ForStmt(super.line, this.targets, this.iterable, this.body);
+  const ForStmt(super.line, this.targets, this.iterable, this.body, [this.elseBody]);
   final List<String> targets;
   final Expr iterable;
   final List<Stmt> body;
+  final List<Stmt>? elseBody;
 }
 
 class DefStmt extends Stmt {
-  const DefStmt(super.line, this.name, this.params, this.defaults, this.body);
+  DefStmt(
+    super.line,
+    this.name,
+    this.params,
+    this.defaults,
+    this.body, {
+    this.varArgs,
+    this.kwArgs,
+    this.positionalOnly = 0,
+    this.keywordOnly = const {},
+    this.decorators = const [],
+  });
   final String name;
   final List<String> params;
   final Map<String, Expr> defaults;
   final List<Stmt> body;
+  final String? varArgs;
+  final String? kwArgs;
+  final int positionalOnly;
+  final Set<String> keywordOnly;
+  List<Expr> decorators;
+}
+
+class ClassStmt extends Stmt {
+  ClassStmt(super.line, this.name, this.bases, this.body, {this.decorators = const []});
+  final String name;
+  final List<Expr> bases;
+  final List<Stmt> body;
+  List<Expr> decorators;
+}
+
+class ExceptClause {
+  const ExceptClause(this.line, this.types, this.name, this.body);
+  final int line;
+
+  /// null = fängt alle Fehler (except:)
+  final Expr? types;
+  final String? name;
+  final List<Stmt> body;
+}
+
+class TryStmt extends Stmt {
+  const TryStmt(super.line, this.body, this.handlers, this.elseBody, this.finallyBody, this.finallyLine);
+  final List<Stmt> body;
+  final List<ExceptClause> handlers;
+  final List<Stmt>? elseBody;
+  final List<Stmt>? finallyBody;
+  final int? finallyLine;
+}
+
+class RaiseStmt extends Stmt {
+  const RaiseStmt(super.line, this.value);
+
+  /// null = den gerade behandelten Fehler erneut auslösen.
+  final Expr? value;
+}
+
+class AssertStmt extends Stmt {
+  const AssertStmt(super.line, this.condition, this.message);
+  final Expr condition;
+  final Expr? message;
+}
+
+/// Ein Muster in `case`: Wert, Name (fängt alles und speichert) oder _.
+sealed class MatchPattern {
+  const MatchPattern();
+}
+
+class ValuePattern extends MatchPattern {
+  const ValuePattern(this.value);
+  final Expr value;
+}
+
+class CapturePattern extends MatchPattern {
+  const CapturePattern(this.name);
+
+  /// null = _ (Platzhalter)
+  final String? name;
+}
+
+class MatchCase {
+  const MatchCase(this.line, this.patterns, this.patternText, this.guard, this.body);
+  final int line;
+
+  /// Alternativen, getrennt durch |
+  final List<MatchPattern> patterns;
+  final String patternText;
+  final Expr? guard;
+  final List<Stmt> body;
+}
+
+class MatchStmt extends Stmt {
+  const MatchStmt(super.line, this.subject, this.subjectText, this.cases);
+  final Expr subject;
+  final String subjectText;
+  final List<MatchCase> cases;
+}
+
+/// import math, import math as m, from math import sqrt
+class ImportStmt extends Stmt {
+  const ImportStmt(super.line, this.module, this.names, {this.alias});
+  final String module;
+
+  /// null = ganzes Modul importieren; sonst Name → Alias (Name "*" = alles).
+  final Map<String, String>? names;
+  final String? alias;
+}
+
+/// with ausdruck as name:
+class WithStmt extends Stmt {
+  const WithStmt(super.line, this.value, this.name, this.body);
+  final Expr value;
+  final String? name;
+  final List<Stmt> body;
+}
+
+class YieldStmt extends Stmt {
+  const YieldStmt(super.line, this.value);
+  final Expr? value;
+}
+
+class NonlocalStmt extends Stmt {
+  const NonlocalStmt(super.line, this.names);
+  final List<String> names;
 }
 
 class ReturnStmt extends Stmt {

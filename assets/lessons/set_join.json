@@ -1,0 +1,83 @@
+{
+  "id": "set_join",
+  "title": "Sets verbinden",
+  "icon": "join_inner",
+  "intro": "Sets kann man wie in der Mathematik verbinden: union() bzw. | (alles aus beiden), intersection() bzw. & (nur was in beiden ist), difference() bzw. - (was nur im ersten ist) und symmetric_difference() bzw. ^ (was nur in einem von beiden ist).",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Bilde die Vereinigung beider Sets.",
+      "code": "a = {1, 2, 3}\nb = {3, 4}\nprint(a.___(b))",
+      "answers": [
+        [
+          "union"
+        ]
+      ],
+      "explain": "union() liefert ein neues Set mit allen Elementen aus beiden. Die 3 steht nur einmal drin.",
+      "notes": {},
+      "hint": "",
+      "output": "{1, 2, 3, 4}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = {1, 2, 3}\nb = {2, 3, 4}\nprint(a & b)",
+      "options": [
+        "{2, 3}",
+        "{1, 2, 3, 4}",
+        "{1, 4}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "& ist die Schnittmenge: nur, was in BEIDEN Sets vorkommt.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = {1, 2, 3}\nb = {2, 3, 4}\nprint(a - b)",
+      "options": [
+        "{1}",
+        "{4}",
+        "{1, 4}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "- ist die Differenz: was in a ist, aber nicht in b.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Finde die Zahlen, die nur in EINEM der beiden Sets stehen.",
+      "code": "a = {1, 2, 3}\nb = {3, 4, 5}\nprint(a ___ b)",
+      "answers": [
+        [
+          "^"
+        ]
+      ],
+      "explain": "^ (symmetrische Differenz) behält alles, was nicht in beiden gleichzeitig ist. Die 3 fliegt raus.",
+      "notes": {},
+      "hint": "",
+      "output": "{1, 2, 4, 5}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = {1, 2}\nb = {3, 4}\nprint(a | b)",
+      "options": [
+        "{1, 2, 3, 4}",
+        "set()",
+        "{1, 2}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "| ist die Kurzform von union().",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 48,
+  "chapter": "Sets"
+}

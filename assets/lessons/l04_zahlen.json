@@ -1,6 +1,5 @@
 {
   "id": "l04_zahlen",
-  "order": 4,
   "title": "Zahlen & Rechnen",
   "icon": "calculate",
   "intro": "Python kann rechnen wie ein Taschenrechner: + - * / . Dazu gibt es // (ganzzahlig teilen), % (Rest beim Teilen) und ** (hoch).",
@@ -85,5 +84,7 @@
       "hint": "Das Zeichen sieht aus wie ein Prozentzeichen.",
       "output": "0"
     }
-  ]
+  ],
+  "order": 12,
+  "chapter": "Datentypen"
 }

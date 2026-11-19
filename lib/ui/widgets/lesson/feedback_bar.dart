@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../exercises/exercise.dart';
+import '../../../exercises/hints.dart';
 import '../../../exercises/scoring.dart';
 import '../../../state/lesson_session.dart';
 import '../../theme.dart';
@@ -71,21 +72,25 @@ class FeedbackBar extends StatelessWidget {
           button('Weiter', onNext, key: const Key('next')),
         ];
       case SessionStatus.wrong:
+        final offerSolution = state.mistakes >= Hints.offerSolutionAfter;
         content = [
           Row(children: [
             Icon(Icons.heart_broken_rounded, color: accent, size: 30),
             const SizedBox(width: 8),
-            Text(state.hearts > 0 ? 'Noch nicht ganz' : 'Keine Herzen mehr', style: theme.textTheme.titleLarge?.copyWith(color: accent)),
+            Text('Noch nicht ganz', style: theme.textTheme.titleLarge?.copyWith(color: accent)),
           ]),
           if (check != null) _text(theme, check.message),
+          _HintBox(key: const Key('hint'), text: Hints.forMistake(exercise, state.mistakes)),
         ];
         actions = [
           if (onShowRun != null) button('Warum? Ansehen', onShowRun, primary: false, icon: Icons.play_circle_outline_rounded),
-          if (state.hearts > 0) ...[
-            button('Lösung zeigen', onReveal, primary: false, icon: Icons.visibility_rounded),
+          if (offerSolution) ...[
+            button('Nochmal', onRetry, primary: false, icon: Icons.refresh_rounded, key: const Key('retry')),
+            button('Lösung zeigen', onReveal, icon: Icons.visibility_rounded, key: const Key('reveal')),
+          ] else ...[
+            button('Lösung zeigen', onReveal, primary: false, icon: Icons.visibility_rounded, key: const Key('reveal')),
             button('Nochmal', onRetry, icon: Icons.refresh_rounded, key: const Key('retry')),
-          ] else
-            button('Weiter', onNext, key: const Key('next')),
+          ],
         ];
       case SessionStatus.revealed:
         content = [
@@ -143,6 +148,28 @@ class FeedbackBar extends StatelessWidget {
   Widget _text(ThemeData theme, String text) => Padding(
     padding: const EdgeInsets.only(top: 6),
     child: Semantics(liveRegion: true, child: Text(text, style: theme.textTheme.bodyLarge)),
+  );
+}
+
+/// Robos Tipp nach einem Fehler – wird mit jedem Fehlversuch genauer.
+class _HintBox extends StatelessWidget {
+  const _HintBox({super.key, required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => Container(
+    margin: const EdgeInsets.only(top: 10),
+    padding: const EdgeInsets.all(12),
+    decoration: BoxDecoration(color: AppColors.butter, borderRadius: BorderRadius.circular(14)),
+    child: Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Icon(Icons.lightbulb_rounded, color: AppColors.ink),
+        const SizedBox(width: 8),
+        Expanded(child: Semantics(liveRegion: true, child: Text(text, style: Theme.of(context).textTheme.bodyLarge))),
+      ],
+    ),
   );
 }
 

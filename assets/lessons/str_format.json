@@ -1,0 +1,83 @@
+{
+  "id": "str_format",
+  "title": "String-Formatierung",
+  "icon": "format_shapes",
+  "intro": "Mit f-Strings und format() setzt du Werte in Texte ein und formatierst sie: :.2f zeigt 2 Nachkommastellen, :, setzt Tausender-Kommas, :>10 richtet rechts aus, :^10 zentriert, :05 füllt mit Nullen. Bei format() stehen {} als Platzhalter, die der Reihe nach, per Nummer {0} oder per Name {name} gefüllt werden.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Zeige den Preis mit 2 Nachkommastellen.",
+      "code": "preis = 59\nprint(f\"Der Preis ist {preis:___} Euro\")",
+      "answers": [
+        [
+          ".2f"
+        ]
+      ],
+      "explain": ":.2f macht aus 59 die Kommazahl 59.00.",
+      "notes": {},
+      "hint": "",
+      "output": "Der Preis ist 59.00 Euro"
+    },
+    {
+      "type": "fill",
+      "task": "Fülle die Platzhalter mit format().",
+      "code": "menge = 3\nnr = 567\ntext = \"Ich will {} Stück von Artikel {}.\"\nprint(text.___(menge, nr))",
+      "answers": [
+        [
+          "format"
+        ]
+      ],
+      "explain": "format() setzt die Werte der Reihe nach in die {} ein.",
+      "notes": {},
+      "hint": "",
+      "output": "Ich will 3 Stück von Artikel 567."
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(\"{1} {0}\".format(\"Welt\", \"Hallo\"))",
+      "options": [
+        "Hallo Welt",
+        "Welt Hallo",
+        "{1} {0}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Mit Nummern in den Klammern bestimmst du, welcher Wert wohin kommt. {1} ist der zweite Wert.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(f\"[{'Robo':>6}]\")\nprint(f\"[{7:03}]\")",
+      "options": [
+        "[  Robo]\n[007]",
+        "[Robo  ]\n[700]",
+        "[ Robo ]\n[007]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": ":>6 richtet den Text rechts aus (6 Zeichen breit). :03 füllt eine Zahl vorne mit Nullen auf 3 Stellen auf.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = 1234567\nprint(f\"{x:,}\")\nprint(\"{name} ist {alter}\".format(name=\"Ida\", alter=8))",
+      "options": [
+        "1,234,567\nIda ist 8",
+        "1234567\nIda ist 8",
+        "1.234.567\nIda ist 8"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": ":, setzt Kommas als Tausendertrenner (englische Schreibweise). Benannte Platzhalter füllt man mit name=…",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 90,
+  "chapter": "Werkzeugkiste"
+}

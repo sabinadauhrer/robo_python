@@ -1,0 +1,85 @@
+{
+  "id": "tuple_unpack",
+  "title": "Tupel auspacken",
+  "icon": "unarchive",
+  "intro": "Beim Erstellen eines Tupels „packt“ man Werte hinein. Beim Auspacken verteilt man sie auf Variablen: (a, b, c) = tupel. Gibt es mehr Werte als Namen, sammelt ein * vor einem Namen den Rest als Liste ein.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Packe das Tupel in drei Variablen aus.",
+      "code": "obst = (\"Apfel\", \"Banane\", \"Kirsche\")\n(gruen, gelb, ___) = obst\nprint(rot)",
+      "answers": [
+        [
+          "rot"
+        ]
+      ],
+      "explain": "Jede Variable bekommt der Reihe nach einen Wert: gruen = Apfel, gelb = Banane, rot = Kirsche.",
+      "notes": {},
+      "hint": "",
+      "output": "Kirsche"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = (\"Apfel\", \"Banane\", \"Kirsche\", \"Erdbeere\")\n(gruen, gelb, *rot) = obst\nprint(rot)",
+      "options": [
+        "['Kirsche', 'Erdbeere']",
+        "Kirsche",
+        "('Kirsche', 'Erdbeere')"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Der * sammelt alle übrigen Werte ein – als Liste.",
+      "notes": {
+        "2": "*rot bekommt alles, was übrig bleibt."
+      },
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Sammle mit dem Sternchen die mittleren Werte ein.",
+      "code": "obst = (\"Apfel\", \"Mango\", \"Papaya\", \"Kirsche\")\n(gruen, ___tropisch, rot) = obst\nprint(tropisch)",
+      "answers": [
+        [
+          "*"
+        ]
+      ],
+      "explain": "Der * darf auch in der Mitte stehen. Dann bekommen die anderen Namen ihre Werte, und der Rest landet in der Mitte.",
+      "notes": {},
+      "hint": "",
+      "output": "['Mango', 'Papaya']"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "punkt = (3, 7)\nx, y = punkt\nprint(x + y)",
+      "options": [
+        "10",
+        "37",
+        "(3, 7)"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Klammern beim Auspacken darf man auch weglassen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "a, b = (1, 2, 3)",
+      "options": [
+        "ValueError: zu viele Werte zum Auspacken",
+        "a = 1, b = 2",
+        "a = 1, b = (2, 3)"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Ohne * müssen Namen und Werte genau gleich viele sein.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 39,
+  "chapter": "Tupel"
+}

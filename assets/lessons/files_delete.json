@@ -1,0 +1,89 @@
+{
+  "id": "files_delete",
+  "title": "Dateien löschen",
+  "icon": "delete",
+  "intro": "Zum Löschen brauchst du das Modul os: import os und dann os.remove(\"datei.txt\"). Damit es keinen Fehler gibt, prüfst du vorher mit os.path.exists(), ob die Datei existiert.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Lösche die Datei.",
+      "code": "import os\nos.___(\"alt.txt\")\nprint(os.path.exists(\"alt.txt\"))",
+      "answers": [
+        [
+          "remove"
+        ]
+      ],
+      "explain": "os.remove() löscht eine Datei. Danach gibt es sie nicht mehr.",
+      "notes": {},
+      "hint": "",
+      "output": "False",
+      "files": {
+        "alt.txt": "weg damit"
+      }
+    },
+    {
+      "type": "fill",
+      "task": "Prüfe, ob die Datei existiert.",
+      "code": "import os\nprint(os.path.___(\"alt.txt\"))",
+      "answers": [
+        [
+          "exists"
+        ]
+      ],
+      "explain": "os.path.exists() liefert True oder False.",
+      "notes": {},
+      "hint": "",
+      "output": "True",
+      "files": {
+        "alt.txt": "noch da"
+      }
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "import os\nif os.path.exists(\"demo.txt\"):\n    os.remove(\"demo.txt\")\n    print(\"gelöscht\")\nelse:\n    print(\"Die Datei gibt es nicht\")",
+      "options": [
+        "Die Datei gibt es nicht",
+        "gelöscht",
+        "FileNotFoundError"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Weil demo.txt nicht existiert, läuft der else-Teil – und es gibt keinen Fehler.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code? (Die Datei gibt es nicht.)",
+      "code": "import os\nos.remove(\"weg.txt\")",
+      "options": [
+        "FileNotFoundError",
+        "Es passiert nichts",
+        "Die Datei wird erstellt"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Eine Datei, die es nicht gibt, kann man nicht löschen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen: Datei erstellen, prüfen, löschen, nochmal prüfen (True, dann False).",
+      "lines": [
+        "import os",
+        "open(\"test.txt\", \"w\").close()",
+        "print(os.path.exists(\"test.txt\"))",
+        "os.remove(\"test.txt\")",
+        "print(os.path.exists(\"test.txt\"))"
+      ],
+      "output": "True\nFalse",
+      "explain": "Erst das Modul laden, dann die Datei anlegen – erst danach kann man sie finden und löschen.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 107,
+  "chapter": "Dateien"
+}

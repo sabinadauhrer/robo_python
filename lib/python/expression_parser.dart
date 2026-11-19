@@ -43,15 +43,24 @@ class ExpressionParser {
 
   /// a, b, c  → Tupel; ein einzelner Ausdruck bleibt einzeln.
   Expr parseExpressionList() {
-    final first = parseExpression();
+    final first = _item();
     if (peek?.type != TokenType.comma) return first;
     final items = [first];
     while (peek?.type == TokenType.comma) {
       pos++;
       if (isAtEnd || _endsList(peek!)) break;
-      items.add(parseExpression());
+      items.add(_item());
     }
     return TupleExpr(items);
+  }
+
+  /// Ein Element in einer Aufzählung – darf mit * beginnen (*rest).
+  Expr _item() {
+    if (peek?.isOp('*') ?? false) {
+      pos++;
+      return StarredExpr(_or());
+    }
+    return parseExpression();
   }
 
   bool _endsList(Token t) => t.closes || t.isOp('=') || t.type == TokenType.colon;
@@ -119,7 +128,7 @@ class ExpressionParser {
   static const _compareOps = {'==', '!=', '<', '>', '<=', '>='};
 
   Expr _comparison() {
-    final first = _additive();
+    final first = _bitOr();
     final ops = <String>[];
     final rest = <Expr>[];
     while (true) {
@@ -148,7 +157,7 @@ class ExpressionParser {
       }
       if (op == null) break;
       ops.add(op);
-      rest.add(_additive());
+      rest.add(_bitOr());
     }
     return ops.isEmpty ? first : CompareExpr(first, ops, rest);
   }
@@ -161,6 +170,42 @@ class ExpressionParser {
     final e = parseExpression();
     _insideCondition = false;
     return e;
+  }
+
+  Expr _bitOr() {
+    var left = _bitXor();
+    while (peek?.isOp('|') ?? false) {
+      pos++;
+      left = BinaryExpr('|', left, _bitXor());
+    }
+    return left;
+  }
+
+  Expr _bitXor() {
+    var left = _bitAnd();
+    while (peek?.isOp('^') ?? false) {
+      pos++;
+      left = BinaryExpr('^', left, _bitAnd());
+    }
+    return left;
+  }
+
+  Expr _bitAnd() {
+    var left = _shift();
+    while (peek?.isOp('&') ?? false) {
+      pos++;
+      left = BinaryExpr('&', left, _shift());
+    }
+    return left;
+  }
+
+  Expr _shift() {
+    var left = _additive();
+    while (peek != null && (peek!.isOp('<<') || peek!.isOp('>>'))) {
+      final op = tokens[pos++].text;
+      left = BinaryExpr(op, left, _additive());
+    }
+    return left;
   }
 
   Expr _additive() {
@@ -182,7 +227,7 @@ class ExpressionParser {
   }
 
   Expr _unary() {
-    if (peek != null && (peek!.isOp('-') || peek!.isOp('+'))) {
+    if (peek != null && (peek!.isOp('-') || peek!.isOp('+') || peek!.isOp('~'))) {
       final op = tokens[pos++].text;
       return UnaryExpr(op, _unary());
     }
@@ -224,15 +269,28 @@ class ExpressionParser {
   Expr _call(Expr callee) {
     final args = <Expr>[];
     final kwargs = <String, Expr>{};
+    final starKwargs = <Expr>[];
     while (peek?.type != TokenType.rparen) {
       if (isAtEnd) throw _error('Hier fehlt eine schließende Klammer ")".');
       if (peek!.type == TokenType.name && (peekAt(1)?.isOp('=') ?? false)) {
         final name = tokens[pos].text;
         pos += 2;
         kwargs[name] = parseExpression();
+      } else if (peek!.isOp('**')) {
+        pos++;
+        starKwargs.add(parseExpression());
+      } else if (peek!.isOp('*')) {
+        pos++;
+        args.add(StarredExpr(parseExpression()));
       } else {
         if (kwargs.isNotEmpty) throw _error('Benannte Werte (name=...) müssen nach den normalen Werten kommen.');
-        args.add(parseExpression());
+        final value = parseExpression();
+        if (peek?.isName('for') ?? false) {
+          // sum(x for x in liste)
+          args.add(_comprehension(CompKind.generator, value, close: null));
+        } else {
+          args.add(value);
+        }
       }
       if (peek?.type == TokenType.comma) {
         pos++;
@@ -243,7 +301,7 @@ class ExpressionParser {
       }
     }
     pos++;
-    return CallExpr(callee, args, kwargs);
+    return CallExpr(callee, args, kwargs, starKwargs);
   }
 
   Expr _subscript(Expr target) {
@@ -308,6 +366,22 @@ class ExpressionParser {
           pos++;
           return const TupleExpr([]);
         }
+        if (!(peek?.isOp('*') ?? false)) {
+          final first = parseExpression();
+          if (peek?.isName('for') ?? false) return _comprehension(CompKind.generator, first, close: TokenType.rparen);
+          if (peek?.type == TokenType.rparen) {
+            pos++;
+            return first;
+          }
+          final items = [first];
+          while (peek?.type == TokenType.comma) {
+            pos++;
+            if (peek?.type == TokenType.rparen) break;
+            items.add(_item());
+          }
+          _expect(TokenType.rparen, ')');
+          return TupleExpr(items);
+        }
         final inner = parseExpressionList();
         _expect(TokenType.rparen, ')');
         return inner;
@@ -328,13 +402,13 @@ class ExpressionParser {
       pos++;
       return const ListExpr([]);
     }
-    final first = parseExpression();
-    if (peek?.isName('for') ?? false) return _comprehension(first);
+    final first = _item();
+    if (peek?.isName('for') ?? false) return _comprehension(CompKind.list, first, close: TokenType.rbracket);
     final items = [first];
     while (peek?.type == TokenType.comma) {
       pos++;
       if (peek?.type == TokenType.rbracket) break;
-      items.add(parseExpression());
+      items.add(_item());
     }
     if (peek?.type != TokenType.rbracket) {
       throw _error(isAtEnd ? 'Die Liste wurde nicht mit "]" geschlossen.' : 'Zwischen den Listen-Elementen fehlt ein Komma.');
@@ -343,25 +417,34 @@ class ExpressionParser {
     return ListExpr(items);
   }
 
-  Expr _comprehension(Expr element) {
-    pos++; // for
-    final targets = <String>[];
-    while (peek != null && !peek!.isName('in')) {
-      final t = tokens[pos++];
-      if (t.type == TokenType.name) targets.add(t.text);
-    }
-    if (targets.isEmpty || !(peek?.isName('in') ?? false)) {
-      throw _error('So sieht eine List Comprehension aus: [x * 2 for x in liste]');
-    }
-    pos++;
-    final iterable = _or();
-    Expr? condition;
-    if (peek?.isName('if') ?? false) {
+  /// Liest `for ... in ... [if ...]` (auch mehrfach) und die schließende Klammer.
+  Expr _comprehension(CompKind kind, Expr element, {required TokenType? close, Expr? value}) {
+    final clauses = <CompClause>[];
+    while (peek?.isName('for') ?? false) {
+      pos++; // for
+      final targets = <String>[];
+      while (peek != null && !peek!.isName('in')) {
+        final t = tokens[pos++];
+        if (t.type == TokenType.name) targets.add(t.text);
+      }
+      if (targets.isEmpty || !(peek?.isName('in') ?? false)) {
+        throw _error('So sieht eine Comprehension aus: [x * 2 for x in liste]');
+      }
       pos++;
-      condition = _or();
+      clauses.add(CompFor(targets, _or()));
+      while (peek?.isName('if') ?? false) {
+        pos++;
+        clauses.add(CompIf(_or()));
+      }
     }
-    _expect(TokenType.rbracket, ']');
-    return ListCompExpr(element, targets, iterable, condition);
+    if (close != null) {
+      _expect(close, switch (close) {
+        TokenType.rbracket => ']',
+        TokenType.rbrace => '}',
+        _ => ')',
+      });
+    }
+    return CompExpr(kind, element, clauses, value: value);
   }
 
   Expr _dictOrSet() {
@@ -369,12 +452,15 @@ class ExpressionParser {
       pos++;
       return const DictExpr([], []);
     }
-    final first = parseExpression();
+    final first = _item();
     if (peek?.type == TokenType.colon) {
       final keys = [first];
       final values = <Expr>[];
       pos++;
       values.add(parseExpression());
+      if (peek?.isName('for') ?? false) {
+        return _comprehension(CompKind.dict, first, close: TokenType.rbrace, value: values.first);
+      }
       while (peek?.type == TokenType.comma) {
         pos++;
         if (peek?.type == TokenType.rbrace) break;
@@ -389,11 +475,12 @@ class ExpressionParser {
       pos++;
       return DictExpr(keys, values);
     }
+    if (peek?.isName('for') ?? false) return _comprehension(CompKind.set, first, close: TokenType.rbrace);
     final items = [first];
     while (peek?.type == TokenType.comma) {
       pos++;
       if (peek?.type == TokenType.rbrace) break;
-      items.add(parseExpression());
+      items.add(_item());
     }
     _expect(TokenType.rbrace, '}');
     return SetExpr(items);

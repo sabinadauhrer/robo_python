@@ -1,0 +1,83 @@
+{
+  "id": "if_logic",
+  "title": "and, or & not im if",
+  "icon": "rule",
+  "intro": "In einer if-Bedingung kannst du mehrere Prüfungen verbinden: and (beide müssen stimmen), or (eine reicht) und not (dreht um). So brauchst du oft keine verschachtelten ifs.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Beide Bedingungen sollen stimmen.",
+      "code": "a = 200\nb = 33\nc = 500\nif a > b ___ c > a:\n    print(\"Beide Bedingungen stimmen\")",
+      "answers": [
+        [
+          "and"
+        ]
+      ],
+      "explain": "and ist nur wahr, wenn links UND rechts wahr ist.",
+      "notes": {},
+      "hint": "",
+      "output": "Beide Bedingungen stimmen"
+    },
+    {
+      "type": "fill",
+      "task": "Es reicht, wenn eine Bedingung stimmt.",
+      "code": "a = 200\nb = 33\nc = 500\nif a > b ___ a > c:\n    print(\"Mindestens eine stimmt\")",
+      "answers": [
+        [
+          "or"
+        ]
+      ],
+      "explain": "or ist wahr, sobald eine Seite wahr ist.",
+      "notes": {},
+      "hint": "",
+      "output": "Mindestens eine stimmt"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = 33\nb = 200\nif not a > b:\n    print(\"a ist NICHT größer als b\")",
+      "options": [
+        "a ist NICHT größer als b",
+        "(nichts)",
+        "Fehler"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "a > b ist False, not macht daraus True.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "regen = True\nschirm = False\nif regen and not schirm:\n    print(\"Du wirst nass!\")\nelse:\n    print(\"Alles gut\")",
+      "options": [
+        "Du wirst nass!",
+        "Alles gut",
+        "Fehler"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "regen ist True, not schirm ist auch True – also ist alles True.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "tag = \"Sa\"\nif tag == \"Sa\" or tag == \"So\":\n    print(\"Wochenende\")\nelse:\n    print(\"Schule\")",
+      "options": [
+        "Wochenende",
+        "Schule",
+        "Fehler"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Mit or prüft man, ob einer von mehreren Fällen zutrifft. Achtung: tag == \"Sa\" or \"So\" wäre falsch geschrieben!",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 64,
+  "chapter": "Entscheidungen"
+}

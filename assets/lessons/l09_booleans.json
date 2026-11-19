@@ -1,6 +1,5 @@
 {
   "id": "l09_booleans",
-  "order": 9,
   "title": "Booleans & Vergleiche",
   "icon": "toggle",
   "intro": "Vergleiche ergeben True oder False: == (gleich), != (ungleich), <, >, <=, >=. Mit and (beides), or (mindestens eins) und not (Gegenteil) verknüpfst du sie.",
@@ -81,5 +80,7 @@
       "hint": "",
       "why": "Das ist praktisch bei if: if name: prüft, ob name nicht leer ist."
     }
-  ]
+  ],
+  "order": 21,
+  "chapter": "Booleans & Operatoren"
 }

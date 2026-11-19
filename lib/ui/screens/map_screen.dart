@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../exercises/exercise.dart';
 import '../../state/providers.dart';
 import '../theme.dart';
+import '../widgets/common/backup_dialog.dart';
 import '../widgets/common/sound_toggle_button.dart';
 import '../widgets/kawaii/kawaii_robot.dart';
 import '../widgets/kawaii/mascot_bubble.dart';
@@ -33,6 +34,7 @@ class MapScreen extends ConsumerWidget {
             onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const ShopScreen())),
             icon: const Icon(Icons.checkroom_rounded),
           ),
+          const BackupButton(),
           const SoundToggleButton(),
           const SizedBox(width: 8),
         ],

@@ -1,0 +1,83 @@
+{
+  "id": "str_methods",
+  "title": "Weitere String-Methoden",
+  "icon": "build",
+  "intro": "Texte haben viele nützliche Methoden: count() zählt, find() sucht, startswith() prüft den Anfang, isdigit() prüft, ob nur Ziffern drin sind, title() macht Wortanfänge groß und zfill() füllt mit Nullen auf. Wichtig: Methoden ändern den Text nicht – sie liefern einen neuen.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Zähle, wie oft „a“ in „Banana“ vorkommt.",
+      "code": "print(\"Banana\".___(\"a\"))",
+      "answers": [
+        [
+          "count"
+        ]
+      ],
+      "explain": "count() zählt, wie oft ein Text darin vorkommt. In Banana steht a dreimal.",
+      "notes": {},
+      "hint": "",
+      "output": "3"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(\"Hallo Welt\".find(\"W\"))",
+      "options": [
+        "6",
+        "7",
+        "-1"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "find() liefert die Position des ersten Treffers. Gezählt wird ab 0: H=0, a=1, … W=6. Gibt es keinen Treffer, kommt -1.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(\"hallo welt\".title())",
+      "options": [
+        "Hallo Welt",
+        "HALLO WELT",
+        "Hallo welt"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "title() schreibt den Anfang jedes Wortes groß – wie bei einer Überschrift.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Prüfe, ob der Text nur aus Ziffern besteht.",
+      "code": "pin = \"4711\"\nprint(pin.___())",
+      "answers": [
+        [
+          "isdigit"
+        ]
+      ],
+      "explain": "isdigit() gibt True zurück, wenn ALLE Zeichen Ziffern sind. Sehr praktisch, bevor man mit int() umwandelt.",
+      "notes": {},
+      "hint": "",
+      "output": "True"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "nummer = \"7\"\nprint(nummer.zfill(3))\nprint(\"Hi\".center(6, \"*\"))",
+      "options": [
+        "007\n**Hi**",
+        "7\nHi",
+        "700\n*Hi*"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "zfill(3) füllt vorne mit Nullen auf 3 Zeichen auf. center(6, \"*\") setzt den Text in die Mitte und füllt mit * auf.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 20,
+  "chapter": "Strings"
+}

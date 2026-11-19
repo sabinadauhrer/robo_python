@@ -1,0 +1,83 @@
+{
+  "id": "none",
+  "title": "None",
+  "icon": "block",
+  "intro": "None bedeutet „nichts“ oder „kein Wert“. Eine Funktion ohne return gibt None zurück. Ob etwas None ist, prüft man mit is None (nicht mit ==). None ist bei if wie False.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = None\nprint(x)\nprint(type(x))",
+      "options": [
+        "None\n<class 'NoneType'>",
+        "\n<class 'NoneType'>",
+        "None\n<class 'None'>"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "None hat seinen eigenen Typ: NoneType.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Prüfe, ob ergebnis None ist.",
+      "code": "ergebnis = None\nif ergebnis ___ None:\n    print(\"Noch kein Ergebnis\")",
+      "answers": [
+        [
+          "is"
+        ]
+      ],
+      "explain": "Für None benutzt man is. Es gibt nur ein einziges None-Objekt.",
+      "notes": {},
+      "hint": "",
+      "output": "Noch kein Ergebnis"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def nichts():\n    print(\"Hallo\")\n\nx = nichts()\nprint(x)",
+      "options": [
+        "Hallo\nNone",
+        "None",
+        "Hallo"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Funktion gibt „Hallo“ aus, hat aber kein return – deshalb ist x None.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = None\nif x:\n    print(\"Wahr\")\nelse:\n    print(\"Falsch\")",
+      "options": [
+        "Falsch",
+        "Wahr",
+        "None"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "In einer Bedingung verhält sich None wie False.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Prüfe, ob wert NICHT None ist.",
+      "code": "wert = 0\nif wert is ___ None:\n    print(\"Es gibt einen Wert:\", wert)",
+      "answers": [
+        [
+          "not"
+        ]
+      ],
+      "explain": "is not None ist True für alles außer None – auch für 0!",
+      "notes": {},
+      "hint": "",
+      "output": "Es gibt einen Wert: 0"
+    }
+  ],
+  "order": 91,
+  "chapter": "Werkzeugkiste"
+}

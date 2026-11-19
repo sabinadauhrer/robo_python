@@ -1,6 +1,5 @@
 {
   "id": "l02_variablen",
-  "order": 2,
   "title": "Variablen",
   "icon": "inventory",
   "intro": "Eine Variable ist wie eine beschriftete Box: Sie hat einen Namen und speichert einen Wert. Mit = legst du einen Wert hinein, z. B. alter = 9. Später kannst du den Namen benutzen, um den Wert wiederzubekommen.",
@@ -93,5 +92,7 @@
       },
       "hint": ""
     }
-  ]
+  ],
+  "order": 6,
+  "chapter": "Variablen"
 }

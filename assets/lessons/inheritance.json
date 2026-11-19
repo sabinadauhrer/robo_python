@@ -1,0 +1,83 @@
+{
+  "id": "inheritance",
+  "title": "Vererbung",
+  "icon": "family_restroom",
+  "intro": "Mit Vererbung baut eine Klasse auf einer anderen auf: class Schueler(Person): erbt alle Eigenschaften und Methoden von Person. Person ist die Elternklasse, Schueler die Kindklasse. Mit super() rufst du Methoden der Elternklasse auf. Die Kindklasse kann eigene Methoden hinzufügen oder geerbte überschreiben.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Lass Schueler von Person erben.",
+      "code": "class Person:\n    def __init__(self, vorname):\n        self.vorname = vorname\n\n    def zeige(self):\n        print(self.vorname)\n\nclass Schueler(___):\n    pass\n\nx = Schueler(\"Mike\")\nx.zeige()",
+      "answers": [
+        [
+          "Person"
+        ]
+      ],
+      "explain": "In den Klammern steht die Elternklasse. Schueler hat dann alles, was Person hat – auch zeige().",
+      "notes": {},
+      "hint": "",
+      "output": "Mike"
+    },
+    {
+      "type": "fill",
+      "task": "Rufe das __init__ der Elternklasse auf.",
+      "code": "class Person:\n    def __init__(self, name):\n        self.name = name\n\nclass Schueler(Person):\n    def __init__(self, name, jahr):\n        ___().__init__(name)\n        self.jahr = jahr\n\nx = Schueler(\"Mia\", 2030)\nprint(x.name, x.jahr)",
+      "answers": [
+        [
+          "super"
+        ]
+      ],
+      "explain": "super() steht für die Elternklasse. So muss man den Code von Person nicht noch einmal schreiben.",
+      "notes": {},
+      "hint": "",
+      "output": "Mia 2030"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Tier:\n    def laut(self):\n        return \"...\"\n\nclass Katze(Tier):\n    def laut(self):\n        return \"Miau\"\n\nclass Fisch(Tier):\n    pass\n\nprint(Katze().laut(), Fisch().laut())",
+      "options": [
+        "Miau ...",
+        "... ...",
+        "Miau Miau"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Katze überschreibt laut(). Fisch hat keine eigene Version und benutzt die geerbte.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Person:\n    def gruss(self):\n        print(\"Hallo\")\n\nclass Schueler(Person):\n    def gruss(self):\n        super().gruss()\n        print(\"Ich gehe zur Schule\")\n\nSchueler().gruss()",
+      "options": [
+        "Hallo\nIch gehe zur Schule",
+        "Ich gehe zur Schule",
+        "Hallo"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Kindklasse ruft zuerst die Eltern-Methode auf und ergänzt dann etwas.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class A:\n    pass\n\nclass B(A):\n    pass\n\nb = B()\nprint(isinstance(b, A), issubclass(B, A), issubclass(A, B))",
+      "options": [
+        "True True False",
+        "False True False",
+        "True True True"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ein B-Objekt ist auch ein A (wegen der Vererbung). Aber A ist keine Unterklasse von B.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 100,
+  "chapter": "Klassen & Objekte"
+}

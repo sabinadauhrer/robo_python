@@ -1,0 +1,83 @@
+{
+  "id": "dict_copy",
+  "title": "Dictionaries kopieren",
+  "icon": "content_copy",
+  "intro": "d2 = d1 macht keine Kopie, sondern nur einen zweiten Namen für DASSELBE Dictionary. Eine echte Kopie bekommst du mit d1.copy() oder dict(d1).",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = {\"x\": 1}\nb = a\nb[\"y\"] = 2\nprint(a)",
+      "options": [
+        "{'x': 1, 'y': 2}",
+        "{'x': 1}",
+        "{'y': 2}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "b ist dasselbe Dictionary wie a. Was man in b ändert, steht auch in a.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Erstelle eine echte Kopie mit einer Methode.",
+      "code": "a = {\"x\": 1}\nb = a.___()\nb[\"y\"] = 2\nprint(a)",
+      "answers": [
+        [
+          "copy"
+        ]
+      ],
+      "explain": "copy() erstellt ein neues, unabhängiges Dictionary.",
+      "notes": {},
+      "hint": "",
+      "output": "{'x': 1}"
+    },
+    {
+      "type": "fill",
+      "task": "Erstelle eine Kopie mit der eingebauten Funktion.",
+      "code": "a = {\"x\": 1}\nb = ___(a)\nprint(b)",
+      "answers": [
+        [
+          "dict"
+        ]
+      ],
+      "explain": "dict(a) baut ein neues Dictionary aus a.",
+      "notes": {},
+      "hint": "",
+      "output": "{'x': 1}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = {\"x\": 1}\nb = a.copy()\nprint(a == b, a is b)",
+      "options": [
+        "True False",
+        "True True",
+        "False False"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Kopie hat den gleichen Inhalt (==), ist aber ein anderes Objekt (is).",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "original = {\"farbe\": \"rot\"}\nkopie = dict(original)\nkopie[\"farbe\"] = \"blau\"\nprint(original[\"farbe\"])",
+      "options": [
+        "rot",
+        "blau",
+        "Fehler"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Weil kopie eine echte Kopie ist, bleibt das Original rot.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 57,
+  "chapter": "Dictionaries"
+}

@@ -1,0 +1,83 @@
+{
+  "id": "dict_remove",
+  "title": "Aus Dictionaries entfernen",
+  "icon": "remove_circle",
+  "intro": "pop(\"schlüssel\") entfernt ein Paar und gibt den Wert zurück. popitem() entfernt das zuletzt hinzugefügte Paar. del d[\"schlüssel\"] löscht ein Paar, und clear() leert das ganze Dictionary.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Entferne das Modell mit einer Methode.",
+      "code": "auto = {\"marke\": \"Ford\", \"modell\": \"Mustang\"}\nauto.___(\"modell\")\nprint(auto)",
+      "answers": [
+        [
+          "pop"
+        ]
+      ],
+      "explain": "pop() entfernt das Paar mit diesem Schlüssel.",
+      "notes": {},
+      "hint": "",
+      "output": "{'marke': 'Ford'}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "auto = {\"marke\": \"Ford\", \"modell\": \"Mustang\", \"jahr\": 1964}\nauto.popitem()\nprint(auto)",
+      "options": [
+        "{'marke': 'Ford', 'modell': 'Mustang'}",
+        "{'modell': 'Mustang', 'jahr': 1964}",
+        "{}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "popitem() entfernt das zuletzt hinzugefügte Paar – hier das Jahr.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Lösche das Paar mit dem Schlüssel „jahr“.",
+      "code": "auto = {\"marke\": \"Ford\", \"jahr\": 1964}\n___ auto[\"jahr\"]\nprint(auto)",
+      "answers": [
+        [
+          "del"
+        ]
+      ],
+      "explain": "del entfernt ein Paar direkt über den Schlüssel.",
+      "notes": {},
+      "hint": "",
+      "output": "{'marke': 'Ford'}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "d = {\"a\": 1, \"b\": 2}\nwert = d.pop(\"a\")\nprint(wert, d)",
+      "options": [
+        "1 {'b': 2}",
+        "a {'b': 2}",
+        "1 {'a': 1, 'b': 2}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "pop() gibt den entfernten Wert zurück.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "d = {\"a\": 1}\nd.clear()\nprint(d)",
+      "options": [
+        "{}",
+        "None",
+        "set()"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "clear() leert das Dictionary. Übrig bleibt ein leeres {}.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 55,
+  "chapter": "Dictionaries"
+}

@@ -1,6 +1,5 @@
 {
   "id": "l14_listen_methoden",
-  "order": 14,
   "title": "Listen-Methoden",
   "icon": "playlist_add",
   "intro": "Listen haben viele Methoden: append() hängt hinten an, insert() fügt an einer Stelle ein, remove() entfernt, pop() nimmt ein Element heraus und sort() sortiert. Anders als bei Texten ändern sie die Liste direkt!",
@@ -80,5 +79,7 @@
       "hint": "",
       "notes": {}
     }
-  ]
+  ],
+  "order": 35,
+  "chapter": "Listen"
 }

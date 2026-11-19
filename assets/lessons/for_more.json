@@ -1,0 +1,83 @@
+{
+  "id": "for_more",
+  "title": "for: break, continue, else",
+  "icon": "repeat_on",
+  "intro": "Auch for-Schleifen kennen break, continue und else. Und Schleifen kann man verschachteln: Die innere Schleife läuft dann für jede Runde der äußeren komplett durch.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Brich ab, sobald „Banane“ erreicht ist.",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\"]\nfor x in obst:\n    print(x)\n    if x == \"Banane\":\n        ___",
+      "answers": [
+        [
+          "break"
+        ]
+      ],
+      "explain": "break beendet die for-Schleife sofort. Kirsche wird nicht mehr ausgegeben.",
+      "notes": {},
+      "hint": "",
+      "output": "Apfel\nBanane"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\"]\nfor x in obst:\n    if x == \"Banane\":\n        continue\n    print(x)",
+      "options": [
+        "Apfel\nKirsche",
+        "Apfel",
+        "Apfel\nBanane\nKirsche"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "continue überspringt nur die Runde mit der Banane.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "for x in range(3):\n    print(x)\nelse:\n    print(\"Fertig!\")",
+      "options": [
+        "0\n1\n2\nFertig!",
+        "0\n1\n2",
+        "Fertig!"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Das else läuft, nachdem die Schleife komplett durchgelaufen ist.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "for farbe in [\"rot\", \"blau\"]:\n    for ding in [\"Ball\", \"Hut\"]:\n        print(farbe, ding)",
+      "options": [
+        "rot Ball\nrot Hut\nblau Ball\nblau Hut",
+        "rot Ball\nblau Hut",
+        "rot blau\nBall Hut"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Für jede Farbe läuft die innere Schleife einmal ganz durch.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Ergänze das Wort, damit die leere Schleife keinen Fehler macht.",
+      "code": "for x in [0, 1, 2]:\n    ___\nprint(\"ok\")",
+      "answers": [
+        [
+          "pass"
+        ]
+      ],
+      "explain": "Auch eine for-Schleife darf nicht leer sein – pass hilft.",
+      "notes": {},
+      "hint": "",
+      "output": "ok"
+    }
+  ],
+  "order": 71,
+  "chapter": "Schleifen"
+}

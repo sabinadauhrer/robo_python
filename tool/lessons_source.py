@@ -3,18 +3,54 @@
 Jede Musterlösung wird mit echtem Python ausgeführt – so stimmen die
 erwarteten Ausgaben garantiert. Aufruf: python3 tool/lessons_source.py
 """
-import contextlib, io, json, os, re
+import contextlib, glob, io, json, os, re, shutil, sys, tempfile
 
 OUT = os.path.join(os.path.dirname(__file__), '..', 'assets', 'lessons')
 B = '___'
 
 
-def run(code):
+def run(code, inputs=(), files=None, manual=None):
+    """Führt den Code mit echtem Python aus.
+
+    inputs: Was bei input() eingetippt wird. Wie im Spiel erscheint die Eingabe in der Ausgabe.
+    files: Dateien, die es beim Start gibt.
+    manual: erwartete Ausgabe für Code, den diese Python-Version nicht kann (match ab 3.10).
+    """
+    if manual is not None and sys.version_info < (3, 10):
+        return manual
+    feed = list(inputs)
+
+    def fake_input(prompt=''):
+        value = feed.pop(0)
+        print(str(prompt) + value)
+        return value
+
     buf = io.StringIO()
-    with contextlib.redirect_stdout(buf):
-        exec(compile(code, 'aufgabe', 'exec'), {})
+    old = os.getcwd()
+    tmp = tempfile.mkdtemp()
+    os.chdir(tmp)
+    try:
+        for name, content in (files or {}).items():
+            with open(name, 'w') as f:
+                f.write(content)
+        with contextlib.redirect_stdout(buf):
+            exec(compile(code, 'aufgabe', 'exec'), {'__name__': '__main__', 'input': fake_input})
+    finally:
+        os.chdir(old)
+        shutil.rmtree(tmp)
     out = buf.getvalue()
-    return out[:-1] if out.endswith('\n') else out
+    out = out[:-1] if out.endswith('\n') else out
+    if manual is not None:
+        assert out == manual, (code, out, manual)
+    return out
+
+
+def _extra(ex, inputs, files):
+    if inputs:
+        ex['inputs'] = list(inputs)
+    if files:
+        ex['files'] = dict(files)
+    return ex
 
 
 def fill_in(code, answers):
@@ -26,44 +62,47 @@ def fill_in(code, answers):
     return s
 
 
-def fill(task, code, answers, explain, notes=None, hint='', why=None, output=True):
+def fill(task, code, answers, explain, notes=None, hint='', why=None, output=True,
+         inputs=(), files=None, manual=None):
     answers = [a if isinstance(a, list) else [a] for a in answers]
     ex = {'type': 'fill', 'task': task, 'code': code, 'answers': answers,
           'explain': explain, 'notes': notes or {}, 'hint': hint}
-    out = run(fill_in(code, answers))
+    out = run(fill_in(code, answers), inputs, files, manual)
     if output:
         ex['output'] = out
     if why:
         ex['why'] = why
-    return ex
+    return _extra(ex, inputs, files)
 
 
-def choice(task, code, options, correct, explain, notes=None, hint='', why=None, is_output=True):
+def choice(task, code, options, correct, explain, notes=None, hint='', why=None, is_output=True,
+           inputs=(), files=None, manual=None):
+    assert len(set(options)) == len(options), options
     if is_output:
-        actual = run(code)
+        actual = run(code, inputs, files, manual)
         assert options[correct] == actual, (task, options[correct], actual)
-        assert len(set(options)) == len(options), options
     ex = {'type': 'choice', 'task': task, 'code': code, 'options': options, 'correct': correct,
           'isOutput': is_output, 'explain': explain, 'notes': notes or {}, 'hint': hint}
     if why:
         ex['why'] = why
-    return ex
+    return _extra(ex, inputs, files)
 
 
-def order(task, lines, explain, hint='', why=None):
-    ex = {'type': 'order', 'task': task, 'lines': lines, 'output': run('\n'.join(lines)),
+def order(task, lines, explain, hint='', why=None, inputs=(), files=None, manual=None):
+    ex = {'type': 'order', 'task': task, 'lines': lines, 'output': run('\n'.join(lines), inputs, files, manual),
           'explain': explain, 'hint': hint}
     if why:
         ex['why'] = why
-    return ex
+    return _extra(ex, inputs, files)
 
 
-LESSONS = []
+LESSONS = {}
 
 
 def lesson(id, title, icon, intro, exercises):
-    LESSONS.append({'id': id, 'order': len(LESSONS) + 1, 'title': title, 'icon': icon,
-                    'intro': intro, 'exercises': exercises})
+    assert id not in LESSONS, id
+    assert len(exercises) >= 5, id
+    LESSONS[id] = {'id': id, 'title': title, 'icon': icon, 'intro': intro, 'exercises': exercises}
 
 
 # ---------------------------------------------------------------- 1
@@ -583,19 +622,40 @@ lesson('l20_iteratoren', 'Iteratoren', 'skip_next',
 ])
 
 
+# Weitere Inseln stehen in tool/lessons/*.py (gleiche Hilfsfunktionen).
+for _path in sorted(glob.glob(os.path.join(os.path.dirname(__file__), 'lessons', '*.py'))):
+    exec(compile(open(_path, encoding='utf-8').read(), _path, 'exec'), globals())
+
+
+def ordered():
+    """Reihenfolge wie im W3Schools-Python-Tutorial, gruppiert in Kapitel."""
+    result = []
+    seen = set()
+    for chapter, ids in CURRICULUM:
+        for i in ids:
+            assert i in LESSONS, f'Insel {i} fehlt'
+            assert i not in seen, i
+            seen.add(i)
+            result.append(dict(LESSONS[i], order=len(result) + 1, chapter=chapter))
+    missing = set(LESSONS) - seen
+    assert not missing, f'Nicht im Lehrplan: {missing}'
+    return result
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
     for f in os.listdir(OUT):
         if f.endswith('.json'):
             os.remove(os.path.join(OUT, f))
     total = 0
-    for l in LESSONS:
+    lessons = ordered()
+    for l in lessons:
         for ex in l['exercises']:
             ex['notes'] = {str(k): v for k, v in ex.get('notes', {}).items()}
         with open(os.path.join(OUT, f"{l['id']}.json"), 'w') as f:
             json.dump(l, f, ensure_ascii=False, indent=2)
         total += len(l['exercises'])
-    print(f'{len(LESSONS)} Lektionen mit {total} Aufgaben geschrieben.')
+    print(f'{len(lessons)} Lektionen mit {total} Aufgaben geschrieben.')
 
 
 if __name__ == '__main__':

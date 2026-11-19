@@ -1,0 +1,81 @@
+{
+  "id": "dict_change",
+  "title": "Dictionaries ändern",
+  "icon": "edit",
+  "intro": "Einen Wert änderst du, indem du dem Schlüssel einen neuen Wert zuweist: auto[\"jahr\"] = 2020. Mit update() kannst du gleich mehrere Werte auf einmal ändern.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ändere das Jahr auf 2018.",
+      "code": "auto = {\"marke\": \"Ford\", \"jahr\": 1964}\nauto[\"jahr\"] = ___\nprint(auto)",
+      "answers": [
+        [
+          "2018"
+        ]
+      ],
+      "explain": "Gibt es den Schlüssel schon, wird sein Wert überschrieben.",
+      "notes": {},
+      "hint": "",
+      "output": "{'marke': 'Ford', 'jahr': 2018}"
+    },
+    {
+      "type": "fill",
+      "task": "Ändere das Jahr mit einer Methode.",
+      "code": "auto = {\"marke\": \"Ford\", \"jahr\": 1964}\nauto.___({\"jahr\": 2020})\nprint(auto)",
+      "answers": [
+        [
+          "update"
+        ]
+      ],
+      "explain": "update() bekommt ein Dictionary mit den neuen Werten.",
+      "notes": {},
+      "hint": "",
+      "output": "{'marke': 'Ford', 'jahr': 2020}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "d = {\"a\": 1, \"b\": 2}\nd.update({\"a\": 10, \"c\": 3})\nprint(d)",
+      "options": [
+        "{'a': 10, 'b': 2, 'c': 3}",
+        "{'a': 1, 'b': 2, 'c': 3}",
+        "{'a': 10, 'c': 3}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "update() überschreibt vorhandene Schlüssel und fügt neue hinzu.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "punkte = {\"Mia\": 5}\npunkte[\"Mia\"] += 3\nprint(punkte[\"Mia\"])",
+      "options": [
+        "8",
+        "53",
+        "5"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Man kann mit dem Wert direkt rechnen: += 3 erhöht ihn.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen, damit {'farbe': 'blau'} ausgegeben wird.",
+      "lines": [
+        "d = {\"farbe\": \"rot\"}",
+        "d[\"farbe\"] = \"blau\"",
+        "print(d)"
+      ],
+      "output": "{'farbe': 'blau'}",
+      "explain": "Erst das Dictionary erstellen, dann ändern, dann ausgeben.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 53,
+  "chapter": "Dictionaries"
+}

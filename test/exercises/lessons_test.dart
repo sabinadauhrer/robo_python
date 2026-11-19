@@ -16,11 +16,16 @@ void main() {
       .map((f) => f.readAsStringSync()));
   const interpreter = Interpreter();
 
-  test('20 Lektionen mit eindeutigen IDs und fortlaufender Reihenfolge', () {
-    expect(lessons, hasLength(20));
-    expect(lessons.map((l) => l.id).toSet(), hasLength(20));
-    expect(lessons.map((l) => l.order), List.generate(20, (i) => i + 1));
+  test('über 100 Lektionen (wie W3Schools) mit eindeutigen IDs und fortlaufender Reihenfolge', () {
+    expect(lessons.length, greaterThanOrEqualTo(100));
+    expect(lessons.map((l) => l.id).toSet(), hasLength(lessons.length));
+    expect(lessons.map((l) => l.order), List.generate(lessons.length, (i) => i + 1));
     expect(lessons.every((l) => l.exercises.length >= 5), isTrue);
+    expect(lessons.every((l) => l.chapter != null), isTrue);
+    // Die ersten 20 IDs gibt es weiterhin (gespeicherte Sterne bleiben erhalten).
+    for (var i = 1; i <= 20; i++) {
+      expect(lessons.any((l) => l.id.startsWith('l${i.toString().padLeft(2, '0')}_')), isTrue);
+    }
   });
 
   for (final lesson in lessons) {
@@ -49,7 +54,7 @@ void main() {
               expect(Checker.check(e, FillAnswer(List.filled(e.blankCount, 'xyz'))).correct, isFalse);
             case ChoiceExercise():
               expect(e.correct, inInclusiveRange(0, e.options.length - 1));
-              final run = interpreter.run(e.code);
+              final run = interpreter.run(e.code, inputs: e.inputs, files: e.files);
               if (e.isOutputQuestion) {
                 expect(run.error, isNull, reason: run.error?.display);
                 expect(run.output, e.options[e.correct]);

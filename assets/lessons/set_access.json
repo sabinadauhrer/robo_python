@@ -1,0 +1,83 @@
+{
+  "id": "set_access",
+  "title": "Auf Sets zugreifen",
+  "icon": "search",
+  "intro": "Ein Set hat keine Reihenfolge und deshalb keinen Index – set[0] geht nicht. Du kannst aber mit einer for-Schleife alle Elemente durchgehen oder mit in prüfen, ob ein Wert drin ist.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Prüfe, ob „Banane“ im Set ist.",
+      "code": "obst = {\"Apfel\", \"Banane\", \"Kirsche\"}\nprint(\"Banane\" ___ obst)",
+      "answers": [
+        [
+          "in"
+        ]
+      ],
+      "explain": "in ist bei Sets besonders schnell – genau dafür sind Sets gemacht.",
+      "notes": {},
+      "hint": "",
+      "output": "True"
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "obst = {\"Apfel\", \"Banane\"}\nprint(obst[0])",
+      "options": [
+        "TypeError: Sets haben keinen Index",
+        "Apfel",
+        "Banane"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Ein Set hat keine feste Reihenfolge. Deshalb gibt es auch kein „erstes“ Element mit Index 0.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = {\"Apfel\", \"Banane\"}\nprint(\"Kiwi\" not in obst)",
+      "options": [
+        "True",
+        "False",
+        "Kiwi"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "not in ist das Gegenteil von in: Kiwi ist NICHT im Set → True.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "zahlen = {3, 1, 2}\nfor z in sorted(zahlen):\n    print(z)",
+      "options": [
+        "1\n2\n3",
+        "3\n1\n2",
+        "3\n2\n1"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Weil Sets keine Reihenfolge haben, sortiert man sie mit sorted(), wenn man eine feste Reihenfolge braucht.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Finde heraus, wie viele Elemente im Set sind.",
+      "code": "farben = {\"rot\", \"grün\", \"blau\", \"rot\"}\nprint(___(farben))",
+      "answers": [
+        [
+          "len"
+        ]
+      ],
+      "explain": "Doppelte Werte zählen in einem Set nur einmal – deshalb ist die Länge 3.",
+      "notes": {},
+      "hint": "",
+      "output": "3"
+    }
+  ],
+  "order": 44,
+  "chapter": "Sets"
+}

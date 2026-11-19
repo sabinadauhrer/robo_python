@@ -1,0 +1,84 @@
+{
+  "id": "set_remove",
+  "title": "Aus Sets entfernen",
+  "icon": "remove_circle",
+  "intro": "remove() entfernt ein Element – fehlt es, gibt es einen Fehler. discard() entfernt es auch, meckert aber nicht, wenn es fehlt. clear() leert das Set, und del set löscht es ganz.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Entferne die 2 aus dem Set.",
+      "code": "zahlen = {1, 2, 3}\nzahlen.___(2)\nprint(zahlen)",
+      "answers": [
+        [
+          "remove",
+          "discard"
+        ]
+      ],
+      "explain": "remove() und discard() entfernen beide ein Element. Der Unterschied zeigt sich, wenn es nicht da ist.",
+      "notes": {},
+      "hint": "",
+      "output": "{1, 3}"
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "zahlen = {1, 2, 3}\nzahlen.remove(9)",
+      "options": [
+        "KeyError: 9 ist nicht im Set",
+        "Es passiert nichts",
+        "{1, 2, 3}"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "remove() meldet einen Fehler, wenn das Element fehlt.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "zahlen = {1, 2, 3}\nzahlen.discard(9)\nprint(zahlen)",
+      "options": [
+        "{1, 2, 3}",
+        "KeyError",
+        "{1, 2}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "discard() entfernt das Element, falls es da ist. Fehlt es, passiert einfach nichts.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Leere das Set.",
+      "code": "zahlen = {1, 2, 3}\nzahlen.___()\nprint(zahlen)",
+      "answers": [
+        [
+          "clear"
+        ]
+      ],
+      "explain": "clear() entfernt alle Elemente. Ein leeres Set wird als set() angezeigt – {} wäre ein leeres Dictionary!",
+      "notes": {},
+      "hint": "",
+      "output": "set()"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "zahlen = {5, 6}\nx = zahlen.pop()\nprint(len(zahlen))",
+      "options": [
+        "1",
+        "2",
+        "0"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "pop() entfernt ein (beliebiges) Element und gibt es zurück. Danach ist noch eins übrig.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 46,
+  "chapter": "Sets"
+}

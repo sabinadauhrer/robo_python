@@ -1,0 +1,83 @@
+{
+  "id": "self",
+  "title": "self",
+  "icon": "person",
+  "intro": "self ist der erste Parameter jeder Methode. Es steht für das Objekt, mit dem die Methode gerade arbeitet. Über self kommt eine Methode an die Eigenschaften „ihres“ Objekts. Beim Aufruf p1.methode() setzt Python self automatisch ein.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Greife in der Methode auf den Namen des Objekts zu.",
+      "code": "class Person:\n    def __init__(self, name):\n        self.name = name\n\n    def gruss(self):\n        print(\"Hallo, ich bin \" + ___.name)\n\np1 = Person(\"Emil\")\np1.gruss()",
+      "answers": [
+        [
+          "self"
+        ]
+      ],
+      "explain": "In der Methode ist self das Objekt p1 – also ist self.name „Emil“.",
+      "notes": {},
+      "hint": "",
+      "output": "Hallo, ich bin Emil"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Person:\n    def __init__(self, name):\n        self.name = name\n\n    def gruss(self):\n        print(\"Hi \" + self.name)\n\na = Person(\"Ali\")\nb = Person(\"Bea\")\nb.gruss()",
+      "options": [
+        "Hi Bea",
+        "Hi Ali",
+        "Hi self"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "b.gruss() → self ist b. Darum wird Beas Name benutzt.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Zaehler:\n    def __init__(self):\n        self.wert = 0\n\n    def plus(self):\n        self.wert += 1\n\nz = Zaehler()\nz.plus()\nz.plus()\nprint(z.wert)",
+      "options": [
+        "2",
+        "1",
+        "0"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Jedes plus() erhöht den Wert DIESES Objekts um 1.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Person:\n    def __init__(ich, name):\n        ich.name = name\n\np = Person(\"Linus\")\nprint(p.name)",
+      "options": [
+        "Linus",
+        "Fehler",
+        "ich"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "„self“ ist nur ein üblicher Name. Er muss aber der erste Parameter sein – hier heißt er eben ich.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Rufe die Methode des Objekts auf.",
+      "code": "class Robo:\n    def piep(self):\n        print(\"Piep piep!\")\n\nr = Robo()\nr.___()",
+      "answers": [
+        [
+          "piep"
+        ]
+      ],
+      "explain": "Beim Aufruf schreibt man self NICHT hin – Python setzt das Objekt automatisch ein.",
+      "notes": {},
+      "hint": "",
+      "output": "Piep piep!"
+    }
+  ],
+  "order": 97,
+  "chapter": "Klassen & Objekte"
+}

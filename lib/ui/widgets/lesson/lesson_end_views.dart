@@ -116,36 +116,3 @@ class _RewardTile extends StatelessWidget {
     ]),
   );
 }
-
-/// Alle Herzen weg.
-class LessonFailedView extends StatelessWidget {
-  const LessonFailedView({super.key, required this.onRetry, required this.onDone});
-
-  final VoidCallback onRetry;
-  final VoidCallback onDone;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const KawaiiRobot(mood: RobotMood.dizzy, size: 130),
-            const SizedBox(height: 12),
-            Text('Oh nein, keine Herzen mehr!', style: theme.textTheme.headlineSmall, textAlign: TextAlign.center),
-            const SizedBox(height: 8),
-            Text('Kein Problem – Fehler gehören zum Lernen dazu. Beim nächsten Mal kennst du die Aufgaben schon!',
-                style: theme.textTheme.bodyLarge, textAlign: TextAlign.center),
-            const SizedBox(height: 24),
-            FilledButton.icon(key: const Key('restart'), onPressed: onRetry, icon: const Icon(Icons.refresh_rounded), label: const Text('Nochmal versuchen')),
-            const SizedBox(height: 8),
-            TextButton(onPressed: onDone, child: const Text('Zur Karte')),
-          ],
-        ),
-      ),
-    );
-  }
-}

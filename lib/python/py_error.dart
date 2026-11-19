@@ -1,6 +1,6 @@
 /// Ein Python-Fehler mit Zeilennummer, Python-Fehlertyp und deutscher Erklärung.
 class PyError implements Exception {
-  const PyError(this.line, this.type, this.message);
+  const PyError(this.line, this.type, this.message, {this.exception});
 
   /// Zeilennummer (1-basiert).
   final int line;
@@ -11,8 +11,11 @@ class PyError implements Exception {
   /// Deutsche Erklärung.
   final String message;
 
+  /// Das Fehler-Objekt, falls es mit `raise` ausgelöst wurde (ein PyInstance).
+  final Object? exception;
+
   /// z. B. "Zeile 3 – NameError: Die Variable "x" gibt es noch nicht."
-  String get display => 'Zeile $line – $type: $message';
+  String get display => message.isEmpty ? 'Zeile $line – $type' : 'Zeile $line – $type: $message';
 
   @override
   String toString() => display;

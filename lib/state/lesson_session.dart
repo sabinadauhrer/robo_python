@@ -5,7 +5,7 @@ import '../exercises/exercise.dart';
 import '../exercises/scoring.dart';
 import 'providers.dart';
 
-enum SessionStatus { answering, correct, wrong, revealed, finished, failed }
+enum SessionStatus { answering, correct, wrong, revealed, finished }
 
 class LessonSessionState {
   const LessonSessionState({
@@ -17,8 +17,12 @@ class LessonSessionState {
     this.status = SessionStatus.answering,
     this.lastCheck,
     this.attempt = 0,
+    this.mistakes = 0,
     this.reward,
   });
+
+  /// Fehlversuche bei der aktuellen Aufgabe (bestimmt, wie viel Robo verrät).
+  final int mistakes;
 
   /// Reihenfolge der Aufgaben (Indizes); aufgedeckte Aufgaben kommen am Ende nochmal.
   final List<int> queue;
@@ -47,6 +51,7 @@ class LessonSessionState {
     CheckResult? lastCheck,
     bool clearCheck = false,
     int? attempt,
+    int? mistakes,
     LessonReward? reward,
   }) => LessonSessionState(
     queue: queue ?? this.queue,
@@ -57,11 +62,13 @@ class LessonSessionState {
     status: status ?? this.status,
     lastCheck: clearCheck ? null : (lastCheck ?? this.lastCheck),
     attempt: attempt ?? this.attempt,
+    mistakes: mistakes ?? this.mistakes,
     reward: reward ?? this.reward,
   );
 }
 
 /// Ablauf einer Lektion: prüfen, Herzen, XP, Lösung zeigen, Abschluss.
+/// Herzen bestimmen nur die Sterne – bei vielen Fehlern gibt es mehr Tipps statt eines Neustarts.
 class LessonSession extends Notifier<LessonSessionState> {
   LessonSession(this.lesson);
 
@@ -93,14 +100,15 @@ class LessonSession extends Notifier<LessonSessionState> {
         status: SessionStatus.wrong,
         lastCheck: result,
         combo: 0,
-        hearts: state.hearts - 1,
+        hearts: (state.hearts - 1).clamp(0, Scoring.hearts),
+        mistakes: state.mistakes + 1,
       );
     }
   }
 
   /// Nach einer falschen Antwort dieselbe Aufgabe nochmal versuchen.
   void retry() {
-    if (state.status != SessionStatus.wrong || state.hearts == 0) return;
+    if (state.status != SessionStatus.wrong) return;
     state = state.copyWith(status: SessionStatus.answering, clearCheck: true);
   }
 
@@ -114,10 +122,6 @@ class LessonSession extends Notifier<LessonSessionState> {
 
   void next() {
     if (!state.isChecked) return;
-    if (state.hearts <= 0) {
-      state = state.copyWith(status: SessionStatus.failed);
-      return;
-    }
     final position = state.position + 1;
     if (position >= state.queue.length) {
       final stars = Scoring.starsFor(state.hearts);
@@ -130,6 +134,7 @@ class LessonSession extends Notifier<LessonSessionState> {
       status: SessionStatus.answering,
       clearCheck: true,
       attempt: state.attempt + 1,
+      mistakes: 0,
     );
   }
 

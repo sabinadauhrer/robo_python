@@ -1,0 +1,87 @@
+{
+  "id": "str_slicing",
+  "title": "Strings schneiden",
+  "icon": "content_cut",
+  "intro": "Mit text[start:ende] schneidest du ein Stück aus einem Text. Der Start ist dabei, das Ende NICHT mehr. Lässt du den Start weg, geht es von vorn los; lässt du das Ende weg, bis zum Schluss. Negative Zahlen zählen von hinten.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Schneide „llo“ aus „Hello, World!“ (Position 2 bis vor 5).",
+      "code": "b = \"Hello, World!\"\nprint(b[2:___])",
+      "answers": [
+        [
+          "5"
+        ]
+      ],
+      "explain": "b[2:5] nimmt die Zeichen an Position 2, 3 und 4. Position 5 ist schon nicht mehr dabei.",
+      "notes": {
+        "2": "Start 2 ist dabei, Ende 5 nicht mehr."
+      },
+      "hint": "",
+      "output": "llo"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "b = \"Hello, World!\"\nprint(b[:5])",
+      "options": [
+        "Hello",
+        "Hello,",
+        "World"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ohne Startwert beginnt der Ausschnitt ganz vorn (Position 0) und endet vor Position 5.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "b = \"Hello, World!\"\nprint(b[7:])",
+      "options": [
+        "World!",
+        " World!",
+        "Hello, "
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ohne Endwert geht der Ausschnitt bis zum Ende. Position 7 ist das W.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Nimm die letzten 3 Zeichen mit einer negativen Zahl.",
+      "code": "wort = \"Python\"\nprint(wort[___:])",
+      "answers": [
+        [
+          "-3"
+        ]
+      ],
+      "explain": "Negative Positionen zählen von hinten: -1 ist das letzte Zeichen, -3 das drittletzte.",
+      "notes": {},
+      "hint": "",
+      "output": "hon"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "b = \"Hello, World!\"\nprint(b[-5:-2])",
+      "options": [
+        "orl",
+        "World",
+        "rld"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "-5 ist das o in World, -2 ist das d. Das Ende ist nicht dabei, also bleibt „orl“.",
+      "notes": {
+        "2": "Von -5 (o) bis vor -2 (d)."
+      },
+      "hint": ""
+    }
+  ],
+  "order": 15,
+  "chapter": "Strings"
+}

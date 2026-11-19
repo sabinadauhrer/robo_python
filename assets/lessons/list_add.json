@@ -1,0 +1,82 @@
+{
+  "id": "list_add",
+  "title": "Elemente hinzufügen",
+  "icon": "add_circle",
+  "intro": "Es gibt drei Wege, eine Liste zu vergrößern: append() hängt ein Element hinten an, insert() fügt es an einer Position ein, und extend() hängt alle Elemente einer anderen Sammlung an.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Hänge „Orange“ hinten an.",
+      "code": "obst = [\"Apfel\", \"Banane\"]\nobst.___(\"Orange\")\nprint(obst)",
+      "answers": [
+        [
+          "append"
+        ]
+      ],
+      "explain": "append() hängt genau ein Element ans Ende der Liste.",
+      "notes": {},
+      "hint": "",
+      "output": "['Apfel', 'Banane', 'Orange']"
+    },
+    {
+      "type": "fill",
+      "task": "Füge „Kiwi“ ganz vorne (Index 0) ein.",
+      "code": "obst = [\"Apfel\", \"Banane\"]\nobst.insert(___, \"Kiwi\")\nprint(obst)",
+      "answers": [
+        [
+          "0"
+        ]
+      ],
+      "explain": "Index 0 ist der Anfang der Liste. Alle anderen Elemente rutschen eins nach hinten.",
+      "notes": {},
+      "hint": "",
+      "output": "['Kiwi', 'Apfel', 'Banane']"
+    },
+    {
+      "type": "fill",
+      "task": "Hänge alle Elemente von tropisch an obst an.",
+      "code": "obst = [\"Apfel\"]\ntropisch = [\"Mango\", \"Ananas\"]\nobst.___(tropisch)\nprint(obst)",
+      "answers": [
+        [
+          "extend"
+        ]
+      ],
+      "explain": "extend() packt die Elemente einzeln an das Ende. Mit append() würde die ganze Liste als EIN Element angehängt.",
+      "notes": {},
+      "hint": "",
+      "output": "['Apfel', 'Mango', 'Ananas']"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = [1, 2]\na.append([3, 4])\nprint(a)\nprint(len(a))",
+      "options": [
+        "[1, 2, [3, 4]]\n3",
+        "[1, 2, 3, 4]\n4",
+        "[1, 2, [3, 4]]\n4"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "append() hängt die Liste [3, 4] als EIN Element an. Deshalb hat a jetzt 3 Elemente.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = [\"Apfel\"]\nobst.extend((\"Kiwi\", \"Feige\"))\nprint(obst)",
+      "options": [
+        "['Apfel', 'Kiwi', 'Feige']",
+        "['Apfel', ('Kiwi', 'Feige')]",
+        "Fehler"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "extend() nimmt jede Sammlung – auch ein Tupel – und hängt die Elemente einzeln an.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 28,
+  "chapter": "Listen"
+}

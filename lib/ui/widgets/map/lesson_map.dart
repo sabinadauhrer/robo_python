@@ -23,18 +23,31 @@ class LessonMap extends StatelessWidget {
 
   static const rowHeight = 150.0;
 
+  /// Platz für ein Kapitel-Schild über der ersten Insel eines Kapitels.
+  static const chapterHeight = 70.0;
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         final width = min(constraints.maxWidth, 640.0);
         final amplitude = max(0.0, (width - 160) / 2 - 10).clamp(0.0, 180.0);
-        Offset center(int i) => Offset(width / 2 + sin(i * 1.1) * amplitude, 60 + i * rowHeight);
+        // Wie viele Kapitel-Schilder stehen bis einschließlich Insel i?
+        final chapterStarts = <int>[];
+        final chaptersBefore = <int>[];
+        for (var i = 0; i < lessons.length; i++) {
+          final starts = lessons[i].chapter != null && (i == 0 || lessons[i - 1].chapter != lessons[i].chapter);
+          if (starts) chapterStarts.add(i);
+          chaptersBefore.add(chapterStarts.length);
+        }
+        Offset center(int i) =>
+            Offset(width / 2 + sin(i * 1.1) * amplitude, 60 + i * rowHeight + chaptersBefore[i] * chapterHeight);
         final next = lessons.indexWhere((l) => (stars[l.id] ?? 0) == 0);
+        final height = lessons.isEmpty ? 0.0 : center(lessons.length - 1).dy + rowHeight - 20;
         return Center(
           child: SizedBox(
             width: width,
-            height: lessons.length * rowHeight + 40,
+            height: height,
             child: Stack(
               children: [
                 Positioned.fill(
@@ -42,6 +55,19 @@ class LessonMap extends StatelessWidget {
                     painter: _PathPainter([for (var i = 0; i < lessons.length; i++) center(i)], doneUntil: next < 0 ? lessons.length : next),
                   ),
                 ),
+                for (final (n, i) in chapterStarts.indexed)
+                  Positioned(
+                    left: 0,
+                    right: 0,
+                    top: center(i).dy - LessonNode.size / 2 - chapterHeight + 4,
+                    child: Center(
+                      child: _ChapterBanner(
+                        number: n + 1,
+                        title: lessons[i].chapter!,
+                        done: lessons.where((l) => l.chapter == lessons[i].chapter).every((l) => (stars[l.id] ?? 0) > 0),
+                      ),
+                    ),
+                  ),
                 for (var i = 0; i < lessons.length; i++)
                   Positioned(
                     left: center(i).dx - 75,
@@ -59,6 +85,41 @@ class LessonMap extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+/// Schild mit Kapitelnummer und -name.
+class _ChapterBanner extends StatelessWidget {
+  const _ChapterBanner({required this.number, required this.title, required this.done});
+
+  final int number;
+  final String title;
+  final bool done;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        color: done ? AppColors.mint : Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppColors.cardBorder, width: 2),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('Kapitel $number · ', style: theme.textTheme.labelLarge?.copyWith(color: AppColors.inkSoft)),
+          Flexible(
+            child: Text(title, overflow: TextOverflow.ellipsis, style: theme.textTheme.titleMedium),
+          ),
+          if (done) ...[
+            const SizedBox(width: 6),
+            const Icon(Icons.check_circle_rounded, size: 20, color: AppColors.ink),
+          ],
+        ],
+      ),
     );
   }
 }

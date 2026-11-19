@@ -1,0 +1,84 @@
+{
+  "id": "tuple_loop",
+  "title": "Tupel durchlaufen",
+  "icon": "sync",
+  "intro": "Tupel durchläufst du wie Listen: mit for x in tupel:, über die Indizes mit range(len(tupel)) oder mit einer while-Schleife.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Gib jedes Element des Tupels aus.",
+      "code": "obst = (\"Apfel\", \"Banane\", \"Kirsche\")\n___ x in obst:\n    print(x)",
+      "answers": [
+        [
+          "for"
+        ]
+      ],
+      "explain": "Die for-Schleife holt sich ein Element nach dem anderen.",
+      "notes": {},
+      "hint": "",
+      "output": "Apfel\nBanane\nKirsche"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = (\"Apfel\", \"Banane\")\nfor i in range(len(obst)):\n    print(i, obst[i])",
+      "options": [
+        "0 Apfel\n1 Banane",
+        "1 Apfel\n2 Banane",
+        "Apfel\nBanane"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "range(len(obst)) liefert die Indizes 0 und 1. Damit holt man jedes Element über seine Position.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "zahlen = (5, 10, 15)\ni = 0\nwhile i < len(zahlen):\n    print(zahlen[i])\n    i += 2",
+      "options": [
+        "5\n15",
+        "5\n10\n15",
+        "10"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "i springt in Zweierschritten: 0, dann 2. Bei 4 ist die Bedingung falsch.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "paare = ((\"a\", 1), (\"b\", 2))\nfor buchstabe, zahl in paare:\n    print(buchstabe * zahl)",
+      "options": [
+        "a\nbb",
+        "a1\nb2",
+        "ab"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Jedes Element ist selbst ein Tupel – es wird direkt in buchstabe und zahl ausgepackt.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen, damit alle Zahlen im Tupel addiert werden (Ergebnis 6).",
+      "lines": [
+        "t = (1, 2, 3)",
+        "summe = 0",
+        "for z in t:",
+        "    summe += z",
+        "print(summe)"
+      ],
+      "output": "6",
+      "explain": "Erst das Tupel und die Summe, dann die Schleife, zum Schluss die Ausgabe.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 40,
+  "chapter": "Tupel"
+}

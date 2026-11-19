@@ -1,0 +1,83 @@
+{
+  "id": "inner_classes",
+  "title": "Innere Klassen",
+  "icon": "layers",
+  "intro": "Eine Klasse kann in einer anderen Klasse stehen – das ist eine innere Klasse. Das ist praktisch, wenn sie nur zusammen mit der äußeren Klasse Sinn ergibt, z. B. ein Motor in einem Auto. Erstellen kann man sie über die äußere Klasse: Auto.Motor().",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Erstelle ein Objekt der inneren Klasse.",
+      "code": "class Aussen:\n    class Innen:\n        def zeige(self):\n            print(\"Ich bin die innere Klasse\")\n\ni = Aussen.___()\ni.zeige()",
+      "answers": [
+        [
+          "Innen"
+        ]
+      ],
+      "explain": "Die innere Klasse erreicht man über den Namen der äußeren Klasse und einen Punkt.",
+      "notes": {},
+      "hint": "",
+      "output": "Ich bin die innere Klasse"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Auto:\n    def __init__(self, marke):\n        self.marke = marke\n        self.motor = self.Motor()\n\n    class Motor:\n        def __init__(self):\n            self.ps = 150\n\na = Auto(\"Toyota\")\nprint(a.marke, a.motor.ps)",
+      "options": [
+        "Toyota 150",
+        "Toyota",
+        "150"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Beim Bauen des Autos wird auch ein Motor gebaut und im Auto gespeichert.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Aussen:\n    def __init__(self):\n        self.name = \"außen\"\n\n    class Innen:\n        def __init__(self):\n            self.name = \"innen\"\n\na = Aussen()\ni = a.Innen()\nprint(a.name, i.name)",
+      "options": [
+        "außen innen",
+        "innen innen",
+        "außen außen"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Jede Klasse hat ihre eigenen Eigenschaften. Die innere Klasse kann man auch über ein Objekt erreichen: a.Innen().",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Rufe die Methode der inneren Klasse auf.",
+      "code": "class Computer:\n    class Prozessor:\n        def rechne(self):\n            return 2 + 2\n\np = Computer.Prozessor()\nprint(p.___())",
+      "answers": [
+        [
+          "rechne"
+        ]
+      ],
+      "explain": "Ein Objekt der inneren Klasse funktioniert wie jedes andere Objekt.",
+      "notes": {},
+      "hint": "",
+      "output": "4"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Spiel:\n    class Level:\n        def __init__(self, nr):\n            self.nr = nr\n\n    def __init__(self):\n        self.levels = [self.Level(1), self.Level(2)]\n\ns = Spiel()\nprint(len(s.levels), s.levels[1].nr)",
+      "options": [
+        "2 2",
+        "2 1",
+        "1 2"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Das Spiel baut beim Start zwei Level-Objekte und speichert sie in einer Liste.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 103,
+  "chapter": "Klassen & Objekte"
+}

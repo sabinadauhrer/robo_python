@@ -1,6 +1,5 @@
 {
   "id": "l01_print",
-  "order": 1,
   "title": "Ausgabe mit print",
   "icon": "chat",
   "intro": "Mit print() zeigt Python etwas auf dem Bildschirm an. Alles, was in den runden Klammern steht, wird ausgegeben. Texte stehen in Anführungszeichen, Zahlen nicht.",
@@ -88,5 +87,7 @@
       "hint": "",
       "notes": {}
     }
-  ]
+  ],
+  "order": 4,
+  "chapter": "Grundlagen"
 }

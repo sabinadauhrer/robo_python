@@ -1,0 +1,84 @@
+{
+  "id": "intro",
+  "title": "Was ist Python?",
+  "icon": "school",
+  "intro": "Python ist eine Programmiersprache: Damit gibst du dem Computer Befehle, die er Schritt für Schritt ausführt. Python ist beliebt, weil der Code fast wie Englisch aussieht. Man baut damit Webseiten, Spiele, Roboter und künstliche Intelligenz.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was macht ein Python-Programm?",
+      "code": "print(\"Hallo, ich bin Robo!\")",
+      "options": [
+        "Es führt Befehle Schritt für Schritt aus",
+        "Es malt automatisch Bilder",
+        "Es funktioniert nur im Internet"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Ein Programm ist eine Liste von Befehlen. Python liest sie von oben nach unten und führt jeden aus – hier zeigt print() einen Text an.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Ergänze den Befehl, mit dem Python etwas anzeigt.",
+      "code": "___(\"Python macht Spaß\")",
+      "answers": [
+        [
+          "print"
+        ]
+      ],
+      "explain": "print() ist der wichtigste Befehl am Anfang: Er schreibt das, was in den Klammern steht, auf den Bildschirm.",
+      "notes": {},
+      "hint": "Das englische Wort für „drucken“.",
+      "output": "Python macht Spaß"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(\"Python\")\nprint(\"ist toll\")",
+      "options": [
+        "Python\nist toll",
+        "Python ist toll",
+        "ist toll\nPython"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Jedes print() beginnt eine neue Zeile. Und Python arbeitet von oben nach unten.",
+      "notes": {
+        "1": "Zuerst wird diese Zeile ausgeführt.",
+        "2": "Danach diese – in einer neuen Zeile."
+      },
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Wofür wird Python NICHT benutzt?",
+      "code": "# Python ist überall:\n# Webseiten, Spiele, Datenanalyse, Roboter, KI ...",
+      "options": [
+        "Zum Bügeln von Wäsche",
+        "Für Webseiten",
+        "Für künstliche Intelligenz"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Python steckt in vielen Programmen: von YouTube bis zu Mars-Robotern. Nur bügeln kann es (noch) nicht!",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen, damit Robo sich vorstellt: erst „Hallo!“, dann „Ich lerne Python.“",
+      "lines": [
+        "print(\"Hallo!\")",
+        "print(\"Ich lerne Python.\")"
+      ],
+      "output": "Hallo!\nIch lerne Python.",
+      "explain": "Was zuerst passieren soll, steht oben. Python führt Zeile 1 aus, dann Zeile 2.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 1,
+  "chapter": "Grundlagen"
+}

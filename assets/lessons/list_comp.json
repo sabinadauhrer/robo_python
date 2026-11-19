@@ -1,0 +1,83 @@
+{
+  "id": "list_comp",
+  "title": "List Comprehension",
+  "icon": "auto_awesome",
+  "intro": "Eine List Comprehension baut eine neue Liste in einer einzigen Zeile: [ausdruck for x in liste if bedingung]. Das ist kürzer als eine Schleife mit append(). Die Bedingung am Ende ist optional.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Baue eine Liste mit allen Früchten, die ein „a“ enthalten.",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kiwi\", \"Mango\"]\nneu = [x for x in obst ___ \"a\" in x]\nprint(neu)",
+      "answers": [
+        [
+          "if"
+        ]
+      ],
+      "explain": "Das if am Ende ist ein Filter: Nur Elemente, für die die Bedingung wahr ist, kommen in die neue Liste.",
+      "notes": {},
+      "hint": "",
+      "output": "['Banane', 'Mango']"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "zahlen = [1, 2, 3, 4]\nquadrate = [z * z for z in zahlen]\nprint(quadrate)",
+      "options": [
+        "[1, 4, 9, 16]",
+        "[1, 2, 3, 4]",
+        "[2, 4, 6, 8]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Vorne steht, was mit jedem Element passiert: z * z. So entsteht eine neue Liste mit den Quadratzahlen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Mache aus jedem Wort eines in Großbuchstaben.",
+      "code": "woerter = [\"hi\", \"du\"]\ngross = [w.___() for w in woerter]\nprint(gross)",
+      "answers": [
+        [
+          "upper"
+        ]
+      ],
+      "explain": "Der Ausdruck vorne darf alles sein – auch ein Methodenaufruf.",
+      "notes": {},
+      "hint": "",
+      "output": "['HI', 'DU']"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print([x for x in range(10) if x < 5])",
+      "options": [
+        "[0, 1, 2, 3, 4]",
+        "[5, 6, 7, 8, 9]",
+        "[0, 1, 2, 3, 4, 5]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "range(10) liefert 0 bis 9. Der Filter behält nur die Zahlen kleiner als 5.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kiwi\"]\nprint([x if x != \"Banane\" else \"Orange\" for x in obst])",
+      "options": [
+        "['Apfel', 'Orange', 'Kiwi']",
+        "['Apfel', 'Kiwi']",
+        "['Orange']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Vorne darf auch ein „wert if bedingung else anderer_wert“ stehen. So wird Banane durch Orange ersetzt, statt sie zu entfernen.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 31,
+  "chapter": "Listen"
+}

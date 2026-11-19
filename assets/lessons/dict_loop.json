@@ -1,0 +1,83 @@
+{
+  "id": "dict_loop",
+  "title": "Dictionaries durchlaufen",
+  "icon": "sync",
+  "intro": "for k in d: läuft über die Schlüssel. Mit d[k] bekommst du den Wert dazu. for v in d.values(): läuft über die Werte, und for k, v in d.items(): über beides gleichzeitig.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Gib alle Werte aus.",
+      "code": "auto = {\"marke\": \"Ford\", \"jahr\": 1964}\nfor x in auto.___():\n    print(x)",
+      "answers": [
+        [
+          "values"
+        ]
+      ],
+      "explain": "values() liefert nur die Werte.",
+      "notes": {},
+      "hint": "",
+      "output": "Ford\n1964"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "auto = {\"marke\": \"Ford\", \"jahr\": 1964}\nfor x in auto:\n    print(x)",
+      "options": [
+        "marke\njahr",
+        "Ford\n1964",
+        "('marke', 'Ford')\n('jahr', 1964)"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Läuft man direkt über ein Dictionary, bekommt man die SCHLÜSSEL.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Laufe über Schlüssel und Werte gleichzeitig.",
+      "code": "auto = {\"marke\": \"Ford\", \"jahr\": 1964}\nfor k, v in auto.___():\n    print(k, v)",
+      "answers": [
+        [
+          "items"
+        ]
+      ],
+      "explain": "items() liefert Paare, die direkt in k und v ausgepackt werden.",
+      "notes": {},
+      "hint": "",
+      "output": "marke Ford\njahr 1964"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "preise = {\"Apfel\": 2, \"Kiwi\": 3}\nfor obst in preise:\n    print(obst, preise[obst] * 2)",
+      "options": [
+        "Apfel 4\nKiwi 6",
+        "Apfel 2\nKiwi 3",
+        "4\n6"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Mit dem Schlüssel holt man in der Schleife den Wert: preise[obst].",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen, damit die Summe aller Werte (10) ausgegeben wird.",
+      "lines": [
+        "punkte = {\"a\": 3, \"b\": 7}",
+        "summe = 0",
+        "for p in punkte.values():",
+        "    summe += p",
+        "print(summe)"
+      ],
+      "output": "10",
+      "explain": "Für die Summe braucht man nur die Werte – values() liefert sie.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 56,
+  "chapter": "Dictionaries"
+}

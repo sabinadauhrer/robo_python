@@ -1,6 +1,5 @@
 {
   "id": "l16_sets",
-  "order": 16,
   "title": "Sets",
   "icon": "bubble_chart",
   "intro": "Ein Set (Menge) speichert jeden Wert nur EINMAL und hat keine feste Reihenfolge. Man schreibt es in geschweiften Klammern: {\"a\", \"b\"}. Praktisch zum Entfernen von Doppelten!",
@@ -78,5 +77,7 @@
       "hint": "",
       "why": "Um alle Elemente zu sehen, nimmst du eine for-Schleife: for f in farben: print(f)"
     }
-  ]
+  ],
+  "order": 43,
+  "chapter": "Sets"
 }

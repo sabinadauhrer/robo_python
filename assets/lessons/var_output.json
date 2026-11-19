@@ -1,0 +1,83 @@
+{
+  "id": "var_output",
+  "title": "Variablen ausgeben",
+  "icon": "output",
+  "intro": "Mit print() kannst du Variablen anzeigen. Mehrere Werte trennst du mit Kommas – Python setzt Leerzeichen dazwischen. Mit + kannst du Texte verbinden. Aber Achtung: Text + Zahl geht mit + nicht!",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Gib beide Variablen mit einem einzigen print() aus.",
+      "code": "x = \"Python\"\ny = \"ist\"\nz = \"toll\"\nprint(x, y, ___)",
+      "answers": [
+        [
+          "z"
+        ]
+      ],
+      "explain": "Mit Kommas getrennt gibt print() mehrere Werte aus und setzt automatisch je ein Leerzeichen dazwischen.",
+      "notes": {},
+      "hint": "",
+      "output": "Python ist toll"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = \"Python \"\ny = \"ist \"\nz = \"toll\"\nprint(x + y + z)",
+      "options": [
+        "Python ist toll",
+        "Python  ist  toll",
+        "x + y + z"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Mit + werden Texte direkt aneinandergehängt. Die Leerzeichen kommen hier aus den Texten selbst (\"Python \").",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = 5\ny = 10\nprint(x + y)",
+      "options": [
+        "15",
+        "510",
+        "5 10"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Bei Zahlen bedeutet + rechnen. 5 + 10 = 15.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "x = 5\ny = \"Robo\"\nprint(x + y)",
+      "options": [
+        "TypeError: Zahl + Text geht nicht",
+        "5Robo",
+        "5 Robo"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Python weiß nicht, ob es rechnen oder Text verbinden soll. Lösung: print(x, y) oder str(x) + y.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Gib Zahl und Text zusammen aus – ohne Fehler.",
+      "code": "x = 5\ny = \"Robos\"\nprint(x___ y)",
+      "answers": [
+        [
+          ","
+        ]
+      ],
+      "explain": "Mit einem Komma statt + kann print() beliebige Werte mischen: Zahlen, Texte, alles.",
+      "notes": {},
+      "hint": "",
+      "output": "5 Robos"
+    }
+  ],
+  "order": 9,
+  "chapter": "Variablen"
+}

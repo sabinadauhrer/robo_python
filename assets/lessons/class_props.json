@@ -1,0 +1,83 @@
+{
+  "id": "class_props",
+  "title": "Eigenschaften",
+  "icon": "tune",
+  "intro": "Eigenschaften (Attribute) sind die Daten eines Objekts, z. B. self.farbe. Man kann sie lesen, ändern (p1.alter = 40) und mit del p1.alter löschen. Eigenschaften, die direkt in der Klasse stehen, teilen sich alle Objekte (Klassen-Attribute).",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ändere das Alter des Objekts auf 40.",
+      "code": "class Person:\n    def __init__(self, name, alter):\n        self.name = name\n        self.alter = alter\n\np1 = Person(\"John\", 36)\np1.alter = ___\nprint(p1.alter)",
+      "answers": [
+        [
+          "40"
+        ]
+      ],
+      "explain": "Eigenschaften kann man jederzeit ändern – einfach einen neuen Wert zuweisen.",
+      "notes": {},
+      "hint": "",
+      "output": "40"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Person:\n    def __init__(self, name):\n        self.name = name\n\np = Person(\"Mia\")\ndel p.name\nprint(hasattr(p, \"name\"))",
+      "options": [
+        "False",
+        "True",
+        "Mia"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "del p.name löscht die Eigenschaft. hasattr() prüft, ob es sie noch gibt.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Hund:\n    art = \"Säugetier\"\n    def __init__(self, name):\n        self.name = name\n\na = Hund(\"Rex\")\nb = Hund(\"Bello\")\nprint(a.art, b.art, a.name)",
+      "options": [
+        "Säugetier Säugetier Rex",
+        "Rex Bello Rex",
+        "Säugetier Rex Rex"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "art steht in der Klasse – alle Hunde teilen sich diesen Wert. name gehört jedem Hund einzeln.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Spiel:\n    anzahl = 0\n    def __init__(self):\n        Spiel.anzahl += 1\n\nSpiel()\nSpiel()\nSpiel()\nprint(Spiel.anzahl)",
+      "options": [
+        "3",
+        "1",
+        "0"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Jedes neue Objekt erhöht das Klassen-Attribut anzahl. So kann man zählen, wie viele Objekte gebaut wurden.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Gib dem Objekt nachträglich eine neue Eigenschaft.",
+      "code": "class Leer:\n    pass\n\nx = Leer()\nx.___ = \"blau\"\nprint(x.farbe)",
+      "answers": [
+        [
+          "farbe"
+        ]
+      ],
+      "explain": "Man kann einem Objekt auch später neue Eigenschaften geben.",
+      "notes": {},
+      "hint": "",
+      "output": "blau"
+    }
+  ],
+  "order": 98,
+  "chapter": "Klassen & Objekte"
+}

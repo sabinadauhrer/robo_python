@@ -1,6 +1,5 @@
 {
   "id": "l17_dicts",
-  "order": 17,
   "title": "Dictionaries",
   "icon": "menu_book",
   "intro": "Ein Dictionary (Wörterbuch) speichert Paare aus Schlüssel und Wert: {\"name\": \"Mia\", \"alter\": 9}. Über den Schlüssel findest du den Wert – wie in einem Wörterbuch über das Stichwort.",
@@ -79,5 +78,7 @@
       "hint": "",
       "notes": {}
     }
-  ]
+  ],
+  "order": 51,
+  "chapter": "Dictionaries"
 }

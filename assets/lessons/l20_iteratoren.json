@@ -1,6 +1,5 @@
 {
   "id": "l20_iteratoren",
-  "order": 20,
   "title": "Iteratoren",
   "icon": "skip_next",
   "intro": "Ein Iterator gibt dir die Elemente einer Sammlung einzeln, eines nach dem anderen. Mit iter() erstellst du ihn, mit next() holst du das nächste Element. Eine for-Schleife macht genau das im Hintergrund!",
@@ -80,5 +79,7 @@
       "hint": "",
       "notes": {}
     }
-  ]
+  ],
+  "order": 82,
+  "chapter": "Werkzeugkiste"
 }

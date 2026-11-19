@@ -6,16 +6,30 @@ import 'values.dart';
 abstract interface class PyContext {
   /// Ruft eine Python-Funktion auf (z. B. für sorted(key=...)).
   Object? callValue(Object? fn, List<Object?> args, int line);
+
+  Object? getAttribute(Object? target, String name, int line);
+  void setAttribute(Object? target, String name, Object? value, int line);
+
+  /// Durchläuft ein Objekt einer eigenen Klasse (__iter__ / __next__).
+  Iterable<Object?> iterateObject(PyInstance object, int line);
+
+  /// Ruft eine Methode eines eigenen Objekts auf, z. B. __next__.
+  Object? callMethodOf(PyInstance object, String name, List<Object?> args, int line);
 }
+
+/// Der Interpreter, der gerade läuft (Programme laufen nie gleichzeitig).
+PyContext? activeContext;
 
 const builtinNames = {
   'print', 'len', 'str', 'int', 'float', 'bool', 'type', 'range', 'list', 'tuple', 'set', 'dict',
   'abs', 'min', 'max', 'sum', 'round', 'sorted', 'reversed', 'enumerate', 'zip', 'iter', 'next',
-  'isinstance', 'input', 'map', 'filter', 'repr', 'ord', 'chr',
+  'isinstance', 'input', 'map', 'filter', 'repr', 'ord', 'chr', 'pow', 'any', 'all', 'divmod',
+  'bin', 'hex', 'oct', 'hasattr', 'getattr', 'setattr', 'delattr', 'issubclass', 'frozenset', 'open',
+  'super', 'callable', 'format', 'id', 'hash', 'object',
 };
 
 /// Typnamen, die auch als Funktionen existieren (für isinstance).
-const _typeFunctions = {'int', 'float', 'str', 'bool', 'list', 'tuple', 'set', 'dict'};
+const _typeFunctions = {'int', 'float', 'str', 'bool', 'list', 'tuple', 'set', 'dict', 'frozenset', 'range', 'object'};
 
 PyError _type(int line, String message) => PyError(line, 'TypeError', message);
 
@@ -31,8 +45,31 @@ Iterable<Object?> pyIterate(Object? v, int line) => switch (v) {
   PyRange r => r.values,
   PyDictView dv => List.of(dv.items),
   PyIterator it => _drain(it),
+  PyInstance i => activeContext!.iterateObject(i, line),
+  PyFile f => _fileLines(f, line),
   _ => throw _type(line, '${_t(v)} kann man nicht durchlaufen (nicht "iterierbar").'),
 };
+
+Iterable<Object?> _fileLines(PyFile f, int line) {
+  if (f.closed) throw PyError(line, 'ValueError', 'Die Datei ist schon geschlossen.');
+  final rest = f.content.substring(f.position);
+  f.position = f.content.length;
+  return splitLinesKeepEnds(rest);
+}
+
+/// Teilt Text in Zeilen und behält das \n am Ende jeder Zeile (wie readlines()).
+List<String> splitLinesKeepEnds(String s) {
+  final result = <String>[];
+  var start = 0;
+  for (var i = 0; i < s.length; i++) {
+    if (s[i] == '\n') {
+      result.add(s.substring(start, i + 1));
+      start = i + 1;
+    }
+  }
+  if (start < s.length) result.add(s.substring(start));
+  return result;
+}
 
 Iterable<Object?> _drain(PyIterator it) sync* {
   while (true) {
@@ -68,6 +105,7 @@ Object? callBuiltin(String name, List<Object?> args, Map<String, Object?> kwargs
         PySet s => s.items.length,
         PyRange r => r.length,
         PyDictView dv => dv.items.length,
+        PyInstance i when i.cls.find('__len__').$1 => activeContext!.callMethodOf(i, '__len__', [], line),
         _ => throw _type(line, '${_t(v)} hat keine Länge.'),
       };
     case 'str':
@@ -118,7 +156,9 @@ Object? callBuiltin(String name, List<Object?> args, Map<String, Object?> kwargs
       return args.isNotEmpty && pyTruthy(args[0]);
     case 'type':
       _argCount(name, args, 1, 1, line);
-      return PyType(pyTypeName(args[0]));
+      final v = args[0];
+      if (v is PyInstance) return v.cls;
+      return PyType(pyTypeName(v));
     case 'range':
       _argCount(name, args, 1, 3, line);
       final ints = [for (final a in args) _asInt(a, 'Der Wert in range()', line)];
@@ -135,16 +175,18 @@ Object? callBuiltin(String name, List<Object?> args, Map<String, Object?> kwargs
     case 'tuple':
       _argCount(name, args, 0, 1, line);
       return PyTuple(args.isEmpty ? [] : pyIterate(args[0], line).toList());
-    case 'set':
+    case 'set' || 'frozenset':
       _argCount(name, args, 0, 1, line);
       final items = args.isEmpty ? <Object?>[] : pyIterate(args[0], line).toList();
       for (final i in items) {
         if (!isHashable(i)) throw _type(line, '${_t(i)} kann nicht in einem Set stehen.');
       }
-      return PySet(items);
+      return PySet(items, name == 'frozenset');
     case 'dict':
       final d = PyDict();
-      if (args.isNotEmpty) {
+      if (args.isNotEmpty && args[0] is PyDict) {
+        d.map.addAll((args[0] as PyDict).map);
+      } else if (args.isNotEmpty) {
         for (final pair in pyIterate(args[0], line)) {
           final p = pyIterate(pair, line).toList();
           d.map[p[0]] = p[1];
@@ -160,13 +202,93 @@ Object? callBuiltin(String name, List<Object?> args, Map<String, Object?> kwargs
     case 'min' || 'max':
       if (args.isEmpty) throw _type(line, '$name() braucht mindestens einen Wert.');
       final items = args.length == 1 ? pyIterate(args[0], line).toList() : args;
-      if (items.isEmpty) throw PyError(line, 'ValueError', '$name() von einer leeren Sammlung geht nicht.');
+      if (items.isEmpty) {
+        if (kwargs.containsKey('default')) return kwargs['default'];
+        throw PyError(line, 'ValueError', '$name() von einer leeren Sammlung geht nicht.');
+      }
+      final key = kwargs['key'];
+      Object? k(Object? v) => key == null ? v : ctx.callValue(key, [v], line);
       var best = items.first;
+      var bestKey = k(best);
       for (final v in items.skip(1)) {
-        final c = Ops.order(v, best, line);
-        if (name == 'min' ? c < 0 : c > 0) best = v;
+        final vk = k(v);
+        final c = Ops.order(vk, bestKey, line);
+        if (name == 'min' ? c < 0 : c > 0) {
+          best = v;
+          bestKey = vk;
+        }
       }
       return best;
+    case 'pow':
+      _argCount(name, args, 2, 3, line);
+      final r = Ops.binary('**', args[0], args[1], line);
+      return args.length == 3 ? Ops.binary('%', r, args[2], line) : r;
+    case 'any':
+      _argCount(name, args, 1, 1, line);
+      return pyIterate(args[0], line).any(pyTruthy);
+    case 'all':
+      _argCount(name, args, 1, 1, line);
+      return pyIterate(args[0], line).every(pyTruthy);
+    case 'divmod':
+      _argCount(name, args, 2, 2, line);
+      return PyTuple([Ops.binary('//', args[0], args[1], line), Ops.binary('%', args[0], args[1], line)]);
+    case 'bin' || 'hex' || 'oct':
+      _argCount(name, args, 1, 1, line);
+      final n = _asInt(args[0], 'Der Wert für $name()', line);
+      final radix = switch (name) { 'bin' => 2, 'hex' => 16, _ => 8 };
+      final prefix = switch (name) { 'bin' => '0b', 'hex' => '0x', _ => '0o' };
+      return '${n < 0 ? '-' : ''}$prefix${n.abs().toRadixString(radix)}';
+    case 'hasattr':
+      _argCount(name, args, 2, 2, line);
+      try {
+        ctx.getAttribute(args[0], _attrName(args[1], line), line);
+        return true;
+      } on PyError catch (e) {
+        if (e.type == 'AttributeError') return false;
+        rethrow;
+      }
+    case 'getattr':
+      _argCount(name, args, 2, 3, line);
+      try {
+        return ctx.getAttribute(args[0], _attrName(args[1], line), line);
+      } on PyError catch (e) {
+        if (e.type == 'AttributeError' && args.length == 3) return args[2];
+        rethrow;
+      }
+    case 'setattr':
+      _argCount(name, args, 3, 3, line);
+      ctx.setAttribute(args[0], _attrName(args[1], line), args[2], line);
+      return null;
+    case 'delattr':
+      _argCount(name, args, 2, 2, line);
+      final obj = args[0];
+      final attr = _attrName(args[1], line);
+      if (obj is PyInstance && obj.attrs.containsKey(attr)) {
+        obj.attrs.remove(attr);
+        return null;
+      }
+      throw PyError(line, 'AttributeError', 'Das Attribut "$attr" gibt es nicht.');
+    case 'issubclass':
+      _argCount(name, args, 2, 2, line);
+      final a = args[0];
+      final kinds = args[1] is PyTuple ? (args[1] as PyTuple).items : [args[1]];
+      if (a is! PyClass) throw _type(line, 'issubclass() braucht als Erstes eine Klasse.');
+      return kinds.any((k) => k is PyClass && a.isSubclassOf(k));
+    case 'callable':
+      _argCount(name, args, 1, 1, line);
+      final v = args[0];
+      return v is PyFunction || v is PyBuiltin || v is PyNative || v is PyClass || v is PyBoundMethod ||
+          (v is PyInstance && v.cls.find('__call__').$1);
+    case 'format':
+      _argCount(name, args, 1, 2, line);
+      return formatValue(args[0], args.length > 1 ? args[1] as String? : null, line);
+    case 'id':
+      _argCount(name, args, 1, 1, line);
+      return identityHashCode(args[0]);
+    case 'hash':
+      _argCount(name, args, 1, 1, line);
+      if (!isHashable(args[0])) throw _type(line, '${_t(args[0])} hat keinen Hash-Wert.');
+      return pyHash(args[0]);
     case 'sum':
       _argCount(name, args, 1, 2, line);
       Object? total = args.length > 1 ? args[1] : 0;
@@ -203,6 +325,7 @@ Object? callBuiltin(String name, List<Object?> args, Map<String, Object?> kwargs
       _argCount(name, args, 1, 1, line);
       if (args[0] is PyIterator) return args[0];
       final source = args[0];
+      if (source is PyInstance) return activeContext!.callMethodOf(source, '__iter__', [], line);
       final typeName = switch (source) {
         String _ => 'str_ascii_iterator',
         PyTuple _ => 'tuple_iterator',
@@ -215,6 +338,14 @@ Object? callBuiltin(String name, List<Object?> args, Map<String, Object?> kwargs
     case 'next':
       _argCount(name, args, 1, 2, line);
       final it = args[0];
+      if (it is PyInstance) {
+        try {
+          return activeContext!.callMethodOf(it, '__next__', [], line);
+        } on PyError catch (e) {
+          if (e.type == 'StopIteration' && args.length > 1) return args[1];
+          rethrow;
+        }
+      }
       if (it is! PyIterator) {
         throw _type(line, '${_t(it)} ist kein Iterator. Erstelle zuerst einen mit iter(...).');
       }
@@ -228,10 +359,16 @@ Object? callBuiltin(String name, List<Object?> args, Map<String, Object?> kwargs
       _argCount(name, args, 2, 2, line);
       final kinds = args[1] is PyTuple ? (args[1] as PyTuple).items : [args[1]];
       for (final k in kinds) {
+        if (k is PyClass) {
+          final v = args[0];
+          if (v is PyInstance && v.cls.isSubclassOf(k)) return true;
+          if (k.name == 'object' && k.builtin) return true;
+          continue;
+        }
         final typeName = k is PyBuiltin && _typeFunctions.contains(k.name) ? k.name : (k is PyType ? k.name : null);
         if (typeName == null) throw _type(line, 'Das zweite Argument von isinstance() muss ein Typ sein, z. B. int.');
         final actual = pyTypeName(args[0]);
-        if (actual == typeName || (typeName == 'int' && actual == 'bool')) return true;
+        if (actual == typeName || (typeName == 'int' && actual == 'bool') || typeName == 'object') return true;
       }
       return false;
     case 'map':
@@ -248,15 +385,20 @@ Object? callBuiltin(String name, List<Object?> args, Map<String, Object?> kwargs
   throw PyError(line, 'NameError', 'Die Funktion $name() gibt es nicht.');
 }
 
+String _attrName(Object? v, int line) {
+  if (v is String) return v;
+  throw _type(line, 'Der Name eines Attributs muss ein Text sein.');
+}
+
 void _sort(List<Object?> items, Map<String, Object?> kwargs, int line, PyContext ctx) {
   final key = kwargs['key'];
   final reverse = pyTruthy(kwargs['reverse']);
-  final keys = {for (final v in items) v: key == null ? v : ctx.callValue(key, [v], line)};
-  Object? k(Object? v) => key == null ? v : keys[v];
-  // stabile Sortierung
-  final indexed = [for (var i = 0; i < items.length; i++) (i, items[i])];
+  // stabile Sortierung: (Position, Wert, Sortierschlüssel)
+  final indexed = [
+    for (var i = 0; i < items.length; i++) (i, items[i], key == null ? items[i] : ctx.callValue(key, [items[i]], line)),
+  ];
   indexed.sort((a, b) {
-    final c = Ops.order(k(a.$2), k(b.$2), line);
+    final c = Ops.order(a.$3, b.$3, line);
     return c != 0 ? (reverse ? -c : c) : a.$1.compareTo(b.$1);
   });
   items
@@ -287,37 +429,75 @@ int _roundHalfEven(double x) {
 /// Formatierung wie in f"{wert:spec}" und "{:spec}".format(wert).
 String formatValue(Object? value, String? spec, int line) {
   if (spec == null || spec.isEmpty) return pyStr(value);
-  final m = RegExp(r'^([<>^])?(\d+)?(,)?(?:\.(\d+))?([dfs%])?$').firstMatch(spec);
+  final m = RegExp(r'^(?:(.)?([<>^=]))?([+\- ])?(0)?(\d+)?([,_])?(?:\.(\d+))?([bcdeEfFgGnosxX%])?$').firstMatch(spec);
   if (m == null) {
     throw PyError(line, 'ValueError', 'Das Format ":$spec" kennt dieses Spiel nicht. Probiere z. B. :.2f');
   }
-  final align = m[1];
-  final width = int.tryParse(m[2] ?? '');
-  final comma = m[3] != null;
-  final precision = int.tryParse(m[4] ?? '');
-  final kind = m[5];
-  var text = pyStr(value);
-  final n = asNumber(value);
-  if (kind == 'f' || kind == '%' || (precision != null && n != null)) {
-    if (n == null) throw PyError(line, 'ValueError', 'Das Format ":$spec" passt nur zu Zahlen.');
-    final shown = kind == '%' ? n * 100 : n;
-    text = shown.toDouble().toStringAsFixed(precision ?? 6);
-    if (kind == '%') text += '%';
-  } else if (kind == 'd') {
-    if (value is! int) throw PyError(line, 'ValueError', 'Das Format ":d" passt nur zu ganzen Zahlen.');
+  var fill = m[1] ?? ' ';
+  var align = m[2];
+  final sign = m[3];
+  if (m[4] != null && align == null) {
+    fill = '0';
+    align = '=';
   }
-  if (comma && n != null) {
-    final parts = text.split('.');
-    final digits = parts[0].replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+$)'), (x) => '${x[1]},');
-    text = parts.length > 1 ? '$digits.${parts[1]}' : digits;
+  final width = int.tryParse(m[5] ?? '');
+  final group = m[6];
+  final precision = int.tryParse(m[7] ?? '');
+  final kind = m[8];
+  final n = asNumber(value);
+  var text = pyStr(value);
+  var negative = false;
+  if (n != null && kind != 's') {
+    negative = n < 0;
+    final a = n.abs();
+    switch (kind) {
+      case 'f' || 'F':
+        text = a.toDouble().toStringAsFixed(precision ?? 6);
+      case '%':
+        text = '${(a * 100).toDouble().toStringAsFixed(precision ?? 6)}%';
+      case 'e' || 'E':
+        text = a.toDouble().toStringAsExponential(precision ?? 6).replaceAllMapped(
+            RegExp(r'e([+-])(\d)$'), (x) => 'e${x[1]}0${x[2]}');
+        if (kind == 'E') text = text.toUpperCase();
+      case 'd' || 'n':
+        if (value is! int && value is! bool) throw PyError(line, 'ValueError', 'Das Format ":d" passt nur zu ganzen Zahlen.');
+        text = '${a.toInt()}';
+      case 'b' || 'o' || 'x' || 'X':
+        if (value is! int) throw PyError(line, 'ValueError', 'Das Format ":$kind" passt nur zu ganzen Zahlen.');
+        text = a.toInt().toRadixString(switch (kind) { 'b' => 2, 'o' => 8, _ => 16 });
+        if (kind == 'X') text = text.toUpperCase();
+      case 'g' || 'G':
+        text = pyStr(Ops.number(a));
+      case 'c':
+        text = String.fromCharCode(a.toInt());
+      default:
+        if (precision != null) {
+          text = a.toDouble().toStringAsFixed(precision);
+        } else {
+          text = pyStr(Ops.number(a));
+        }
+    }
+    if (group != null) {
+      final parts = text.split('.');
+      final digits = parts[0].replaceAllMapped(RegExp(r'(\d)(?=(\d{3})+$)'), (x) => '${x[1]}$group');
+      text = parts.length > 1 ? '$digits.${parts[1]}' : digits;
+    }
+    final signText = negative ? '-' : (sign == '+' ? '+' : (sign == ' ' ? ' ' : ''));
+    if (align == '=' && width != null) {
+      final pad = width - text.length - signText.length;
+      return signText + (pad > 0 ? fill * pad : '') + text;
+    }
+    text = signText + text;
+  } else if (precision != null && value is String) {
+    text = text.length > precision ? text.substring(0, precision) : text;
   }
   if (width != null && text.length < width) {
     final pad = width - text.length;
-    final a = align ?? (n != null ? '>' : '<');
+    final a = align ?? (n != null && value is! String ? '>' : '<');
     text = switch (a) {
-      '>' => ' ' * pad + text,
-      '^' => ' ' * (pad ~/ 2) + text + ' ' * (pad - pad ~/ 2),
-      _ => text + ' ' * pad,
+      '>' || '=' => fill * pad + text,
+      '^' => fill * (pad ~/ 2) + text + fill * (pad - pad ~/ 2),
+      _ => text + fill * pad,
     };
   }
   return text;

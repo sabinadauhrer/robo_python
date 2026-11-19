@@ -1,0 +1,83 @@
+{
+  "id": "list_loop",
+  "title": "Listen durchlaufen",
+  "icon": "sync",
+  "intro": "Mit for x in liste: gehst du jedes Element einmal durch. Brauchst du die Position, nimm for i in range(len(liste)): oder enumerate(). Auch eine while-Schleife mit einem Zähler funktioniert.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Gib jedes Obst einzeln aus.",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\"]\nfor x ___ obst:\n    print(x)",
+      "answers": [
+        [
+          "in"
+        ]
+      ],
+      "explain": "In jeder Runde bekommt x das nächste Element der Liste.",
+      "notes": {},
+      "hint": "",
+      "output": "Apfel\nBanane\nKirsche"
+    },
+    {
+      "type": "fill",
+      "task": "Laufe über die Indizes der Liste.",
+      "code": "obst = [\"Apfel\", \"Banane\"]\nfor i in range(___(obst)):\n    print(i, obst[i])",
+      "answers": [
+        [
+          "len"
+        ]
+      ],
+      "explain": "len(obst) ist 2, range(2) liefert 0 und 1 – genau die Indizes der Liste.",
+      "notes": {},
+      "hint": "",
+      "output": "0 Apfel\n1 Banane"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = [\"Apfel\", \"Banane\"]\ni = 0\nwhile i < len(obst):\n    print(obst[i])\n    i = i + 1",
+      "options": [
+        "Apfel\nBanane",
+        "Apfel",
+        "Banane\nApfel"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die while-Schleife läuft, solange i kleiner als die Länge ist. Nach jedem Element wird i um 1 erhöht.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "for nr, tier in enumerate([\"Hund\", \"Katze\"]):\n    print(nr, tier)",
+      "options": [
+        "0 Hund\n1 Katze",
+        "1 Hund\n2 Katze",
+        "Hund 0\nKatze 1"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "enumerate() liefert zu jedem Element seine Position mit – beginnend bei 0.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen, damit die Summe aller Zahlen (6) ausgegeben wird.",
+      "lines": [
+        "zahlen = [1, 2, 3]",
+        "summe = 0",
+        "for z in zahlen:",
+        "    summe = summe + z",
+        "print(summe)"
+      ],
+      "output": "6",
+      "explain": "Zuerst braucht man die Liste und eine Summe bei 0. In der Schleife wird jede Zahl addiert, erst danach (nicht eingerückt) wird ausgegeben.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 30,
+  "chapter": "Listen"
+}

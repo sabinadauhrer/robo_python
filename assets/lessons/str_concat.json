@@ -1,0 +1,84 @@
+{
+  "id": "str_concat",
+  "title": "Strings verbinden",
+  "icon": "link",
+  "intro": "Mit + hängst du Texte aneinander: \"Robo\" + \"ter\" ergibt \"Roboter\". Ein Leerzeichen musst du selbst einfügen. Mit * wiederholst du einen Text: \"ha\" * 3 ergibt \"hahaha\".",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Verbinde a und b zu einem Text.",
+      "code": "a = \"Hallo\"\nb = \"Welt\"\nc = a ___ b\nprint(c)",
+      "answers": [
+        [
+          "+"
+        ]
+      ],
+      "explain": "Das + verbindet zwei Texte zu einem neuen Text. Ohne Leerzeichen kleben sie direkt zusammen.",
+      "notes": {},
+      "hint": "",
+      "output": "HalloWelt"
+    },
+    {
+      "type": "fill",
+      "task": "Füge ein Leerzeichen zwischen die Wörter.",
+      "code": "a = \"Hallo\"\nb = \"Welt\"\nc = a + ___ + b\nprint(c)",
+      "answers": [
+        [
+          "\" \"",
+          "' '"
+        ]
+      ],
+      "explain": "Ein Leerzeichen ist auch ein Text: \" \". Man hängt es einfach in die Mitte.",
+      "notes": {},
+      "hint": "",
+      "output": "Hallo Welt"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(\"ha\" * 3)",
+      "options": [
+        "hahaha",
+        "ha3",
+        "ha ha ha"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Text mal Zahl wiederholt den Text so oft.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "vorname = \"Ada\"\nnachname = \"Lovelace\"\nprint(vorname + nachname)",
+      "options": [
+        "AdaLovelace",
+        "Ada Lovelace",
+        "vorname nachname"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ohne Leerzeichen dazwischen kleben die Texte direkt aneinander.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "alter = 12\nprint(\"Ich bin \" + alter)",
+      "options": [
+        "TypeError: Text + Zahl",
+        "Ich bin 12",
+        "Ich bin alter"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Text und Zahl kann man nicht mit + verbinden. Lösung: \"Ich bin \" + str(alter) oder ein f-String.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 17,
+  "chapter": "Strings"
+}

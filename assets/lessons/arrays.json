@@ -1,0 +1,83 @@
+{
+  "id": "arrays",
+  "title": "Arrays (Listen)",
+  "icon": "view_array",
+  "intro": "Viele Programmiersprachen haben „Arrays“: eine Reihe von Werten unter einem Namen. In Python benutzt man dafür Listen. Mit len() bekommst du die Länge, mit einer Schleife gehst du alle Werte durch, und Methoden wie append() und pop() verändern das Array.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Finde heraus, wie viele Autos im Array sind.",
+      "code": "autos = [\"Ford\", \"Volvo\", \"BMW\"]\nx = ___(autos)\nprint(x)",
+      "answers": [
+        [
+          "len"
+        ]
+      ],
+      "explain": "len() liefert die Anzahl der Elemente. Der höchste Index ist immer len() - 1.",
+      "notes": {},
+      "hint": "",
+      "output": "3"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "autos = [\"Ford\", \"Volvo\", \"BMW\"]\nautos[0] = \"Toyota\"\nprint(autos)",
+      "options": [
+        "['Toyota', 'Volvo', 'BMW']",
+        "['Ford', 'Toyota', 'BMW']",
+        "['Toyota']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Über den Index kann man einen Wert im Array ersetzen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "autos = [\"Ford\", \"Volvo\"]\nautos.append(\"Honda\")\nautos.pop(1)\nprint(autos)",
+      "options": [
+        "['Ford', 'Honda']",
+        "['Volvo', 'Honda']",
+        "['Ford', 'Volvo']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "append() hängt Honda an, pop(1) entfernt das Element an Position 1 (Volvo).",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Gib jedes Auto aus.",
+      "code": "autos = [\"Ford\", \"Volvo\"]\nfor x in ___:\n    print(x)",
+      "answers": [
+        [
+          "autos"
+        ]
+      ],
+      "explain": "Die for-Schleife geht das ganze Array durch.",
+      "notes": {},
+      "hint": "",
+      "output": "Ford\nVolvo"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "werte = [4, 8, 15]\nprint(werte[len(werte) - 1])",
+      "options": [
+        "15",
+        "8",
+        "IndexError"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "len(werte) - 1 ist der letzte gültige Index (hier 2).",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 81,
+  "chapter": "Werkzeugkiste"
+}

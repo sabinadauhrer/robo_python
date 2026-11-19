@@ -74,13 +74,19 @@ class ProfileNotifier extends Notifier<Profile> {
     return true;
   }
 
+  /// Ersetzt den Spielstand durch einen gesicherten (aus einem Sicherungs-Code).
+  void restore(Profile profile) => _save(profile);
+
   void wear(Outfit outfit) {
     if (state.owned.contains(outfit)) _save(state.copyWith(outfit: outfit));
   }
 
   /// Die erste Insel ist immer offen, jede weitere nach dem Schaffen der vorherigen.
+  /// Offen ist die erste Insel, jede geschaffte Insel und die Insel nach einer geschafften.
   bool isUnlocked(List<Lesson> lessons, int index) =>
-      index == 0 || (state.lessonStars[lessons[index - 1].id] ?? 0) > 0;
+      index == 0 ||
+      (state.lessonStars[lessons[index].id] ?? 0) > 0 ||
+      (state.lessonStars[lessons[index - 1].id] ?? 0) > 0;
 
   /// Sichtbare Serie (0, wenn gestern nicht gespielt wurde).
   int get visibleStreak =>

@@ -62,7 +62,7 @@ abstract final class Checker {
         e.answers[i].any((a) => normalize(a) == normalize(inputs[i])),
     ];
     final code = e.fill(inputs.map((i) => i.trim()).toList());
-    final run = _interpreter.run(code);
+    final run = _interpreter.run(code, inputs: e.inputs, files: e.files);
     if (exact.every((x) => x)) {
       return CheckResult(correct: true, message: 'Genau richtig!', run: run);
     }
@@ -99,7 +99,7 @@ abstract final class Checker {
       return const CheckResult(correct: false, incomplete: true, message: 'Benutze alle Zeilen.');
     }
     final code = e.arrange(order);
-    final run = _interpreter.run(code);
+    final run = _interpreter.run(code, inputs: e.inputs, files: e.files);
     final inOrder = [for (var i = 0; i < order.length; i++) order[i] == i].every((x) => x);
     if (inOrder || (run.error == null && run.output == e.expectedOutput)) {
       return CheckResult(correct: true, message: 'Perfekte Reihenfolge!', run: run);

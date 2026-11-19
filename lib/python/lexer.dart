@@ -3,11 +3,11 @@ import 'tokens.dart';
 
 /// Zerlegt eine Zeile (ohne Einrückung) in Tokens. Kommentare werden entfernt.
 abstract final class Lexer {
-  static const _threeCharOps = {'//=', '**='};
+  static const _threeCharOps = {'//=', '**=', '<<=', '>>='};
   static const _twoCharOps = {
-    '==', '!=', '<=', '>=', '//', '**', '+=', '-=', '*=', '/=', '%=', '->',
+    '==', '!=', '<=', '>=', '//', '**', '+=', '-=', '*=', '/=', '%=', '->', '<<', '>>', '|=', '&=', '^=',
   };
-  static const _oneCharOps = {'=', '<', '>', '+', '-', '*', '/', '%'};
+  static const _oneCharOps = {'=', '<', '>', '+', '-', '*', '/', '%', '|', '&', '^', '~', '@'};
 
   static List<Token> tokenize(String text, int line) {
     final tokens = <Token>[];
@@ -24,6 +24,13 @@ abstract final class Lexer {
       if ((c == 'f' || c == 'F') && i + 1 < text.length && (text[i + 1] == '"' || text[i + 1] == "'")) {
         final (content, end) = _readString(text, i + 1, line);
         tokens.add(Token(TokenType.fstring, content));
+        i = end;
+        continue;
+      }
+      // Roh-Strings: r"\d+" – Backslashes bleiben, wie sie sind
+      if ((c == 'r' || c == 'R') && i + 1 < text.length && (text[i + 1] == '"' || text[i + 1] == "'")) {
+        final (content, end) = _readString(text, i + 1, line, raw: true);
+        tokens.add(Token(TokenType.string, content));
         i = end;
         continue;
       }
@@ -110,18 +117,33 @@ abstract final class Lexer {
 
   /// Liest einen String ab dem Anführungszeichen bei [start].
   /// Gibt den Inhalt (mit aufgelösten Escapes) und die Position danach zurück.
-  static (String, int) _readString(String text, int start, int line) {
+  static (String, int) _readString(String text, int start, int line, {bool raw = false}) {
     final quote = text[start];
+    final triple = text.startsWith(quote * 3, start);
     final b = StringBuffer();
-    var i = start + 1;
+    var i = start + (triple ? 3 : 1);
     while (i < text.length) {
       final c = text[i];
-      if (c == quote) return (b.toString(), i + 1);
+      if (triple) {
+        if (text.startsWith(quote * 3, i)) return (b.toString(), i + 3);
+      } else if (c == quote) {
+        return (b.toString(), i + 1);
+      } else if (c == '\n') {
+        break;
+      }
+      if (c == '\\' && i + 1 < text.length && raw) {
+        b.write(text.substring(i, i + 2));
+        i += 2;
+        continue;
+      }
       if (c == '\\' && i + 1 < text.length) {
         final n = text[i + 1];
         b.write(switch (n) {
           'n' => '\n',
           't' => '\t',
+          'r' => '\r',
+          'b' => '\b',
+          '\n' => '',
           '\\' => '\\',
           "'" => "'",
           '"' => '"',
@@ -134,7 +156,7 @@ abstract final class Lexer {
       i++;
     }
     throw PyError(line, 'SyntaxError',
-        'Der Text wurde nicht beendet – es fehlt das schließende Anführungszeichen $quote.');
+        'Der Text wurde nicht beendet – es fehlt das schließende Anführungszeichen ${triple ? quote * 3 : quote}.');
   }
 
   static bool _isDigit(String c) {

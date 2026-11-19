@@ -1,0 +1,83 @@
+{
+  "id": "class_methods",
+  "title": "Methoden",
+  "icon": "settings_suggest",
+  "intro": "Methoden sind Funktionen, die zu einer Klasse gehören. Sie beschreiben, was ein Objekt KANN. Sie können Werte zurückgeben und Eigenschaften ändern. Die besondere Methode __str__() legt fest, was print(objekt) anzeigt.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Definiere die Methode bellen.",
+      "code": "class Hund:\n    def __init__(self, name):\n        self.name = name\n\n    ___ bellen(self):\n        return self.name + \" sagt Wuff!\"\n\nh = Hund(\"Rex\")\nprint(h.bellen())",
+      "answers": [
+        [
+          "def"
+        ]
+      ],
+      "explain": "Methoden werden wie Funktionen mit def definiert – nur eingerückt in der Klasse.",
+      "notes": {},
+      "hint": "",
+      "output": "Rex sagt Wuff!"
+    },
+    {
+      "type": "fill",
+      "task": "Lege fest, was print() bei einem Objekt zeigt.",
+      "code": "class Person:\n    def __init__(self, name, alter):\n        self.name = name\n        self.alter = alter\n\n    def ___(self):\n        return f\"{self.name} ({self.alter})\"\n\np1 = Person(\"John\", 36)\nprint(p1)",
+      "answers": [
+        [
+          "__str__"
+        ]
+      ],
+      "explain": "Ohne __str__ zeigt print() nur etwas wie <__main__.Person object at 0x…>. Mit __str__ bestimmst du den Text selbst.",
+      "notes": {},
+      "hint": "",
+      "output": "John (36)"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Konto:\n    def __init__(self):\n        self.stand = 0\n\n    def einzahlen(self, betrag):\n        self.stand += betrag\n        return self.stand\n\nk = Konto()\nk.einzahlen(50)\nprint(k.einzahlen(20))",
+      "options": [
+        "70",
+        "20",
+        "50"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Methode ändert den Kontostand und gibt den neuen Stand zurück.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Rechteck:\n    def __init__(self, b, h):\n        self.b = b\n        self.h = h\n\n    def flaeche(self):\n        return self.b * self.h\n\n    def __str__(self):\n        return f\"Rechteck {self.b}x{self.h}\"\n\nr = Rechteck(3, 4)\nprint(r, r.flaeche())",
+      "options": [
+        "Rechteck 3x4 12",
+        "Rechteck 12",
+        "3 4 12"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "print(r) benutzt __str__, r.flaeche() rechnet 3 * 4.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Lampe:\n    def __init__(self):\n        self.an = False\n\n    def schalten(self):\n        self.an = not self.an\n\nl = Lampe()\nl.schalten()\nl.schalten()\nl.schalten()\nprint(l.an)",
+      "options": [
+        "True",
+        "False",
+        "3"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Jedes schalten() dreht an um: False → True → False → True.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 99,
+  "chapter": "Klassen & Objekte"
+}

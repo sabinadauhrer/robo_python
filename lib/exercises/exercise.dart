@@ -11,7 +11,15 @@ sealed class Exercise {
     required this.notes,
     required this.hint,
     this.why,
+    this.inputs = const [],
+    this.files = const {},
   });
+
+  /// Was bei input() „eingetippt“ wird (der Reihe nach).
+  final List<String> inputs;
+
+  /// Dateien, die es beim Start schon gibt (Name → Inhalt).
+  final Map<String, String> files;
 
   /// Was zu tun ist, z. B. "Ergänze die Lücke, damit Hallo ausgegeben wird."
   final String task;
@@ -34,6 +42,8 @@ sealed class Exercise {
     final explain = json['explain'] as String;
     final hint = json['hint'] as String? ?? '';
     final why = json['why'] as String?;
+    final inputs = ((json['inputs'] as List?) ?? const []).cast<String>();
+    final files = ((json['files'] as Map<String, dynamic>?) ?? const {}).cast<String, String>();
     final notes = {
       for (final e in ((json['notes'] as Map<String, dynamic>?) ?? {}).entries) int.parse(e.key): e.value as String,
     };
@@ -44,6 +54,8 @@ sealed class Exercise {
         notes: notes,
         hint: hint,
         why: why,
+        inputs: inputs,
+        files: files,
         code: json['code'] as String,
         answers: [for (final a in json['answers'] as List) (a as List).cast<String>()],
         expectedOutput: json['output'] as String?,
@@ -54,6 +66,8 @@ sealed class Exercise {
         notes: notes,
         hint: hint,
         why: why,
+        inputs: inputs,
+        files: files,
         code: json['code'] as String,
         options: (json['options'] as List).cast<String>(),
         correct: json['correct'] as int,
@@ -65,6 +79,8 @@ sealed class Exercise {
         notes: notes,
         hint: hint,
         why: why,
+        inputs: inputs,
+        files: files,
         lines: (json['lines'] as List).cast<String>(),
         expectedOutput: json['output'] as String,
       ),
@@ -81,6 +97,8 @@ class FillExercise extends Exercise {
     required super.notes,
     required super.hint,
     super.why,
+    super.inputs,
+    super.files,
     required this.code,
     required this.answers,
     this.expectedOutput,
@@ -116,6 +134,8 @@ class ChoiceExercise extends Exercise {
     required super.notes,
     required super.hint,
     super.why,
+    super.inputs,
+    super.files,
     required this.code,
     required this.options,
     required this.correct,
@@ -141,6 +161,8 @@ class OrderExercise extends Exercise {
     required super.notes,
     required super.hint,
     super.why,
+    super.inputs,
+    super.files,
     required this.lines,
     required this.expectedOutput,
   });
@@ -164,7 +186,11 @@ class Lesson {
     required this.icon,
     required this.intro,
     required this.exercises,
+    this.chapter,
   });
+
+  /// Kapitel, zu dem die Insel gehört (z. B. "Grundlagen").
+  final String? chapter;
 
   final String id;
   final int order;
@@ -183,6 +209,7 @@ class Lesson {
     title: json['title'] as String,
     icon: json['icon'] as String? ?? 'star',
     intro: json['intro'] as String,
+    chapter: json['chapter'] as String?,
     exercises: [for (final e in json['exercises'] as List) Exercise.fromJson(e as Map<String, dynamic>)],
   );
 

@@ -40,9 +40,12 @@ class PyDict {
 }
 
 class PySet {
-  PySet([Iterable<Object?> items = const []])
+  PySet([Iterable<Object?> items = const [], this.frozen = false])
     : items = LinkedHashSet(equals: pyEquals, hashCode: pyHash)..addAll(items);
   final LinkedHashSet<Object?> items;
+
+  /// frozenset: unveränderlich.
+  final bool frozen;
 }
 
 class PyRange {
@@ -117,11 +120,37 @@ class PyFunction {
     this.body,
     this.lambdaBody,
     this.closure,
+    this.enclosing,
     this.localNames = const {},
+    this.varArgs,
+    this.kwArgs,
+    this.positionalOnly = 0,
+    this.keywordOnly = const {},
+    this.isGenerator = false,
+    this.ownerClass,
   });
 
   /// Namen, denen die Funktion etwas zuweist – sie sind lokal (wie in Python).
   final Set<String> localNames;
+
+  /// Name für *args bzw. **kwargs (falls vorhanden).
+  final String? varArgs;
+  final String? kwArgs;
+
+  /// Anzahl Parameter vor einem "/" (nur per Position übergebbar).
+  final int positionalOnly;
+
+  /// Parameter nach einem "*" (nur per Name übergebbar).
+  final Set<String> keywordOnly;
+
+  /// Enthält yield → Aufruf liefert einen Generator.
+  final bool isGenerator;
+
+  /// Klasse, in der die Methode definiert wurde (für super() und __privat).
+  PyClass? ownerClass;
+
+  /// Funktion, in der diese Funktion definiert wurde (für verschachtelte Funktionen).
+  final PyFunction? enclosing;
 
   final String name;
   final List<String> params;
@@ -134,6 +163,123 @@ class PyFunction {
   final Map<String, Object?>? closure;
 
   bool get isLambda => lambdaBody != null;
+}
+
+/// Eine Klasse (Bauplan für Objekte).
+class PyClass {
+  PyClass(this.name, this.bases, [Map<String, Object?>? attrs, this.builtin = false]) : attrs = attrs ?? {};
+  final String name;
+  final List<PyClass> bases;
+  final Map<String, Object?> attrs;
+
+  /// Eingebaute Klasse wie Exception oder object.
+  final bool builtin;
+
+  /// Reihenfolge, in der Attribute gesucht werden: die Klasse selbst, dann die Elternklassen.
+  late final List<PyClass> mro = () {
+    final result = <PyClass>[this];
+    for (final b in bases) {
+      for (final c in b.mro) {
+        result.remove(c);
+        result.add(c);
+      }
+    }
+    return result;
+  }();
+
+  bool isSubclassOf(PyClass other) => mro.contains(other);
+
+  /// Sucht ein Attribut in der Klasse und ihren Elternklassen.
+  (bool, Object?) find(String name) {
+    for (final c in mro) {
+      if (c.attrs.containsKey(name)) return (true, c.attrs[name]);
+    }
+    return (false, null);
+  }
+
+  bool get isException => mro.any((c) => c.name == 'BaseException' && c.builtin);
+}
+
+/// Ein Objekt einer Klasse.
+class PyInstance {
+  PyInstance(this.cls);
+  final PyClass cls;
+  final attrs = <String, Object?>{};
+}
+
+/// Methode, die schon mit ihrem Objekt (self) verbunden ist.
+class PyBoundMethod {
+  const PyBoundMethod(this.self, this.function);
+  final Object? self;
+  final Object? function;
+}
+
+/// Ergebnis von super(): sucht Methoden ab der Elternklasse.
+class PySuper {
+  const PySuper(this.start, this.self);
+  final PyClass start;
+  final Object? self;
+}
+
+/// Ein Modul wie math oder json.
+class PyModule {
+  PyModule(this.name, this.attrs);
+  final String name;
+  final Map<String, Object?> attrs;
+}
+
+/// In Dart geschriebene Funktion (z. B. math.sqrt).
+class PyNative {
+  PyNative(this.name, this.fn, {Map<String, Object?>? attrs, this.typeLabel = 'builtin_function_or_method'})
+    : attrs = attrs ?? {};
+  final String name;
+  final Object? Function(List<Object?> args, Map<String, Object?> kwargs, int line) fn;
+
+  /// Attribute, z. B. datetime.datetime.now
+  final Map<String, Object?> attrs;
+  final String typeLabel;
+}
+
+/// datetime.datetime bzw. datetime.date
+class PyDateTime {
+  const PyDateTime(this.value, {this.dateOnly = false});
+  final DateTime value;
+  final bool dateOnly;
+
+  @override
+  bool operator ==(Object other) => other is PyDateTime && other.value == value;
+
+  @override
+  int get hashCode => value.hashCode;
+}
+
+/// Eine (virtuelle) Datei, geöffnet mit open().
+class PyFile {
+  PyFile(this.name, this.mode, this.files) {
+    if (mode.contains('w')) files[name] = '';
+    _content = files[name] ?? '';
+  }
+  final String name;
+  final String mode;
+  final Map<String, String> files;
+  late String _content;
+  int position = 0;
+  bool closed = false;
+
+  bool get readable => mode.contains('r') || mode.contains('+');
+  String get content => _content;
+
+  void write(String s) {
+    files[name] = (files[name] ?? '') + s;
+    _content = files[name]!;
+  }
+}
+
+/// Ergebnis von re.search() / re.match().
+class PyReMatch {
+  const PyReMatch(this.match, this.string);
+  final RegExpMatch match;
+  final String string;
 }
 
 /// Eingebaute Funktion wie len() oder print(). Die Ausführung übernimmt der Interpreter.
@@ -202,7 +348,8 @@ int pyHash(Object? v) {
 }
 
 bool isHashable(Object? v) => switch (v) {
-  PyList() || PyDict() || PySet() => false,
+  PySet s => s.frozen,
+  PyList() || PyDict() => false,
   PyTuple t => t.items.every(isHashable),
   _ => true,
 };
@@ -218,6 +365,7 @@ bool pyTruthy(Object? v) => switch (v) {
   PyDict d => d.map.isNotEmpty,
   PySet s => s.items.isNotEmpty,
   PyRange r => r.length > 0,
+  PyDictView v => v.items.isNotEmpty,
   _ => true,
 };
 
@@ -231,13 +379,21 @@ String pyTypeName(Object? v) => switch (v) {
   PyList _ => 'list',
   PyTuple _ => 'tuple',
   PyDict _ => 'dict',
-  PySet _ => 'set',
+  PySet s => s.frozen ? 'frozenset' : 'set',
   PyRange _ => 'range',
   PyDictView d => 'dict_${d.kind.label}',
   PyIterator i => i.typeName,
   PyFunction _ => 'function',
+  PyBoundMethod _ => 'method',
   PyBuiltin _ => 'builtin_function_or_method',
-  PyType _ => 'type',
+  PyNative n => n.typeLabel,
+  PyType _ || PyClass _ => 'type',
+  PyInstance i => i.cls.name,
+  PyModule _ => 'module',
+  PyDateTime d => d.dateOnly ? 'date' : 'datetime',
+  PyFile _ => 'TextIOWrapper',
+  PyReMatch _ => 'Match',
+  PySuper _ => 'super',
   _ => 'object',
 };
 
@@ -251,10 +407,17 @@ String germanTypeName(Object? v) => switch (v) {
   PyList _ => 'Liste (list)',
   PyTuple _ => 'Tupel (tuple)',
   PyDict _ => 'Dictionary (dict)',
-  PySet _ => 'Menge (set)',
+  PySet s => s.frozen ? 'Feste Menge (frozenset)' : 'Menge (set)',
   PyRange _ => 'Bereich (range)',
   PyFunction _ => 'Funktion',
-  PyIterator _ => 'Iterator',
+  PyBoundMethod _ => 'Methode',
+  PyIterator i => i.typeName == 'generator' ? 'Generator' : 'Iterator',
+  PyClass c => c.isException ? 'Fehler-Klasse' : 'Klasse',
+  PyInstance i => i.cls.isException ? 'Fehler (${i.cls.name})' : 'Objekt (${i.cls.name})',
+  PyModule _ => 'Modul',
+  PyDateTime d => d.dateOnly ? 'Datum (date)' : 'Zeitpunkt (datetime)',
+  PyFile _ => 'Datei',
+  PyReMatch _ => 'Treffer (Match)',
   _ => pyTypeName(v),
 };
 
@@ -282,6 +445,54 @@ String _quote(String s) {
   return '$q$escaped$q';
 }
 
+/// Ruft __str__ bzw. __repr__ eigener Klassen auf (vom Interpreter gesetzt).
+/// Liefert null, wenn die Klasse keine eigene Darstellung hat.
+String? Function(PyInstance instance, bool repr)? instanceToString;
+
+String _two(int n) => n.toString().padLeft(2, '0');
+
+String dateTimeStr(PyDateTime d) {
+  final v = d.value;
+  final date = '${v.year.toString().padLeft(4, '0')}-${_two(v.month)}-${_two(v.day)}';
+  if (d.dateOnly) return date;
+  final micro = v.millisecond * 1000 + v.microsecond;
+  return '$date ${_two(v.hour)}:${_two(v.minute)}:${_two(v.second)}${micro == 0 ? '' : '.${micro.toString().padLeft(6, '0')}'}';
+}
+
+String _dateTimeRepr(PyDateTime d) {
+  final v = d.value;
+  if (d.dateOnly) return 'datetime.date(${v.year}, ${v.month}, ${v.day})';
+  final parts = [v.year, v.month, v.day, v.hour, v.minute];
+  final micro = v.millisecond * 1000 + v.microsecond;
+  if (v.second != 0 || micro != 0) parts.add(v.second);
+  if (micro != 0) parts.add(micro);
+  return 'datetime.datetime(${parts.join(', ')})';
+}
+
+String _instanceRepr(PyInstance i) {
+  final custom = instanceToString?.call(i, true);
+  if (custom != null) return custom;
+  if (i.cls.isException) {
+    final args = i.attrs['args'];
+    final items = args is PyTuple ? args.items : const [];
+    return '${i.cls.name}(${items.map(pyRepr).join(', ')})';
+  }
+  return '<__main__.${i.cls.name} object>';
+}
+
+String _instanceStr(PyInstance i) {
+  final custom = instanceToString?.call(i, false);
+  if (custom != null) return custom;
+  if (i.cls.isException) {
+    final args = i.attrs['args'];
+    final items = args is PyTuple ? args.items : const [];
+    if (items.isEmpty) return '';
+    if (items.length == 1) return pyStr(items.first);
+    return pyRepr(args);
+  }
+  return _instanceRepr(i);
+}
+
 /// Darstellung wie in der Python-Konsole (repr).
 String pyRepr(Object? v, [int depth = 0]) {
   if (depth > 20) return '...';
@@ -296,16 +507,31 @@ String pyRepr(Object? v, [int depth = 0]) {
     PyList l => '[${l.items.map(r).join(', ')}]',
     PyTuple t => t.items.length == 1 ? '(${r(t.items.first)},)' : '(${t.items.map(r).join(', ')})',
     PyDict d => '{${d.map.entries.map((e) => '${r(e.key)}: ${r(e.value)}').join(', ')}}',
+    PySet s when s.frozen => s.items.isEmpty ? 'frozenset()' : 'frozenset({${s.items.map(r).join(', ')}})',
     PySet s => s.items.isEmpty ? 'set()' : '{${s.items.map(r).join(', ')}}',
     PyRange g => g.step == 1 ? 'range(${g.start}, ${g.stop})' : 'range(${g.start}, ${g.stop}, ${g.step})',
     PyDictView dv => 'dict_${dv.kind.label}([${dv.items.map(r).join(', ')}])',
     PyIterator i => '<${i.typeName} object>',
-    PyFunction f => f.isLambda ? '<function <lambda>>' : '<function ${f.name}>',
+    PyFunction f => f.isLambda ? '<function <lambda>>' : '<function ${f.ownerClass == null ? '' : '${f.ownerClass!.name}.'}${f.name}>',
+    PyBoundMethod m => '<bound method ${m.function is PyFunction ? (m.function as PyFunction).name : '?'}>',
     PyBuiltin b => '<built-in function ${b.name}>',
+    PyNative n => '<built-in function ${n.name}>',
     PyType t => "<class '${t.name}'>",
+    PyClass c => c.builtin ? "<class '${c.name}'>" : "<class '__main__.${c.name}'>",
+    PyInstance i => _instanceRepr(i),
+    PyModule m => "<module '${m.name}'>",
+    PyDateTime d => _dateTimeRepr(d),
+    PyFile f => "<_io.TextIOWrapper name='${f.name}' mode='${f.mode}' encoding='UTF-8'>",
+    PyReMatch m => "<re.Match object; span=(${m.match.start}, ${m.match.end}), match=${r(m.match[0])}>",
+    PySuper _ => '<super object>',
     _ => '$v',
   };
 }
 
 /// Darstellung wie bei print() (str): Texte ohne Anführungszeichen.
-String pyStr(Object? v) => v is String ? v : pyRepr(v);
+String pyStr(Object? v) => switch (v) {
+  String s => s,
+  PyInstance i => _instanceStr(i),
+  PyDateTime d => dateTimeStr(d),
+  _ => pyRepr(v),
+};

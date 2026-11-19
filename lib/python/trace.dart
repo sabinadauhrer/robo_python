@@ -48,9 +48,12 @@ class TraceStep {
 }
 
 class RunResult {
-  const RunResult({required this.trace, this.error, this.isSyntaxError = false});
+  const RunResult({required this.trace, this.error, this.isSyntaxError = false, this.files = const {}});
 
   final List<TraceStep> trace;
+
+  /// Dateien nach dem Lauf (virtuelles Dateisystem).
+  final Map<String, String> files;
   final PyError? error;
 
   /// Das Programm konnte wegen eines Schreibfehlers gar nicht starten.

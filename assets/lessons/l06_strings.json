@@ -1,6 +1,5 @@
 {
   "id": "l06_strings",
-  "order": 6,
   "title": "Strings",
   "icon": "text",
   "intro": "Ein String ist ein Text. Jedes Zeichen hat eine Nummer (Index), und das Zählen beginnt bei 0! Mit text[0] bekommst du das erste Zeichen, mit text[-1] das letzte, mit len(text) die Länge.",
@@ -82,5 +81,7 @@
       "hint": "",
       "output": "True"
     }
-  ]
+  ],
+  "order": 14,
+  "chapter": "Strings"
 }

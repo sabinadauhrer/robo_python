@@ -1,6 +1,5 @@
 {
   "id": "l07_string_methoden",
-  "order": 7,
   "title": "String-Methoden",
   "icon": "auto_fix",
   "intro": "Strings haben eingebaute Werkzeuge, sogenannte Methoden. Man schreibt sie mit Punkt: text.upper(). Wichtig: Sie verändern den alten Text nicht, sondern liefern einen NEUEN.",
@@ -86,5 +85,7 @@
       "hint": "",
       "why": "Richtig wäre: wort = wort.upper()"
     }
-  ]
+  ],
+  "order": 16,
+  "chapter": "Strings"
 }

@@ -1,0 +1,85 @@
+{
+  "id": "dict_add",
+  "title": "Zu Dictionaries hinzufügen",
+  "icon": "add_circle",
+  "intro": "Ein neues Paar fügst du hinzu, indem du einem NEUEN Schlüssel einen Wert gibst: auto[\"farbe\"] = \"rot\". update() kann ebenfalls neue Paare hinzufügen.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Füge den Schlüssel „farbe“ mit dem Wert „rot“ hinzu.",
+      "code": "auto = {\"marke\": \"Ford\"}\nauto[___] = \"rot\"\nprint(auto)",
+      "answers": [
+        [
+          "\"farbe\"",
+          "'farbe'"
+        ]
+      ],
+      "explain": "Gibt es den Schlüssel noch nicht, wird ein neues Paar angelegt.",
+      "notes": {},
+      "hint": "",
+      "output": "{'marke': 'Ford', 'farbe': 'rot'}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "d = {}\nd[\"x\"] = 1\nd[\"y\"] = 2\nprint(d, len(d))",
+      "options": [
+        "{'x': 1, 'y': 2} 2",
+        "{} 0",
+        "{'y': 2} 1"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ein leeres Dictionary {} kann man nach und nach füllen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Füge mit einer Methode die Farbe hinzu.",
+      "code": "auto = {\"marke\": \"Ford\"}\nauto.update({\"farbe\": ___})\nprint(auto)",
+      "answers": [
+        [
+          "\"rot\"",
+          "'rot'"
+        ]
+      ],
+      "explain": "update() legt neue Schlüssel an und ändert vorhandene.",
+      "notes": {},
+      "hint": "",
+      "output": "{'marke': 'Ford', 'farbe': 'rot'}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "zaehler = {}\nfor b in \"abba\":\n    zaehler[b] = zaehler.get(b, 0) + 1\nprint(zaehler)",
+      "options": [
+        "{'a': 2, 'b': 2}",
+        "{'a': 1, 'b': 1}",
+        "{'abba': 4}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ein klassischer Trick zum Zählen: get(b, 0) liefert 0, wenn der Buchstabe noch nicht gezählt wurde.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "d = {\"a\": 1}\nd.setdefault(\"b\", 5)\nd.setdefault(\"a\", 99)\nprint(d)",
+      "options": [
+        "{'a': 1, 'b': 5}",
+        "{'a': 99, 'b': 5}",
+        "{'a': 1}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "setdefault() fügt einen Schlüssel nur hinzu, wenn es ihn noch NICHT gibt.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 54,
+  "chapter": "Dictionaries"
+}

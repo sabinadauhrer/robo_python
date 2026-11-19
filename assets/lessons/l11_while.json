@@ -1,6 +1,5 @@
 {
   "id": "l11_while",
-  "order": 11,
   "title": "while-Schleifen",
   "icon": "loop",
   "intro": "Eine while-Schleife wiederholt Code, SOLANGE die Bedingung True ist. Ganz wichtig: Irgendwann muss die Bedingung False werden – sonst läuft die Schleife für immer! break beendet eine Schleife sofort, continue springt zur nächsten Runde.",
@@ -89,5 +88,7 @@
       },
       "hint": ""
     }
-  ]
+  ],
+  "order": 68,
+  "chapter": "Schleifen"
 }

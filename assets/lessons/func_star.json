@@ -1,0 +1,82 @@
+{
+  "id": "func_star",
+  "title": "*args & **kwargs",
+  "icon": "star",
+  "intro": "Mit *args nimmt eine Funktion beliebig viele Argumente an – sie landen in einem Tupel. Mit **kwargs nimmt sie beliebig viele benannte Argumente an – sie landen in einem Dictionary. Beim Aufruf „entpackt“ * eine Liste und ** ein Dictionary.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Die Funktion soll beliebig viele Kinder annehmen.",
+      "code": "def kinder(___kids):\n    print(\"Das jüngste Kind ist\", kids[2])\n\nkinder(\"Emil\", \"Tobias\", \"Linus\")",
+      "answers": [
+        [
+          "*"
+        ]
+      ],
+      "explain": "Mit * vor dem Parameter sammelt Python alle Argumente in einem Tupel.",
+      "notes": {},
+      "hint": "",
+      "output": "Das jüngste Kind ist Linus"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def summe(*zahlen):\n    print(len(zahlen), sum(zahlen))\n\nsumme(1, 2, 3, 4)",
+      "options": [
+        "4 10",
+        "1 1",
+        "4 4"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "zahlen ist das Tupel (1, 2, 3, 4) – mit 4 Elementen und der Summe 10.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Die Funktion soll beliebig viele benannte Argumente annehmen.",
+      "code": "def kind(___kid):\n    print(\"Sein Nachname ist\", kid[\"nachname\"])\n\nkind(vorname=\"Tobias\", nachname=\"Refsnes\")",
+      "answers": [
+        [
+          "**"
+        ]
+      ],
+      "explain": "Mit ** landen alle benannten Argumente in einem Dictionary.",
+      "notes": {},
+      "hint": "",
+      "output": "Sein Nachname ist Refsnes"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def info(**daten):\n    for k, v in daten.items():\n        print(k, \"=\", v)\n\ninfo(name=\"Robo\", alter=3)",
+      "options": [
+        "name = Robo\nalter = 3",
+        "{'name': 'Robo', 'alter': 3}",
+        "Robo\n3"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "daten ist ein ganz normales Dictionary – man kann es mit items() durchlaufen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Entpacke die Liste beim Aufruf, damit jede Zahl ein eigenes Argument wird.",
+      "code": "def plus(a, b, c):\n    return a + b + c\n\nzahlen = [1, 2, 3]\nprint(plus(___zahlen))",
+      "answers": [
+        [
+          "*"
+        ]
+      ],
+      "explain": "* beim Aufruf verteilt die Liste auf a, b und c.",
+      "notes": {},
+      "hint": "",
+      "output": "6"
+    }
+  ],
+  "order": 75,
+  "chapter": "Funktionen"
+}

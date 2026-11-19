@@ -1,6 +1,5 @@
 {
   "id": "l12_for",
-  "order": 12,
   "title": "for-Schleifen",
   "icon": "repeat",
   "intro": "Eine for-Schleife geht der Reihe nach durch alle Elemente – zum Beispiel durch eine Liste, einen Text oder range(). range(5) liefert die Zahlen 0, 1, 2, 3, 4.",
@@ -84,5 +83,7 @@
       "hint": "",
       "notes": {}
     }
-  ]
+  ],
+  "order": 70,
+  "chapter": "Schleifen"
 }

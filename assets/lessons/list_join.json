@@ -1,0 +1,82 @@
+{
+  "id": "list_join",
+  "title": "Listen verbinden",
+  "icon": "merge",
+  "intro": "Zwei Listen verbindest du mit +. Oder du hängst mit extend() alle Elemente an eine bestehende Liste an. Auch mit einer Schleife und append() geht es – Schritt für Schritt.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Verbinde die beiden Listen zu einer neuen.",
+      "code": "a = [\"a\", \"b\"]\nb = [1, 2]\nc = a ___ b\nprint(c)",
+      "answers": [
+        [
+          "+"
+        ]
+      ],
+      "explain": "Mit + entsteht eine neue Liste: erst alle Elemente von a, dann alle von b.",
+      "notes": {},
+      "hint": "",
+      "output": "['a', 'b', 1, 2]"
+    },
+    {
+      "type": "fill",
+      "task": "Hänge b an a an – mit einer Methode.",
+      "code": "a = [\"a\", \"b\"]\nb = [1, 2]\na.___(b)\nprint(a)",
+      "answers": [
+        [
+          "extend"
+        ]
+      ],
+      "explain": "extend() verändert a selbst und hängt alle Elemente von b an.",
+      "notes": {},
+      "hint": "",
+      "output": "['a', 'b', 1, 2]"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = [\"a\", \"b\"]\nb = [1, 2]\nfor x in b:\n    a.append(x)\nprint(a)",
+      "options": [
+        "['a', 'b', 1, 2]",
+        "['a', 'b', [1, 2]]",
+        "[1, 2]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Schleife hängt jedes Element von b einzeln an a – das Ergebnis ist dasselbe wie mit extend().",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print([0] * 3 + [1])",
+      "options": [
+        "[0, 0, 0, 1]",
+        "[0, 1, 0, 1, 0, 1]",
+        "[1, 0, 0, 0]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "[0] * 3 ergibt [0, 0, 0]. Dann wird [1] angehängt.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen, damit [1, 2, 3, 4] ausgegeben wird.",
+      "lines": [
+        "a = [1, 2]",
+        "b = [3, 4]",
+        "c = a + b",
+        "print(c)"
+      ],
+      "output": "[1, 2, 3, 4]",
+      "explain": "Erst müssen beide Listen existieren, dann kann man sie verbinden und ausgeben.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 34,
+  "chapter": "Listen"
+}

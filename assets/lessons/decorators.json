@@ -1,0 +1,86 @@
+{
+  "id": "decorators",
+  "title": "Dekoratoren",
+  "icon": "wrap_text",
+  "intro": "Ein Dekorator ist eine Funktion, die eine andere Funktion „einpackt“ und ihr Extra-Verhalten gibt – ohne sie selbst zu ändern. Man schreibt @name direkt über die Funktion. @gross über def hallo() bedeutet: hallo = gross(hallo).",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Wende den Dekorator auf die Funktion an.",
+      "code": "def gross(f):\n    def innen():\n        return f().upper()\n    return innen\n\n___gross\ndef hallo():\n    return \"hallo sally\"\n\nprint(hallo())",
+      "answers": [
+        [
+          "@"
+        ]
+      ],
+      "explain": "Mit @gross wird hallo eingepackt. Ruft man hallo() auf, läuft in Wahrheit innen() – und die macht das Ergebnis groß.",
+      "notes": {
+        "2": "innen() ist die neue Version der Funktion.",
+        "7": "Das @ wendet den Dekorator an."
+      },
+      "hint": "",
+      "output": "HALLO SALLY"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def laut(f):\n    def neu():\n        print(\"Achtung!\")\n        f()\n    return neu\n\n@laut\ndef sag_hallo():\n    print(\"Hallo\")\n\nsag_hallo()",
+      "options": [
+        "Achtung!\nHallo",
+        "Hallo",
+        "Hallo\nAchtung!"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die eingepackte Version gibt zuerst „Achtung!“ aus und ruft dann die ursprüngliche Funktion auf.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def doppelt(f):\n    def neu(x):\n        return f(x) * 2\n    return neu\n\n@doppelt\ndef plus1(x):\n    return x + 1\n\nprint(plus1(4))",
+      "options": [
+        "10",
+        "5",
+        "9"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "plus1(4) ergibt eigentlich 5. Der Dekorator verdoppelt das Ergebnis → 10.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Der Dekorator soll Funktionen mit beliebigen Argumenten einpacken.",
+      "code": "def logge(f):\n    def neu(*args, **kwargs):\n        print(\"Aufruf mit\", args)\n        return f(___args, **kwargs)\n    return neu\n\n@logge\ndef plus(a, b):\n    return a + b\n\nprint(plus(2, 3))",
+      "answers": [
+        [
+          "*"
+        ]
+      ],
+      "explain": "Mit *args und **kwargs reicht der Dekorator alle Argumente einfach an die echte Funktion weiter.",
+      "notes": {},
+      "hint": "",
+      "output": "Aufruf mit (2, 3)\n5"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def gross(f):\n    def neu():\n        return f().upper()\n    return neu\n\ndef hallo():\n    return \"hi\"\n\nhallo = gross(hallo)\nprint(hallo())",
+      "options": [
+        "HI",
+        "hi",
+        "Fehler"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Das macht @gross im Hintergrund: hallo = gross(hallo).",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 77,
+  "chapter": "Funktionen"
+}

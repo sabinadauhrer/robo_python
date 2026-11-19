@@ -1,6 +1,5 @@
 {
   "id": "l05_casting",
-  "order": 5,
   "title": "Umwandeln (Casting)",
   "icon": "swap",
   "intro": "Manchmal muss man einen Wert in einen anderen Typ umwandeln: int() macht eine ganze Zahl, float() eine Kommazahl und str() einen Text.",
@@ -86,5 +85,7 @@
       "hint": "Kommazahlen heißen in Python …",
       "output": "4.0"
     }
-  ]
+  ],
+  "order": 13,
+  "chapter": "Datentypen"
 }

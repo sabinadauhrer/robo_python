@@ -1,6 +1,5 @@
 {
   "id": "l15_tupel",
-  "order": 15,
   "title": "Tupel",
   "icon": "lock",
   "intro": "Ein Tupel ist wie eine Liste, aber in runden Klammern – und es kann NICHT verändert werden. Das ist praktisch für Werte, die zusammengehören und gleich bleiben sollen, z. B. Koordinaten.",
@@ -83,5 +82,7 @@
       "notes": {},
       "hint": ""
     }
-  ]
+  ],
+  "order": 36,
+  "chapter": "Tupel"
 }

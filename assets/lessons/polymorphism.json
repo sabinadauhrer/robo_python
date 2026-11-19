@@ -1,0 +1,84 @@
+{
+  "id": "polymorphism",
+  "title": "Polymorphie",
+  "icon": "diversity_3",
+  "intro": "Polymorphie heißt „Vielgestaltigkeit“: Verschiedene Klassen haben Methoden mit gleichem Namen, die aber Unterschiedliches tun. So kannst du alle Objekte gleich behandeln: for x in (auto, boot): x.bewegen() – jedes bewegt sich auf seine Art. Auch eingebaute Funktionen wie len() sind polymorph: Sie funktionieren mit Texten, Listen und Dictionaries.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(len(\"Hallo\"))\nprint(len([\"a\", \"b\"]))\nprint(len({\"x\": 1}))",
+      "options": [
+        "5\n2\n1",
+        "5\n5\n5",
+        "1\n1\n1"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "len() funktioniert mit vielen Typen – und zählt jeweils das Passende: Zeichen, Elemente, Paare.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Rufe bei jedem Fahrzeug dieselbe Methode auf.",
+      "code": "class Auto:\n    def bewegen(self):\n        print(\"Fahren!\")\n\nclass Boot:\n    def bewegen(self):\n        print(\"Segeln!\")\n\nfor x in (Auto(), Boot()):\n    x.___()",
+      "answers": [
+        [
+          "bewegen"
+        ]
+      ],
+      "explain": "Beide Klassen haben bewegen(). Die Schleife muss nicht wissen, welches Fahrzeug gerade dran ist.",
+      "notes": {},
+      "hint": "",
+      "output": "Fahren!\nSegeln!"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Hund:\n    def laut(self):\n        return \"Wuff\"\n\nclass Kuh:\n    def laut(self):\n        return \"Muh\"\n\nfor tier in [Kuh(), Hund(), Kuh()]:\n    print(tier.laut())",
+      "options": [
+        "Muh\nWuff\nMuh",
+        "Wuff\nMuh\nWuff",
+        "Muh\nMuh\nMuh"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Jedes Objekt antwortet mit seiner eigenen Version von laut().",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Fahrzeug:\n    def __init__(self, marke):\n        self.marke = marke\n\n    def bewegen(self):\n        print(\"Bewegen!\")\n\nclass Auto(Fahrzeug):\n    pass\n\nclass Flugzeug(Fahrzeug):\n    def bewegen(self):\n        print(\"Fliegen!\")\n\nfor x in (Auto(\"Ford\"), Flugzeug(\"Boeing\")):\n    print(x.marke)\n    x.bewegen()",
+      "options": [
+        "Ford\nBewegen!\nBoeing\nFliegen!",
+        "Ford\nFliegen!\nBoeing\nFliegen!",
+        "Ford\nBoeing"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Auto erbt bewegen() unverändert, Flugzeug überschreibt es. Beide haben die geerbte Eigenschaft marke.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(3 + 4)\nprint(\"3\" + \"4\")\nprint([3] + [4])",
+      "options": [
+        "7\n34\n[3, 4]",
+        "7\n7\n7",
+        "7\n34\n[7]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Auch + ist polymorph: Bei Zahlen rechnet es, bei Texten und Listen hängt es an.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 101,
+  "chapter": "Klassen & Objekte"
+}

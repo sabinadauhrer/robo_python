@@ -1,0 +1,87 @@
+{
+  "id": "tuple_update",
+  "title": "Tupel „ändern“",
+  "icon": "published_with_changes",
+  "intro": "Tupel sind unveränderlich – man kann kein Element ersetzen, anhängen oder löschen. Der Trick: Wandle das Tupel mit list() in eine Liste um, ändere die Liste und mache mit tuple() wieder ein Tupel daraus. Oder verbinde zwei Tupel mit + zu einem neuen.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "obst = (\"Apfel\", \"Banane\")\nobst[0] = \"Kiwi\"",
+      "options": [
+        "TypeError: Tupel sind unveränderlich",
+        "Kiwi ersetzt Apfel",
+        "Es passiert nichts"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Tupel kann man nicht verändern. Python meldet einen TypeError.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Wandle das Tupel zuerst in eine Liste um.",
+      "code": "x = (\"Apfel\", \"Banane\", \"Kirsche\")\ny = ___(x)\ny[1] = \"Kiwi\"\nx = tuple(y)\nprint(x)",
+      "answers": [
+        [
+          "list"
+        ]
+      ],
+      "explain": "Listen sind veränderbar. Also: Tupel → Liste, ändern, Liste → Tupel.",
+      "notes": {
+        "2": "Aus dem Tupel wird eine Liste.",
+        "3": "Die Liste darf man ändern.",
+        "4": "Und wieder zurück in ein Tupel."
+      },
+      "hint": "",
+      "output": "('Apfel', 'Kiwi', 'Kirsche')"
+    },
+    {
+      "type": "fill",
+      "task": "Verbinde die Tupel, um ein Element „hinzuzufügen“.",
+      "code": "obst = (\"Apfel\", \"Banane\")\nneu = (\"Orange\",)\nobst = obst ___ neu\nprint(obst)",
+      "answers": [
+        [
+          "+"
+        ]
+      ],
+      "explain": "Mit + entsteht ein neues Tupel aus beiden. Achtung: Ein Tupel mit einem Element braucht ein Komma: (\"Orange\",).",
+      "notes": {},
+      "hint": "",
+      "output": "('Apfel', 'Banane', 'Orange')"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = (\"Apfel\",)\ny = (\"Apfel\")\nprint(type(x))\nprint(type(y))",
+      "options": [
+        "<class 'tuple'>\n<class 'str'>",
+        "<class 'tuple'>\n<class 'tuple'>",
+        "<class 'str'>\n<class 'str'>"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Erst das Komma macht ein Tupel! Ohne Komma sind die Klammern nur normale Klammern um einen Text.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = (\"Apfel\", \"Banane\", \"Kirsche\")\ny = list(x)\ny.remove(\"Apfel\")\nx = tuple(y)\nprint(x)",
+      "options": [
+        "('Banane', 'Kirsche')",
+        "('Apfel', 'Banane', 'Kirsche')",
+        "['Banane', 'Kirsche']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Auch Entfernen geht nur über den Umweg Liste.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 38,
+  "chapter": "Tupel"
+}

@@ -1,6 +1,5 @@
 {
   "id": "l03_datentypen",
-  "order": 3,
   "title": "Datentypen",
   "icon": "category",
   "intro": "Jeder Wert hat einen Typ: ganze Zahlen (int), Kommazahlen (float), Texte (str) und Wahrheitswerte (bool, also True oder False). Mit type(wert) fragst du Python nach dem Typ.",
@@ -90,5 +89,7 @@
       },
       "hint": ""
     }
-  ]
+  ],
+  "order": 11,
+  "chapter": "Datentypen"
 }

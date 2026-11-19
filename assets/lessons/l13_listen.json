@@ -1,6 +1,5 @@
 {
   "id": "l13_listen",
-  "order": 13,
   "title": "Listen",
   "icon": "list",
   "intro": "Eine Liste speichert mehrere Werte in einer Variablen: tiere = [\"Hund\", \"Katze\"]. Wie bei Texten beginnt der Index bei 0. Listen kann man verändern.",
@@ -80,5 +79,7 @@
       "notes": {},
       "hint": ""
     }
-  ]
+  ],
+  "order": 25,
+  "chapter": "Listen"
 }

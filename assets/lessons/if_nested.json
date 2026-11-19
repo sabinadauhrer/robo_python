@@ -1,0 +1,85 @@
+{
+  "id": "if_nested",
+  "title": "Verschachtelte if",
+  "icon": "account_tree",
+  "intro": "Ein if kann in einem anderen if stehen. Das innere if wird nur geprüft, wenn das äußere wahr ist. Die Einrückung zeigt, was zu welchem if gehört.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = 41\nif x > 10:\n    print(\"über zehn\")\n    if x > 20:\n        print(\"und über zwanzig!\")\n    else:\n        print(\"aber nicht über zwanzig\")",
+      "options": [
+        "über zehn\nund über zwanzig!",
+        "über zehn",
+        "und über zwanzig!"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Das äußere if ist wahr, also wird auch das innere geprüft – und das ist auch wahr.",
+      "notes": {
+        "4": "Dieses if gehört zum äußeren if (eingerückt)."
+      },
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = 5\nif x > 10:\n    print(\"A\")\n    if x > 2:\n        print(\"B\")\nprint(\"C\")",
+      "options": [
+        "C",
+        "B\nC",
+        "A\nB\nC"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Das äußere if ist falsch – der ganze eingerückte Teil (auch das innere if) wird übersprungen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Rücke das innere if richtig ein: Ergänze, was am Ende der Zeile fehlt.",
+      "code": "alter = 12\nticket = True\nif alter >= 10:\n    if ticket___\n        print(\"Willkommen im Kino!\")",
+      "answers": [
+        [
+          ":"
+        ]
+      ],
+      "explain": "Auch das innere if braucht einen Doppelpunkt, danach wird noch weiter eingerückt.",
+      "notes": {},
+      "hint": "",
+      "output": "Willkommen im Kino!"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = 5\nb = 0\nif a > 0:\n    if b > 0:\n        print(\"beide positiv\")\n    else:\n        print(\"nur a\")\nelse:\n    print(\"a nicht positiv\")",
+      "options": [
+        "nur a",
+        "beide positiv",
+        "a nicht positiv"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Das else in Zeile 6 gehört zum INNEREN if (gleiche Einrückung), das in Zeile 8 zum äußeren.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen: „positiv und gerade“ soll erscheinen.",
+      "lines": [
+        "x = 4",
+        "if x > 0:",
+        "    if x % 2 == 0:",
+        "        print(\"positiv und gerade\")"
+      ],
+      "output": "positiv und gerade",
+      "explain": "Jede Ebene wird weiter eingerückt.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 65,
+  "chapter": "Entscheidungen"
+}
