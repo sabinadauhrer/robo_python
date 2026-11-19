@@ -1,0 +1,86 @@
+{
+  "id": "var_names",
+  "title": "Variablennamen",
+  "icon": "tag",
+  "intro": "Variablennamen dürfen Buchstaben, Ziffern und _ enthalten, aber nicht mit einer Ziffer beginnen. Groß- und Kleinschreibung zählt: alter und Alter sind zwei verschiedene Variablen. In Python schreibt man Namen aus mehreren Wörtern meist mit Unterstrich: mein_name (snake_case).",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "alter = 9\nAlter = 12\nprint(alter)",
+      "options": [
+        "9",
+        "12",
+        "21"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "alter und Alter sind für Python zwei verschiedene Boxen, weil Groß- und Kleinschreibung zählt.",
+      "notes": {
+        "1": "Die Box alter (klein).",
+        "2": "Eine andere Box: Alter (groß)."
+      },
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Verbinde die zwei Wörter im Namen richtig (snake_case).",
+      "code": "lieblings___farbe = \"lila\"\nprint(lieblings_farbe)",
+      "answers": [
+        [
+          "_"
+        ]
+      ],
+      "explain": "Leerzeichen sind in Namen verboten. Statt „lieblings farbe“ schreibt man lieblings_farbe.",
+      "notes": {},
+      "hint": "",
+      "output": "lila"
+    },
+    {
+      "type": "choice",
+      "task": "Welcher Name ist NICHT erlaubt?",
+      "code": "# Welcher Name geht nicht?\nmyVar = 1\n_geheim = 2\n3punkte = 3",
+      "options": [
+        "3punkte",
+        "myVar",
+        "_geheim"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Ein Name darf nicht mit einer Ziffer beginnen. myVar (camelCase) und _geheim sind erlaubt.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Welcher Name ist NICHT erlaubt?",
+      "code": "# Welcher Name geht nicht?\nfor = 5\nfarbe = \"rot\"\nname2 = \"Ida\"",
+      "options": [
+        "for",
+        "farbe",
+        "name2"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Wörter wie for, if oder class gehören zu Python selbst (Schlüsselwörter). Man kann sie nicht als Variablennamen benutzen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Diese Schreibweise heißt camelCase: Jedes neue Wort beginnt groß. Ergänze den Namen.",
+      "code": "meinLieblingsTier = \"Otter\"\nprint(___)",
+      "answers": [
+        [
+          "meinLieblingsTier"
+        ]
+      ],
+      "explain": "Bei camelCase beginnt jedes Wort außer dem ersten mit einem Großbuchstaben. In Python ist snake_case üblicher, aber beides funktioniert.",
+      "notes": {},
+      "hint": "",
+      "output": "Otter"
+    }
+  ],
+  "order": 7,
+  "chapter": "Variablen"
+}

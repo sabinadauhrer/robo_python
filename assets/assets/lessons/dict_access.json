@@ -1,0 +1,84 @@
+{
+  "id": "dict_access",
+  "title": "Auf Dictionaries zugreifen",
+  "icon": "search",
+  "intro": "Werte holst du über ihren Schlüssel: auto[\"marke\"]. Mit get() geht es auch – ohne Fehler, wenn der Schlüssel fehlt. keys() liefert alle Schlüssel, values() alle Werte und items() alle Paare.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Hole den Wert zum Schlüssel „modell“.",
+      "code": "auto = {\"marke\": \"Ford\", \"modell\": \"Mustang\", \"jahr\": 1964}\nprint(auto[___])",
+      "answers": [
+        [
+          "\"modell\"",
+          "'modell'"
+        ]
+      ],
+      "explain": "In die eckigen Klammern kommt der Schlüssel – als Text in Anführungszeichen.",
+      "notes": {},
+      "hint": "",
+      "output": "Mustang"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "auto = {\"marke\": \"Ford\", \"jahr\": 1964}\nprint(auto.keys())",
+      "options": [
+        "dict_keys(['marke', 'jahr'])",
+        "['Ford', 1964]",
+        "dict_values(['Ford', 1964])"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "keys() liefert eine Sicht auf alle Schlüssel.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "auto = {\"marke\": \"Ford\", \"jahr\": 1964}\nx = auto.values()\nauto[\"jahr\"] = 2020\nprint(x)",
+      "options": [
+        "dict_values(['Ford', 2020])",
+        "dict_values(['Ford', 1964])",
+        "['Ford', 2020]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "values() ist eine lebendige Sicht: Ändert sich das Dictionary, sieht man das auch in x.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Prüfe, ob der Schlüssel „jahr“ existiert.",
+      "code": "auto = {\"marke\": \"Ford\", \"jahr\": 1964}\nif \"jahr\" ___ auto:\n    print(\"Ja, jahr ist ein Schlüssel\")",
+      "answers": [
+        [
+          "in"
+        ]
+      ],
+      "explain": "in prüft bei Dictionaries die SCHLÜSSEL, nicht die Werte.",
+      "notes": {},
+      "hint": "",
+      "output": "Ja, jahr ist ein Schlüssel"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "auto = {\"marke\": \"Ford\"}\nprint(auto.items())",
+      "options": [
+        "dict_items([('marke', 'Ford')])",
+        "[('marke', 'Ford')]",
+        "dict_items(['marke', 'Ford'])"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "items() liefert Paare (Tupel) aus Schlüssel und Wert.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 52,
+  "chapter": "Dictionaries"
+}

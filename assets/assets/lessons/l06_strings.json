@@ -1,0 +1,87 @@
+{
+  "id": "l06_strings",
+  "title": "Strings",
+  "icon": "text",
+  "intro": "Ein String ist ein Text. Jedes Zeichen hat eine Nummer (Index), und das Zählen beginnt bei 0! Mit text[0] bekommst du das erste Zeichen, mit text[-1] das letzte, mit len(text) die Länge.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Gib das erste Zeichen von wort aus.",
+      "code": "wort = \"Banane\"\nprint(wort[___])",
+      "answers": [
+        [
+          "0"
+        ]
+      ],
+      "explain": "Python fängt beim Zählen mit 0 an. Das B hat den Index 0, das a den Index 1 usw.",
+      "notes": {
+        "2": "In den eckigen Klammern steht die Nummer des Zeichens."
+      },
+      "hint": "Python zählt nicht ab 1 …",
+      "output": "B"
+    },
+    {
+      "type": "fill",
+      "task": "Finde heraus, wie viele Zeichen der Text hat.",
+      "code": "text = \"Robo\"\nprint(___(text))",
+      "answers": [
+        [
+          "len"
+        ]
+      ],
+      "explain": "len kommt von length (Länge). Es zählt alle Zeichen – auch Leerzeichen.",
+      "notes": {},
+      "hint": "",
+      "output": "4"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "tier = \"Pinguin\"\nprint(tier[-1])",
+      "options": [
+        "n",
+        "P",
+        "i"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Negative Zahlen zählen von hinten: -1 ist das letzte Zeichen, -2 das vorletzte.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "tier = \"Pinguin\"\nprint(tier[0:4])",
+      "options": [
+        "Ping",
+        "Pingu",
+        "ingu"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Mit [start:ende] schneidest du ein Stück heraus. Das Zeichen bei „ende“ gehört NICHT mehr dazu.",
+      "notes": {
+        "2": "Zeichen 0, 1, 2 und 3 – die 4 nicht mehr."
+      },
+      "hint": "",
+      "why": "Merke: [0:4] liefert 4 Zeichen, nämlich genau 4 - 0."
+    },
+    {
+      "type": "fill",
+      "task": "Prüfe, ob „lern“ im Text vorkommt.",
+      "code": "satz = \"Ich lerne Python\"\nprint(\"lern\" ___ satz)",
+      "answers": [
+        [
+          "in"
+        ]
+      ],
+      "explain": "Mit in fragst du: Steckt dieser Text irgendwo darin? Die Antwort ist True oder False.",
+      "notes": {},
+      "hint": "",
+      "output": "True"
+    }
+  ],
+  "order": 14,
+  "chapter": "Strings"
+}

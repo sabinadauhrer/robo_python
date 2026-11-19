@@ -1,0 +1,99 @@
+{
+  "id": "user_input",
+  "title": "Benutzereingabe",
+  "icon": "keyboard",
+  "intro": "Mit input() wartet Python, bis jemand etwas eintippt, und liefert es als Text. In Klammern steht eine Frage. Achtung: input() liefert IMMER einen Text – für Zahlen musst du int() oder float() benutzen. Im Spiel ist die Eingabe schon vorgegeben – sie erscheint in der Ausgabe direkt hinter der Frage.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Frage nach dem Namen.",
+      "code": "name = ___(\"Wie heißt du? \")\nprint(\"Hallo\", name)",
+      "answers": [
+        [
+          "input"
+        ]
+      ],
+      "explain": "input() zeigt die Frage an und wartet auf die Eingabe. Hier tippt „jemand“ Mia ein.",
+      "notes": {},
+      "hint": "",
+      "output": "Wie heißt du? Mia\nHallo Mia",
+      "inputs": [
+        "Mia"
+      ]
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus? (Eingabe: 7)",
+      "code": "zahl = input(\"Zahl: \")\nprint(zahl * 2)",
+      "options": [
+        "Zahl: 7\n77",
+        "Zahl: 7\n14",
+        "Zahl: 7\n7 7"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "input() liefert den Text \"7\". Text mal 2 wiederholt den Text → \"77\".",
+      "notes": {},
+      "hint": "",
+      "inputs": [
+        "7"
+      ]
+    },
+    {
+      "type": "fill",
+      "task": "Wandle die Eingabe in eine Zahl um, damit gerechnet wird.",
+      "code": "alter = ___(input(\"Alter: \"))\nprint(\"Nächstes Jahr bist du\", alter + 1)",
+      "answers": [
+        [
+          "int"
+        ]
+      ],
+      "explain": "int() macht aus dem Text \"9\" die Zahl 9 – jetzt kann man rechnen.",
+      "notes": {},
+      "hint": "",
+      "output": "Alter: 9\nNächstes Jahr bist du 10",
+      "inputs": [
+        "9"
+      ]
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus? (Eingaben: 3 und 4)",
+      "code": "a = int(input(\"a = \"))\nb = int(input(\"b = \"))\nprint(\"Summe:\", a + b)",
+      "options": [
+        "a = 3\nb = 4\nSumme: 7",
+        "a = 3\nb = 4\nSumme: 34",
+        "Summe: 7"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Jedes input() holt die nächste Eingabe. Nach int() sind es Zahlen, die man addieren kann.",
+      "notes": {},
+      "hint": "",
+      "inputs": [
+        "3",
+        "4"
+      ]
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus? (Eingabe: Kiwi)",
+      "code": "obst = input(\"Lieblingsobst? \")\nif obst == \"Kiwi\":\n    print(\"Lecker und grün!\")\nelse:\n    print(\"Auch gut!\")",
+      "options": [
+        "Lieblingsobst? Kiwi\nLecker und grün!",
+        "Lieblingsobst? Kiwi\nAuch gut!",
+        "Lecker und grün!"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Eingabe ist ein ganz normaler Text, mit dem man vergleichen kann.",
+      "notes": {},
+      "hint": "",
+      "inputs": [
+        "Kiwi"
+      ]
+    }
+  ],
+  "order": 92,
+  "chapter": "Werkzeugkiste"
+}

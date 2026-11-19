@@ -1,0 +1,94 @@
+{
+  "id": "l11_while",
+  "title": "while-Schleifen",
+  "icon": "loop",
+  "intro": "Eine while-Schleife wiederholt Code, SOLANGE die Bedingung True ist. Ganz wichtig: Irgendwann muss die Bedingung False werden – sonst läuft die Schleife für immer! break beendet eine Schleife sofort, continue springt zur nächsten Runde.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze das Schlüsselwort für die Schleife.",
+      "code": "i = 1\n___ i <= 3:\n    print(i)\n    i += 1",
+      "answers": [
+        [
+          "while"
+        ]
+      ],
+      "explain": "while heißt „solange“. Solange i höchstens 3 ist, wird der eingerückte Teil wiederholt.",
+      "notes": {
+        "1": "Startwert.",
+        "2": "Wird vor jeder Runde geprüft.",
+        "4": "Ohne diese Zeile wäre i immer 1 → Endlosschleife!"
+      },
+      "hint": "",
+      "output": "1\n2\n3"
+    },
+    {
+      "type": "fill",
+      "task": "Ohne diese Zeile würde die Schleife nie enden. Ergänze sie.",
+      "code": "zaehler = 0\nwhile zaehler < 3:\n    print(\"Runde\", zaehler)\n    zaehler ___ 1",
+      "answers": [
+        [
+          "+="
+        ]
+      ],
+      "explain": "x += 1 ist eine Abkürzung für x = x + 1. So wird zaehler jede Runde größer, bis die Bedingung False ist.",
+      "notes": {},
+      "hint": "Plus und Gleich zusammen.",
+      "output": "Runde 0\nRunde 1\nRunde 2"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "n = 10\nwhile n > 0:\n    n -= 4\nprint(n)",
+      "options": [
+        "-2",
+        "2",
+        "0"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Schleife läuft weiter, bis n > 0 nicht mehr stimmt: 10 → 6 → 2 → -2. Bei -2 ist Schluss.",
+      "notes": {
+        "2": "Diese Bedingung wird vor jeder Runde neu geprüft."
+      },
+      "hint": "",
+      "why": "Schau im Probelauf, wie n Runde für Runde kleiner wird."
+    },
+    {
+      "type": "fill",
+      "task": "Beende die Schleife sofort, wenn i 3 ist.",
+      "code": "i = 0\nwhile i < 10:\n    i += 1\n    if i == 3:\n        ___\n    print(i)",
+      "answers": [
+        [
+          "break"
+        ]
+      ],
+      "explain": "break bricht die Schleife sofort ab – auch wenn die Bedingung noch True wäre.",
+      "notes": {
+        "5": "Hier soll die Schleife abbrechen."
+      },
+      "hint": "",
+      "output": "1\n2"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "i = 0\nwhile i < 5:\n    i += 1\n    if i == 2:\n        continue\n    print(i, end=\" \")",
+      "options": [
+        "1 3 4 5 ",
+        "1 2 3 4 5 ",
+        "1 "
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "continue überspringt den Rest der aktuellen Runde. Bei i == 2 wird print also ausgelassen, danach geht es normal weiter.",
+      "notes": {
+        "5": "Springt direkt zurück zur while-Zeile.",
+        "6": "end=\" \" schreibt ein Leerzeichen statt einer neuen Zeile."
+      },
+      "hint": ""
+    }
+  ],
+  "order": 68,
+  "chapter": "Schleifen"
+}

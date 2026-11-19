@@ -1,0 +1,93 @@
+{
+  "id": "l01_print",
+  "title": "Ausgabe mit print",
+  "icon": "chat",
+  "intro": "Mit print() zeigt Python etwas auf dem Bildschirm an. Alles, was in den runden Klammern steht, wird ausgegeben. Texte stehen in Anführungszeichen, Zahlen nicht.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze den Befehl, damit „Hallo Welt“ angezeigt wird.",
+      "code": "___(\"Hallo Welt\")",
+      "answers": [
+        [
+          "print"
+        ]
+      ],
+      "explain": "print ist der Befehl für „zeig das an“. Danach kommen runde Klammern – sie sagen: Hier steht, WAS angezeigt werden soll.",
+      "notes": {
+        "1": "print(...) gibt den Inhalt der Klammern aus. Die Anführungszeichen zeigen Python: Das ist ein Text."
+      },
+      "hint": "Der Befehl heißt wie das englische Wort für „drucken“.",
+      "output": "Hallo Welt"
+    },
+    {
+      "type": "fill",
+      "task": "Setze die fehlenden Anführungszeichen, damit der Text ausgegeben wird.",
+      "code": "print(___Ich lerne Python___)",
+      "answers": [
+        [
+          "\"",
+          "'"
+        ],
+        [
+          "\"",
+          "'"
+        ]
+      ],
+      "explain": "Texte (Strings) müssen in Anführungszeichen stehen – vorne UND hinten. Sonst denkt Python, Ich, lerne und Python wären Namen von Variablen.",
+      "notes": {
+        "1": "Zwischen den Anführungszeichen steht der Text genau so, wie er ausgegeben wird."
+      },
+      "hint": "Du kannst \" oder ' benutzen – aber vorne und hinten das gleiche."
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(3 + 4)",
+      "options": [
+        "7",
+        "3 + 4",
+        "34"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ohne Anführungszeichen ist 3 + 4 eine Rechnung. Python rechnet zuerst und gibt dann das Ergebnis aus.",
+      "notes": {
+        "1": "Keine Anführungszeichen → Python rechnet."
+      },
+      "hint": "Steht da ein Text oder eine Rechnung?",
+      "why": "Mit Anführungszeichen, also print(\"3 + 4\"), würde genau 3 + 4 als Text erscheinen."
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(\"Robo\", \"mag\", \"Python\")",
+      "options": [
+        "Robo mag Python",
+        "RobomagPython",
+        "Robo, mag, Python"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Mehrere Werte in print() trennt man mit Kommas. Python setzt bei der Ausgabe automatisch ein Leerzeichen dazwischen.",
+      "notes": {
+        "1": "Drei Texte, getrennt durch Kommas. Die Kommas selbst werden NICHT ausgegeben."
+      },
+      "hint": ""
+    },
+    {
+      "type": "order",
+      "task": "Bringe die Zeilen in die richtige Reihenfolge: zuerst „Guten Morgen“, dann „Wie geht es dir?“.",
+      "lines": [
+        "print(\"Guten Morgen\")",
+        "print(\"Wie geht es dir?\")"
+      ],
+      "output": "Guten Morgen\nWie geht es dir?",
+      "explain": "Python führt den Code immer von oben nach unten aus, Zeile für Zeile. Was zuerst erscheinen soll, muss also oben stehen.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 4,
+  "chapter": "Grundlagen"
+}

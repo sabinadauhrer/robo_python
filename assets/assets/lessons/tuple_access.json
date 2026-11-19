@@ -1,0 +1,83 @@
+{
+  "id": "tuple_access",
+  "title": "Auf Tupel zugreifen",
+  "icon": "search",
+  "intro": "Auf Tupel greifst du genau wie auf Listen zu: mit Index in eckigen Klammern, mit negativen Zahlen von hinten und mit Ausschnitten wie tupel[1:3]. Ein Ausschnitt eines Tupels ist wieder ein Tupel.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Gib das zweite Element des Tupels aus.",
+      "code": "obst = (\"Apfel\", \"Banane\", \"Kirsche\")\nprint(obst[___])",
+      "answers": [
+        [
+          "1"
+        ]
+      ],
+      "explain": "Auch bei Tupeln beginnt die Zählung bei 0. Das zweite Element hat also den Index 1.",
+      "notes": {},
+      "hint": "",
+      "output": "Banane"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = (\"Apfel\", \"Banane\", \"Kirsche\")\nprint(obst[-1])",
+      "options": [
+        "Kirsche",
+        "Apfel",
+        "-1"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "-1 ist das letzte Element.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = (\"Apfel\", \"Banane\", \"Kirsche\", \"Orange\", \"Kiwi\")\nprint(obst[2:5])",
+      "options": [
+        "('Kirsche', 'Orange', 'Kiwi')",
+        "['Kirsche', 'Orange', 'Kiwi']",
+        "('Banane', 'Kirsche', 'Orange')"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ein Ausschnitt eines Tupels ist wieder ein Tupel – erkennbar an den runden Klammern.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Prüfe, ob „Apfel“ im Tupel ist.",
+      "code": "obst = (\"Apfel\", \"Banane\")\nprint(\"Apfel\" ___ obst)",
+      "answers": [
+        [
+          "in"
+        ]
+      ],
+      "explain": "in funktioniert bei allen Sammlungen – auch bei Tupeln.",
+      "notes": {},
+      "hint": "",
+      "output": "True"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = (\"Apfel\", \"Banane\", \"Kirsche\")\nprint(obst[:2])",
+      "options": [
+        "('Apfel', 'Banane')",
+        "('Apfel',)",
+        "('Kirsche',)"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ohne Start beginnt der Ausschnitt bei Index 0 und endet vor Index 2.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 37,
+  "chapter": "Tupel"
+}

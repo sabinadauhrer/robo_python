@@ -1,0 +1,85 @@
+{
+  "id": "l20_iteratoren",
+  "title": "Iteratoren",
+  "icon": "skip_next",
+  "intro": "Ein Iterator gibt dir die Elemente einer Sammlung einzeln, eines nach dem anderen. Mit iter() erstellst du ihn, mit next() holst du das nächste Element. Eine for-Schleife macht genau das im Hintergrund!",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Erstelle einen Iterator aus dem Tupel.",
+      "code": "obst = (\"Apfel\", \"Kiwi\", \"Mango\")\nmein_iter = ___(obst)\nprint(next(mein_iter))",
+      "answers": [
+        [
+          "iter"
+        ]
+      ],
+      "explain": "iter() verwandelt eine Sammlung in einen Iterator. Er merkt sich, wie weit er schon gekommen ist.",
+      "notes": {},
+      "hint": "",
+      "output": "Apfel"
+    },
+    {
+      "type": "fill",
+      "task": "Hole das nächste Element aus dem Iterator.",
+      "code": "it = iter([\"a\", \"b\"])\nprint(next(it))\nprint(___(it))",
+      "answers": [
+        [
+          "next"
+        ]
+      ],
+      "explain": "Jedes next() holt das nächste Element. Der Iterator merkt sich die Position – deshalb kommt beim zweiten Mal „b“.",
+      "notes": {},
+      "hint": "",
+      "output": "a\nb"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "it = iter(\"Hey\")\nnext(it)\nprint(next(it))",
+      "options": [
+        "e",
+        "H",
+        "y"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Auch Texte kann man durchlaufen. Das erste next() holt „H“ (wird aber nicht ausgegeben), das zweite holt „e“.",
+      "notes": {
+        "2": "Holt \"H\" – das Ergebnis wird nicht gespeichert.",
+        "3": "Holt das nächste Zeichen."
+      },
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "it = iter([1])\nprint(next(it))\nprint(next(it))",
+      "options": [
+        "Erst 1, dann StopIteration-Fehler",
+        "1 und dann nochmal 1",
+        "1 und dann None"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Wenn ein Iterator leer ist, meldet next() den Fehler StopIteration. Eine for-Schleife fängt das automatisch ab und hört einfach auf.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen, damit „rot“ und dann „blau“ ausgegeben wird.",
+      "lines": [
+        "farben = [\"rot\", \"blau\"]",
+        "it = iter(farben)",
+        "print(next(it))",
+        "print(next(it))"
+      ],
+      "output": "rot\nblau",
+      "explain": "Zuerst braucht man die Liste, dann den Iterator daraus. Erst dann kann next() Elemente holen.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 82,
+  "chapter": "Werkzeugkiste"
+}

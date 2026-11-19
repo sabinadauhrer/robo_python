@@ -1,0 +1,87 @@
+{
+  "id": "oop",
+  "title": "Objektorientierung",
+  "icon": "hub",
+  "intro": "Objektorientierte Programmierung (OOP) bündelt Daten und Fähigkeiten zu „Objekten“. Eine Klasse ist der Bauplan, ein Objekt ist ein Ding, das nach diesem Bauplan gebaut wurde. Beispiel: Die Klasse Auto beschreibt Marke und Farbe – dein rotes Auto und mein blaues Auto sind zwei Objekte dieser Klasse.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was ist eine Klasse?",
+      "code": "class Auto:\n    pass",
+      "options": [
+        "Ein Bauplan für Objekte",
+        "Ein fertiges Objekt",
+        "Eine Liste von Zahlen"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Eine Klasse beschreibt, welche Eigenschaften und Fähigkeiten ihre Objekte haben.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Auto:\n    raeder = 4\n\nmein_auto = Auto()\nprint(mein_auto.raeder)",
+      "options": [
+        "4",
+        "Auto",
+        "raeder"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Auto() baut ein neues Objekt nach dem Bauplan. Es hat die Eigenschaft raeder = 4.",
+      "notes": {
+        "1": "Der Bauplan.",
+        "4": "Ein Objekt wird gebaut."
+      },
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Welche Aussage stimmt?",
+      "code": "class Hund:\n    pass\n\nbello = Hund()\nwaldi = Hund()",
+      "options": [
+        "bello und waldi sind zwei Objekte derselben Klasse",
+        "bello ist eine Klasse",
+        "Es gibt nur ein Objekt"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Aus einer Klasse kann man beliebig viele Objekte bauen. Jedes ist eigenständig.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Baue ein Objekt der Klasse Katze.",
+      "code": "class Katze:\n    beine = 4\n\nmimi = ___()\nprint(mimi.beine)",
+      "answers": [
+        [
+          "Katze"
+        ]
+      ],
+      "explain": "Ein Objekt baut man, indem man die Klasse wie eine Funktion aufruft.",
+      "notes": {},
+      "hint": "",
+      "output": "4"
+    },
+    {
+      "type": "choice",
+      "task": "Warum benutzt man Objektorientierung?",
+      "code": "# Daten (Name, Alter) und Fähigkeiten (bellen)\n# gehören zusammen in ein Objekt.",
+      "options": [
+        "Damit Daten und Fähigkeiten ordentlich zusammengehören",
+        "Damit der Code länger wird",
+        "Weil Python sonst nicht läuft"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Mit Klassen wird großer Code übersichtlich: Alles, was zu einem Ding gehört, steckt an einer Stelle.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 94,
+  "chapter": "Klassen & Objekte"
+}

@@ -1,0 +1,86 @@
+{
+  "id": "str_escape",
+  "title": "Sonderzeichen (Escape)",
+  "icon": "keyboard_return",
+  "intro": "Manche Zeichen kann man nicht einfach in einen Text schreiben – z. B. ein Anführungszeichen mitten im Text. Dafür gibt es den Backslash \\. \\\" ist ein Anführungszeichen, \\n eine neue Zeile, \\t ein Tabulator und \\\\ ein Backslash.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Setze die Anführungszeichen im Text mit Backslash richtig.",
+      "code": "txt = \"Wir sind die sogenannten ___Wikinger___ aus dem Norden.\"\nprint(txt)",
+      "answers": [
+        [
+          "\\\""
+        ],
+        [
+          "\\\""
+        ]
+      ],
+      "explain": "Mit \\\" weiß Python: Dieses Anführungszeichen gehört zum Text und beendet ihn nicht.",
+      "notes": {},
+      "hint": "Backslash + Anführungszeichen.",
+      "output": "Wir sind die sogenannten \"Wikinger\" aus dem Norden."
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(\"Hallo\\nWelt\")",
+      "options": [
+        "Hallo\nWelt",
+        "Hallo\\nWelt",
+        "HalloWelt"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "\\n bedeutet „neue Zeile“. Deshalb steht Welt in der nächsten Zeile.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print('It\\'s Robo')",
+      "options": [
+        "It's Robo",
+        "It\\'s Robo",
+        "Its Robo"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Im Text mit einfachen Anführungszeichen braucht ein Apostroph einen Backslash: \\'.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Füge zwischen die Wörter einen Tabulator ein.",
+      "code": "print(\"Name___Alter\")",
+      "answers": [
+        [
+          "\\t"
+        ]
+      ],
+      "explain": "\\t ist ein Tabulator – ein großer Abstand, wie mit der Tab-Taste.",
+      "notes": {},
+      "hint": "",
+      "output": "Name\tAlter"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(\"C:\\\\Ordner\")",
+      "options": [
+        "C:\\Ordner",
+        "C:\\\\Ordner",
+        "C:Ordner"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ein einzelner Backslash wird als \\\\ geschrieben, weil der Backslash sonst ein Sonderzeichen einleitet.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 19,
+  "chapter": "Strings"
+}

@@ -1,0 +1,86 @@
+{
+  "id": "if_elif",
+  "title": "elif",
+  "icon": "alt_route",
+  "intro": "elif heißt „sonst, wenn“. Ist die if-Bedingung falsch, prüft Python die elif-Bedingung. Es darf beliebig viele elif geben – aber es läuft immer nur der ERSTE Teil, dessen Bedingung wahr ist.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze das Schlüsselwort für „sonst, wenn“.",
+      "code": "a = 33\nb = 33\nif b > a:\n    print(\"b ist größer\")\n___ a == b:\n    print(\"a und b sind gleich\")",
+      "answers": [
+        [
+          "elif"
+        ]
+      ],
+      "explain": "elif wird nur geprüft, wenn alles darüber falsch war.",
+      "notes": {},
+      "hint": "",
+      "output": "a und b sind gleich"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "note = 2\nif note == 1:\n    print(\"sehr gut\")\nelif note == 2:\n    print(\"gut\")\nelif note < 4:\n    print(\"ok\")",
+      "options": [
+        "gut",
+        "gut\nok",
+        "ok"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "note < 4 wäre auch wahr – aber es läuft nur der erste passende Teil.",
+      "notes": {
+        "4": "Passt → läuft.",
+        "6": "Wird gar nicht mehr geprüft."
+      },
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = 50\nif x > 100:\n    print(\"A\")\nelif x > 75:\n    print(\"B\")",
+      "options": [
+        "(nichts)",
+        "A",
+        "B"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Beide Bedingungen sind falsch, und es gibt kein else. Also wird gar nichts ausgegeben.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Prüfe, ob die Temperatur über 20 Grad liegt.",
+      "code": "t = 25\nif t > 30:\n    print(\"heiß\")\nelif t ___ 20:\n    print(\"warm\")",
+      "answers": [
+        [
+          ">"
+        ]
+      ],
+      "explain": "Bei 25 Grad ist die erste Bedingung falsch, die zweite wahr.",
+      "notes": {},
+      "hint": "",
+      "output": "warm"
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen: Bei 0 soll „null“ erscheinen, bei einer positiven Zahl „positiv“.",
+      "lines": [
+        "x = 0",
+        "if x > 0:",
+        "    print(\"positiv\")",
+        "elif x == 0:",
+        "    print(\"null\")"
+      ],
+      "output": "null",
+      "explain": "if kommt immer zuerst, elif darunter mit gleicher Einrückung.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 61,
+  "chapter": "Entscheidungen"
+}

@@ -1,0 +1,92 @@
+{
+  "id": "files_write",
+  "title": "Dateien schreiben",
+  "icon": "edit_note",
+  "intro": "Zum Schreiben öffnest du die Datei mit \"w\" (überschreibt alles) oder \"a\" (hängt hinten an). Mit f.write(text) schreibst du hinein – Zeilenumbrüche musst du selbst mit \\n einfügen. \"w\" und \"a\" erstellen die Datei, falls es sie noch nicht gibt. \"x\" erstellt nur eine neue und meckert, wenn es sie schon gibt.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Hänge Text an die Datei an.",
+      "code": "with open(\"tagebuch.txt\", \"___\") as f:\n    f.write(\"\\nHeute: Python gelernt!\")\n\nwith open(\"tagebuch.txt\") as f:\n    print(f.read())",
+      "answers": [
+        [
+          "a"
+        ]
+      ],
+      "explain": "\"a\" (append) hängt neuen Text ans Ende. Der alte Inhalt bleibt.",
+      "notes": {},
+      "hint": "",
+      "output": "Liebes Tagebuch,\nHeute: Python gelernt!",
+      "files": {
+        "tagebuch.txt": "Liebes Tagebuch,"
+      }
+    },
+    {
+      "type": "fill",
+      "task": "Schreibe den Text in die Datei.",
+      "code": "with open(\"neu.txt\", \"w\") as f:\n    f.___(\"Hallo, Datei!\")\n\nwith open(\"neu.txt\") as f:\n    print(f.read())",
+      "answers": [
+        [
+          "write"
+        ]
+      ],
+      "explain": "write() schreibt Text in die Datei. Weil \"neu.txt\" noch nicht existierte, wird sie erstellt.",
+      "notes": {},
+      "hint": "",
+      "output": "Hallo, Datei!"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "with open(\"notiz.txt\", \"w\") as f:\n    f.write(\"Neu!\")\n\nwith open(\"notiz.txt\") as f:\n    print(f.read())",
+      "options": [
+        "Neu!",
+        "Alt.Neu!",
+        "Alt."
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "\"w\" überschreibt den alten Inhalt komplett.",
+      "notes": {},
+      "hint": "",
+      "files": {
+        "notiz.txt": "Alt."
+      }
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "with open(\"zahlen.txt\", \"w\") as f:\n    for i in range(3):\n        f.write(str(i) + \"\\n\")\n\nwith open(\"zahlen.txt\") as f:\n    print(f.read().split())",
+      "options": [
+        "['0', '1', '2']",
+        "['012']",
+        "[0, 1, 2]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Jede Zahl wird als Text mit \\n geschrieben. Beim Lesen teilt split() an den Zeilenumbrüchen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code? (Die Datei gibt es schon.)",
+      "code": "f = open(\"da.txt\", \"x\")",
+      "options": [
+        "FileExistsError",
+        "Die Datei wird geleert",
+        "Es passiert nichts"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "\"x\" erstellt nur NEUE Dateien. Gibt es die Datei schon, meldet Python FileExistsError.",
+      "notes": {},
+      "hint": "",
+      "files": {
+        "da.txt": "schon da"
+      }
+    }
+  ],
+  "order": 106,
+  "chapter": "Dateien"
+}

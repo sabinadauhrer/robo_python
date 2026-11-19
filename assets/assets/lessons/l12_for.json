@@ -1,0 +1,89 @@
+{
+  "id": "l12_for",
+  "title": "for-Schleifen",
+  "icon": "repeat",
+  "intro": "Eine for-Schleife geht der Reihe nach durch alle Elemente – zum Beispiel durch eine Liste, einen Text oder range(). range(5) liefert die Zahlen 0, 1, 2, 3, 4.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Gib jede Farbe aus der Liste aus.",
+      "code": "farben = [\"rot\", \"grün\", \"blau\"]\n___ farbe in farben:\n    print(farbe)",
+      "answers": [
+        [
+          "for"
+        ]
+      ],
+      "explain": "for farbe in farben bedeutet: Nimm nacheinander jedes Element und lege es in die Variable farbe.",
+      "notes": {
+        "2": "In jeder Runde bekommt farbe den nächsten Wert.",
+        "3": "Wird für jede Farbe einmal ausgeführt."
+      },
+      "hint": "",
+      "output": "rot\ngrün\nblau"
+    },
+    {
+      "type": "fill",
+      "task": "Wiederhole den Gruß 3-mal.",
+      "code": "for i in ___(3):\n    print(\"Hallo\")",
+      "answers": [
+        [
+          "range"
+        ]
+      ],
+      "explain": "range(3) erzeugt die Zahlen 0, 1, 2 – also genau 3 Runden.",
+      "notes": {},
+      "hint": "",
+      "output": "Hallo\nHallo\nHallo"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "for i in range(1, 4):\n    print(i, end=\" \")",
+      "options": [
+        "1 2 3 ",
+        "1 2 3 4 ",
+        "0 1 2 3 "
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "range(start, ende) beginnt bei start und hört VOR ende auf. Die 4 ist also nicht dabei.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "summe = 0\nfor zahl in [2, 4, 6]:\n    summe += zahl\nprint(summe)",
+      "options": [
+        "12",
+        "6",
+        "246"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Schleife addiert jede Zahl zur Summe: 0 + 2 = 2, 2 + 4 = 6, 6 + 6 = 12.",
+      "notes": {
+        "1": "Startwert 0 – wichtig, sonst kann man nichts addieren.",
+        "3": "Jede Runde kommt eine Zahl dazu.",
+        "4": "Steht NICHT eingerückt → erst nach der Schleife."
+      },
+      "hint": "",
+      "why": "Würde print eingerückt sein, käme jede Zwischensumme einzeln heraus."
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen, damit die Buchstaben von „Hi“ einzeln untereinander erscheinen und danach „fertig“.",
+      "lines": [
+        "for buchstabe in \"Hi\":",
+        "    print(buchstabe)",
+        "print(\"fertig\")"
+      ],
+      "output": "H\ni\nfertig",
+      "explain": "Was eingerückt ist, wiederholt sich. Was danach nicht eingerückt ist, läuft nur einmal am Ende.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 70,
+  "chapter": "Schleifen"
+}

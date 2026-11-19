@@ -1,0 +1,83 @@
+{
+  "id": "frozenset",
+  "title": "frozenset",
+  "icon": "ac_unit",
+  "intro": "Ein frozenset ist ein „eingefrorenes“ Set: Es hat keine Doppelten, aber man kann es nach dem Erstellen nicht mehr ändern. Man erstellt es mit frozenset(...). Vereinigung, Schnittmenge usw. funktionieren trotzdem – sie liefern ein neues frozenset.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Erstelle ein frozenset aus der Liste.",
+      "code": "x = ___([1, 2, 3])\nprint(x)",
+      "answers": [
+        [
+          "frozenset"
+        ]
+      ],
+      "explain": "frozenset() wandelt eine Sammlung in ein unveränderliches Set um.",
+      "notes": {},
+      "hint": "",
+      "output": "frozenset({1, 2, 3})"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = frozenset([1, 2, 2, 3])\nprint(len(x), 2 in x)",
+      "options": [
+        "3 True",
+        "4 True",
+        "3 False"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Wie ein normales Set: Doppelte zählen nur einmal, und in funktioniert auch.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "x = frozenset([1, 2])\nx.add(3)",
+      "options": [
+        "AttributeError: frozenset kann man nicht ändern",
+        "frozenset({1, 2, 3})",
+        "Es passiert nichts"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Ein frozenset hat keine Methoden wie add() oder remove() – es ist eingefroren.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = frozenset([1, 2])\nb = frozenset([2, 3])\nprint(a | b)",
+      "options": [
+        "frozenset({1, 2, 3})",
+        "{1, 2, 3}",
+        "Fehler"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Verbinden geht trotzdem – das Ergebnis ist ein NEUES frozenset.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Finde heraus, welcher Typ x ist.",
+      "code": "x = frozenset([1])\nprint(___(x))",
+      "answers": [
+        [
+          "type"
+        ]
+      ],
+      "explain": "type() verrät den Typ: frozenset.",
+      "notes": {},
+      "hint": "",
+      "output": "<class 'frozenset'>"
+    }
+  ],
+  "order": 49,
+  "chapter": "Sets"
+}

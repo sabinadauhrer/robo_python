@@ -1,0 +1,86 @@
+{
+  "id": "try_except",
+  "title": "try / except",
+  "icon": "healing",
+  "intro": "Mit try probiert Python einen Code aus. Passiert dabei ein Fehler, stürzt das Programm nicht ab, sondern springt zu except. Du kannst bestimmte Fehler abfangen (except ValueError:), else läuft nur ohne Fehler, finally läuft IMMER. Mit raise löst du selbst einen Fehler aus.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Fange den Fehler ab, damit das Programm nicht abstürzt.",
+      "code": "try:\n    print(x)\n___:\n    print(\"Ein Fehler ist passiert\")",
+      "answers": [
+        [
+          "except"
+        ]
+      ],
+      "explain": "x gibt es nicht → NameError. Statt abzustürzen springt Python zu except.",
+      "notes": {
+        "1": "try: Python probiert es mal.",
+        "3": "Wird nur bei einem Fehler ausgeführt."
+      },
+      "hint": "",
+      "output": "Ein Fehler ist passiert"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "try:\n    print(10 / 0)\nexcept ZeroDivisionError:\n    print(\"Durch 0 geht nicht!\")\nexcept:\n    print(\"Anderer Fehler\")",
+      "options": [
+        "Durch 0 geht nicht!",
+        "Anderer Fehler",
+        "Durch 0 geht nicht!\nAnderer Fehler"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Python nimmt den ERSTEN passenden except-Teil. Ein except ohne Fehlernamen fängt alles andere.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "try:\n    print(\"Hallo\")\nexcept:\n    print(\"Fehler\")\nelse:\n    print(\"Kein Fehler\")\nfinally:\n    print(\"Fertig\")",
+      "options": [
+        "Hallo\nKein Fehler\nFertig",
+        "Hallo\nFertig",
+        "Fehler\nFertig"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Es gibt keinen Fehler, also läuft else. finally läuft sowieso immer.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Löse selbst einen Fehler aus, wenn x negativ ist.",
+      "code": "x = -1\ntry:\n    if x < 0:\n        ___ ValueError(\"Keine negativen Zahlen!\")\nexcept ValueError as e:\n    print(\"Fehler:\", e)",
+      "answers": [
+        [
+          "raise"
+        ]
+      ],
+      "explain": "raise löst einen Fehler aus. Mit except … as e bekommt man das Fehler-Objekt – print(e) zeigt die Nachricht.",
+      "notes": {},
+      "hint": "",
+      "output": "Fehler: Keine negativen Zahlen!"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def teile(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return \"unmöglich\"\n    finally:\n        print(\"geprüft\")\n\nprint(teile(6, 0))",
+      "options": [
+        "geprüft\nunmöglich",
+        "unmöglich\ngeprüft",
+        "unmöglich"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "finally läuft, bevor die Funktion ihren Wert zurückgibt. Deshalb erscheint „geprüft“ zuerst.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 89,
+  "chapter": "Werkzeugkiste"
+}

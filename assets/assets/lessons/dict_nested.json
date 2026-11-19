@@ -1,0 +1,85 @@
+{
+  "id": "dict_nested",
+  "title": "Verschachtelte Dictionaries",
+  "icon": "account_tree",
+  "intro": "Ein Wert in einem Dictionary darf selbst wieder ein Dictionary sein. So kannst du z. B. eine ganze Familie speichern. Zugreifen kannst du dann mit zwei Schlüsseln hintereinander: familie[\"kind1\"][\"name\"].",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Gib den Namen von kind2 aus.",
+      "code": "familie = {\n    \"kind1\": {\"name\": \"Emil\", \"jahr\": 2004},\n    \"kind2\": {\"name\": \"Tobias\", \"jahr\": 2007},\n}\nprint(familie[\"kind2\"][___])",
+      "answers": [
+        [
+          "\"name\"",
+          "'name'"
+        ]
+      ],
+      "explain": "Der erste Schlüssel holt das innere Dictionary, der zweite den Wert darin.",
+      "notes": {},
+      "hint": "",
+      "output": "Tobias"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "familie = {\n    \"kind1\": {\"name\": \"Emil\", \"jahr\": 2004},\n    \"kind2\": {\"name\": \"Tobias\", \"jahr\": 2007},\n}\nprint(familie[\"kind1\"][\"jahr\"])",
+      "options": [
+        "2004",
+        "2007",
+        "Emil"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "familie[\"kind1\"] ist {\"name\": \"Emil\", \"jahr\": 2004} – daraus wird das Jahr geholt.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "kind1 = {\"name\": \"Emil\"}\nkind2 = {\"name\": \"Linus\"}\nfamilie = {\"k1\": kind1, \"k2\": kind2}\nprint(familie[\"k2\"])",
+      "options": [
+        "{'name': 'Linus'}",
+        "Linus",
+        "k2"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Man kann auch fertige Dictionaries in ein neues Dictionary stecken.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "familie = {\"k1\": {\"name\": \"Emil\"}, \"k2\": {\"name\": \"Ida\"}}\nfor k, person in familie.items():\n    print(k, person[\"name\"])",
+      "options": [
+        "k1 Emil\nk2 Ida",
+        "Emil\nIda",
+        "k1\nk2"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "In der Schleife ist person jeweils das innere Dictionary.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Ändere das Jahr von kind1 auf 2005.",
+      "code": "familie = {\"kind1\": {\"name\": \"Emil\", \"jahr\": 2004}}\nfamilie[\"kind1\"][___] = 2005\nprint(familie)",
+      "answers": [
+        [
+          "\"jahr\"",
+          "'jahr'"
+        ]
+      ],
+      "explain": "Auch beim Ändern geht man Schlüssel für Schlüssel nach innen.",
+      "notes": {},
+      "hint": "",
+      "output": "{'kind1': {'name': 'Emil', 'jahr': 2005}}"
+    }
+  ],
+  "order": 58,
+  "chapter": "Dictionaries"
+}

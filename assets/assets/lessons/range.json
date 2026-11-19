@@ -1,0 +1,83 @@
+{
+  "id": "range",
+  "title": "range()",
+  "icon": "linear_scale",
+  "intro": "range() erzeugt eine Folge von Zahlen. range(5) ist 0 bis 4, range(2, 6) ist 2 bis 5, range(0, 10, 2) zählt in Zweierschritten. Die Endzahl ist nie dabei! Mit einer negativen Schrittweite zählt range rückwärts.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(list(range(5)))",
+      "options": [
+        "[0, 1, 2, 3, 4]",
+        "[1, 2, 3, 4, 5]",
+        "[0, 1, 2, 3, 4, 5]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "range(5) beginnt bei 0 und endet VOR 5.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Zähle von 3 bis 7.",
+      "code": "for x in range(3, ___):\n    print(x)",
+      "answers": [
+        [
+          "8"
+        ]
+      ],
+      "explain": "Die Endzahl ist nicht mehr dabei – für 7 muss also 8 dort stehen.",
+      "notes": {},
+      "hint": "",
+      "output": "3\n4\n5\n6\n7"
+    },
+    {
+      "type": "fill",
+      "task": "Zähle in Dreierschritten.",
+      "code": "print(list(range(0, 10, ___)))",
+      "answers": [
+        [
+          "3"
+        ]
+      ],
+      "explain": "Der dritte Wert ist die Schrittweite: 0, 3, 6, 9.",
+      "notes": {},
+      "hint": "",
+      "output": "[0, 3, 6, 9]"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(list(range(5, 0, -1)))",
+      "options": [
+        "[5, 4, 3, 2, 1]",
+        "[5, 4, 3, 2, 1, 0]",
+        "[]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Mit Schrittweite -1 zählt range rückwärts. Die 0 ist als Endwert nicht mehr dabei.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "r = range(10)\nprint(len(r), r[3], 7 in r, 10 in r)",
+      "options": [
+        "10 3 True False",
+        "9 3 True True",
+        "10 4 True False"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "range verhält sich wie eine Liste: Es hat eine Länge, man kann Indizes benutzen und mit in suchen.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 72,
+  "chapter": "Schleifen"
+}

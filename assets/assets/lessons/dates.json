@@ -1,0 +1,83 @@
+{
+  "id": "dates",
+  "title": "Datum & Zeit",
+  "icon": "event",
+  "intro": "Mit dem Modul datetime arbeitest du mit Datum und Uhrzeit. datetime.datetime(2025, 3, 14) erstellt einen Zeitpunkt, datetime.date(2025, 3, 14) nur ein Datum. Mit .year, .month, .day liest du Teile aus, mit strftime() formatierst du es: %d Tag, %m Monat, %Y Jahr, %A Wochentag, %B Monatsname (auf Englisch).",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Lies das Jahr aus dem Datum.",
+      "code": "import datetime\nx = datetime.datetime(2020, 5, 17)\nprint(x.___)",
+      "answers": [
+        [
+          "year"
+        ]
+      ],
+      "explain": "Ein datetime-Objekt hat Eigenschaften wie year, month, day, hour und minute.",
+      "notes": {},
+      "hint": "",
+      "output": "2020"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "import datetime\nx = datetime.datetime(2020, 5, 17)\nprint(x)",
+      "options": [
+        "2020-05-17 00:00:00",
+        "17.05.2020",
+        "2020, 5, 17"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ohne Uhrzeit ist es 0 Uhr. print() zeigt Jahr-Monat-Tag und Stunden:Minuten:Sekunden.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Zeige das Datum im deutschen Format TT.MM.JJJJ.",
+      "code": "import datetime\nx = datetime.date(2024, 12, 24)\nprint(x.strftime(\"%d.%m.___\"))",
+      "answers": [
+        [
+          "%Y"
+        ]
+      ],
+      "explain": "%Y ist das Jahr mit 4 Ziffern, %y wäre nur 24.",
+      "notes": {},
+      "hint": "",
+      "output": "24.12.2024"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "import datetime\nx = datetime.datetime(2018, 6, 1)\nprint(x.strftime(\"%B\"))",
+      "options": [
+        "June",
+        "Juni",
+        "06"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "%B ist der volle Monatsname – auf Englisch, so wie Python ihn standardmäßig ausgibt.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "import datetime\na = datetime.date(2025, 1, 1)\nb = datetime.date(2025, 6, 1)\nprint(a < b)\nprint(a.strftime(\"%A\"))",
+      "options": [
+        "True\nWednesday",
+        "False\nWednesday",
+        "True\nMonday"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Daten kann man vergleichen: Das frühere ist „kleiner“. Der 1. Januar 2025 war ein Mittwoch (Wednesday).",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 84,
+  "chapter": "Werkzeugkiste"
+}

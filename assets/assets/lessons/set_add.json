@@ -1,0 +1,83 @@
+{
+  "id": "set_add",
+  "title": "Zu Sets hinzufügen",
+  "icon": "add_circle",
+  "intro": "Mit add() fügst du EIN Element hinzu. Mit update() kommen alle Elemente aus einer anderen Sammlung dazu. Ist ein Wert schon drin, passiert nichts – Sets haben keine Doppelten.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Füge die 4 zum Set hinzu.",
+      "code": "zahlen = {1, 2, 3}\nzahlen.___(4)\nprint(zahlen)",
+      "answers": [
+        [
+          "add"
+        ]
+      ],
+      "explain": "add() fügt genau ein Element hinzu.",
+      "notes": {},
+      "hint": "",
+      "output": "{1, 2, 3, 4}"
+    },
+    {
+      "type": "fill",
+      "task": "Füge alle Zahlen aus der Liste hinzu.",
+      "code": "zahlen = {1, 2}\nzahlen.___([3, 4, 5])\nprint(zahlen)",
+      "answers": [
+        [
+          "update"
+        ]
+      ],
+      "explain": "update() nimmt jede Sammlung (Liste, Tupel, Set) und fügt alle Elemente hinzu.",
+      "notes": {},
+      "hint": "",
+      "output": "{1, 2, 3, 4, 5}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "zahlen = {1, 2, 3}\nzahlen.add(2)\nprint(len(zahlen))",
+      "options": [
+        "3",
+        "4",
+        "Fehler"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die 2 ist schon im Set. Ein Set speichert jeden Wert nur einmal – die Länge bleibt 3.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = {1, 2}\nb = {3, 4}\na.update(b)\nprint(a)",
+      "options": [
+        "{1, 2, 3, 4}",
+        "{1, 2}",
+        "{3, 4}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "update() verändert a selbst. b bleibt, wie es ist.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "s = {1, 2}\ns.add([3, 4])",
+      "options": [
+        "TypeError: Listen können nicht in ein Set",
+        "{1, 2, 3, 4}",
+        "{1, 2, [3, 4]}"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "In einem Set dürfen nur unveränderliche Werte stehen (Zahlen, Texte, Tupel). Eine Liste kann sich ändern – deshalb geht das nicht.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 45,
+  "chapter": "Sets"
+}

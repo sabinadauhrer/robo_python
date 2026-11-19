@@ -1,0 +1,86 @@
+{
+  "id": "operators_logic",
+  "title": "Logik, is & in",
+  "icon": "rule",
+  "intro": "Logische Operatoren verbinden Bedingungen: and (beide wahr), or (mindestens eine wahr), not (dreht um). Mit in prüfst du, ob etwas in einer Sammlung steckt. is prüft, ob zwei Namen auf GENAU dasselbe Objekt zeigen – == prüft nur, ob die Werte gleich sind.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = 5\nprint(x > 3 and x < 10)\nprint(x > 3 and x > 10)",
+      "options": [
+        "True\nFalse",
+        "True\nTrue",
+        "False\nFalse"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "and ist nur True, wenn BEIDE Seiten True sind. In der zweiten Zeile ist x > 10 falsch.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Das Ergebnis soll True sein, wenn MINDESTENS eine Bedingung stimmt.",
+      "code": "x = 5\nprint(x < 3 ___ x > 4)",
+      "answers": [
+        [
+          "or"
+        ]
+      ],
+      "explain": "or ist True, sobald eine Seite True ist. Hier ist x > 4 wahr.",
+      "notes": {},
+      "hint": "",
+      "output": "True"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = 5\nprint(not(x > 3 and x < 10))",
+      "options": [
+        "False",
+        "True",
+        "Fehler"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Klammer ergibt True. not dreht das Ergebnis um → False.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Prüfe, ob „Banane“ in der Liste ist.",
+      "code": "obst = [\"Apfel\", \"Banane\"]\nprint(\"Banane\" ___ obst)",
+      "answers": [
+        [
+          "in"
+        ]
+      ],
+      "explain": "in prüft die Zugehörigkeit: Steckt der Wert in der Sammlung? Das Gegenteil ist not in.",
+      "notes": {},
+      "hint": "",
+      "output": "True"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = [\"x\", \"y\"]\nb = [\"x\", \"y\"]\nc = a\nprint(a == b)\nprint(a is b)\nprint(a is c)",
+      "options": [
+        "True\nFalse\nTrue",
+        "True\nTrue\nTrue",
+        "False\nFalse\nTrue"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "a und b haben denselben Inhalt (==), sind aber zwei verschiedene Listen. c ist nur ein zweiter Name für a – deshalb ist a is c True.",
+      "notes": {
+        "3": "c zeigt auf dieselbe Liste wie a.",
+        "5": "Zwei verschiedene Listen → False."
+      },
+      "hint": ""
+    }
+  ],
+  "order": 23,
+  "chapter": "Booleans & Operatoren"
+}

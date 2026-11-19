@@ -1,0 +1,84 @@
+{
+  "id": "venv",
+  "title": "Virtuelle Umgebung",
+  "icon": "inventory",
+  "intro": "Eine virtuelle Umgebung (venv) ist ein eigener, abgeschotteter Ordner für ein Projekt mit eigenen Paketen. So stören sich Projekte nicht gegenseitig. Man erstellt sie im Terminal mit python -m venv meinordner und aktiviert sie dann. (Das passiert im Terminal, nicht im Python-Code.)",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Wofür ist eine virtuelle Umgebung gut?",
+      "code": "# Projekt A braucht Paket Version 1,\n# Projekt B braucht Version 2 ...",
+      "options": [
+        "Jedes Projekt bekommt seine eigenen Pakete",
+        "Python läuft schneller",
+        "Man braucht kein Internet mehr"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "In einer venv installierte Pakete gelten nur für dieses Projekt. So gibt es keine Versions-Streitereien.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Mit welchem Befehl erstellt man eine virtuelle Umgebung namens „umgebung“?",
+      "code": "# im Terminal:\n# python -m venv umgebung",
+      "options": [
+        "python -m venv umgebung",
+        "pip install umgebung",
+        "import venv"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "python -m venv startet das eingebaute venv-Modul und legt den Ordner an.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert nach dem Aktivieren der Umgebung mit pip install?",
+      "code": "# (umgebung) $ pip install camelcase",
+      "options": [
+        "Das Paket landet nur in dieser Umgebung",
+        "Das Paket wird überall installiert",
+        "Es kommt ein Fehler"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Ist die Umgebung aktiv, installiert pip nur in ihren Ordner. Das (umgebung) vorne zeigt, dass sie aktiv ist.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Wie verlässt man die virtuelle Umgebung wieder?",
+      "code": "# im Terminal:\n# deactivate",
+      "options": [
+        "deactivate",
+        "exit()",
+        "pip uninstall"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "deactivate schaltet zurück auf das normale Python.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Python-Code läuft in jeder Umgebung gleich. Ergänze den Befehl.",
+      "code": "___(\"Läuft auch in der venv!\")",
+      "answers": [
+        [
+          "print"
+        ]
+      ],
+      "explain": "Die Umgebung ändert nur, welche Pakete verfügbar sind – der Code selbst bleibt gleich.",
+      "notes": {},
+      "hint": "",
+      "output": "Läuft auch in der venv!"
+    }
+  ],
+  "order": 93,
+  "chapter": "Werkzeugkiste"
+}

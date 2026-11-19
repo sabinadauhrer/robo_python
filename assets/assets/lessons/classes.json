@@ -1,0 +1,83 @@
+{
+  "id": "classes",
+  "title": "Klassen & Objekte",
+  "icon": "category",
+  "intro": "Eine Klasse erstellst du mit class Name: (Namen von Klassen schreibt man groß). Mit name = Klasse() baust du ein Objekt. Mit objekt.eigenschaft liest du seine Eigenschaften. Mit del objekt löschst du es wieder.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Erstelle eine Klasse namens MeineKlasse.",
+      "code": "___ MeineKlasse:\n    x = 5\n\np1 = MeineKlasse()\nprint(p1.x)",
+      "answers": [
+        [
+          "class"
+        ]
+      ],
+      "explain": "Das Schlüsselwort class leitet den Bauplan ein. Darunter steht eingerückt, was dazugehört.",
+      "notes": {},
+      "hint": "",
+      "output": "5"
+    },
+    {
+      "type": "fill",
+      "task": "Lies die Eigenschaft x des Objekts.",
+      "code": "class MeineKlasse:\n    x = 5\n\np1 = MeineKlasse()\nprint(p1___x)",
+      "answers": [
+        [
+          "."
+        ]
+      ],
+      "explain": "Mit einem Punkt greift man auf Eigenschaften und Methoden eines Objekts zu.",
+      "notes": {},
+      "hint": "",
+      "output": "5"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Box:\n    inhalt = \"Bälle\"\n\na = Box()\nb = Box()\nprint(a.inhalt, b.inhalt)",
+      "options": [
+        "Bälle Bälle",
+        "Bälle",
+        "a b"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Beide Objekte haben die Eigenschaft aus dem Bauplan.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Box:\n    pass\n\na = Box()\nprint(type(a).__name__)",
+      "options": [
+        "Box",
+        "object",
+        "class"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "type() verrät die Klasse eines Objekts. __name__ ist ihr Name.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "class Box:\n    pass\n\na = Box()\ndel a\nprint(a)",
+      "options": [
+        "NameError: a gibt es nicht mehr",
+        "Box",
+        "None"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "del a löscht den Namen a. Danach kann man das Objekt nicht mehr benutzen.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 95,
+  "chapter": "Klassen & Objekte"
+}

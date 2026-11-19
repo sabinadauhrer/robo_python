@@ -1,0 +1,92 @@
+{
+  "id": "files",
+  "title": "Dateien öffnen",
+  "icon": "folder_open",
+  "intro": "Mit open(dateiname, modus) öffnest du eine Datei. Die Modi: \"r\" lesen (Standard), \"a\" anhängen, \"w\" überschreiben, \"x\" neu erstellen. Am besten benutzt du with open(...) as f: – dann wird die Datei am Ende automatisch geschlossen. (Im Spiel gibt es eine kleine eingebaute Festplatte nur für dein Programm.)",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Öffne die Datei zum Lesen.",
+      "code": "f = open(\"demo.txt\", \"___\")\nprint(f.read())\nf.close()",
+      "answers": [
+        [
+          "r"
+        ]
+      ],
+      "explain": "\"r\" steht für read (lesen). Lässt man den Modus weg, ist \"r\" der Standard.",
+      "notes": {},
+      "hint": "",
+      "output": "Hallo aus der Datei!",
+      "files": {
+        "demo.txt": "Hallo aus der Datei!"
+      }
+    },
+    {
+      "type": "fill",
+      "task": "Öffne die Datei mit with, damit sie automatisch geschlossen wird.",
+      "code": "___ open(\"demo.txt\") as f:\n    print(f.read())",
+      "answers": [
+        [
+          "with"
+        ]
+      ],
+      "explain": "Mit with muss man close() nicht selbst aufrufen – das passiert am Ende des Blocks automatisch.",
+      "notes": {},
+      "hint": "",
+      "output": "Hallo aus der Datei!",
+      "files": {
+        "demo.txt": "Hallo aus der Datei!"
+      }
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code? (Die Datei gibt es nicht.)",
+      "code": "f = open(\"gibtsnicht.txt\", \"r\")",
+      "options": [
+        "FileNotFoundError",
+        "Eine leere Datei wird erstellt",
+        "Es passiert nichts"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Zum Lesen muss die Datei existieren, sonst meldet Python FileNotFoundError.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Welcher Modus hängt Text ans Ende an, ohne den alten Inhalt zu löschen?",
+      "code": "# open(\"notizen.txt\", ???)",
+      "options": [
+        "\"a\"",
+        "\"w\"",
+        "\"r\""
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "\"a\" steht für append (anhängen). \"w\" würde den alten Inhalt überschreiben.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "with open(\"demo.txt\") as f:\n    print(f.closed)\nprint(f.closed)",
+      "options": [
+        "False\nTrue",
+        "True\nTrue",
+        "False\nFalse"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Innerhalb von with ist die Datei offen. Danach hat with sie automatisch geschlossen.",
+      "notes": {},
+      "hint": "",
+      "files": {
+        "demo.txt": "x"
+      }
+    }
+  ],
+  "order": 104,
+  "chapter": "Dateien"
+}

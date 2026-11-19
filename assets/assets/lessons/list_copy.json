@@ -1,0 +1,86 @@
+{
+  "id": "list_copy",
+  "title": "Listen kopieren",
+  "icon": "content_copy",
+  "intro": "Mit liste2 = liste1 entsteht KEINE Kopie – beide Namen zeigen auf dieselbe Liste! Ändert man eine, ändert sich die andere mit. Eine echte Kopie bekommst du mit liste1.copy(), list(liste1) oder liste1[:].",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = [\"Apfel\", \"Banane\"]\nb = a\nb.append(\"Kiwi\")\nprint(a)",
+      "options": [
+        "['Apfel', 'Banane', 'Kiwi']",
+        "['Apfel', 'Banane']",
+        "['Kiwi']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "b = a macht nur einen zweiten Namen für DIESELBE Liste. Deshalb sieht man die Kiwi auch in a.",
+      "notes": {
+        "2": "Keine Kopie! b und a sind dieselbe Liste."
+      },
+      "hint": "",
+      "why": "Probier den Probelauf: a und b ändern sich gleichzeitig."
+    },
+    {
+      "type": "fill",
+      "task": "Erstelle eine echte Kopie mit einer Methode.",
+      "code": "a = [\"Apfel\", \"Banane\"]\nb = a.___()\nb.append(\"Kiwi\")\nprint(a)",
+      "answers": [
+        [
+          "copy"
+        ]
+      ],
+      "explain": "copy() erstellt eine neue, unabhängige Liste mit denselben Elementen. Änderungen an b betreffen a nicht.",
+      "notes": {},
+      "hint": "",
+      "output": "['Apfel', 'Banane']"
+    },
+    {
+      "type": "fill",
+      "task": "Erstelle eine Kopie mit der eingebauten Funktion.",
+      "code": "a = [\"Apfel\", \"Banane\"]\nb = ___(a)\nprint(b)",
+      "answers": [
+        [
+          "list"
+        ]
+      ],
+      "explain": "list(a) baut eine neue Liste aus den Elementen von a.",
+      "notes": {},
+      "hint": "",
+      "output": "['Apfel', 'Banane']"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = [1, 2, 3]\nb = a[:]\nb[0] = 99\nprint(a, b)",
+      "options": [
+        "[1, 2, 3] [99, 2, 3]",
+        "[99, 2, 3] [99, 2, 3]",
+        "[1, 2, 3] [1, 2, 3]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "a[:] ist ein Ausschnitt von Anfang bis Ende – also eine Kopie. Deshalb bleibt a unverändert.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = [1, 2]\nb = a\nc = a.copy()\nprint(a is b, a is c)",
+      "options": [
+        "True False",
+        "True True",
+        "False False"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "is prüft, ob es dasselbe Objekt ist. b ist dieselbe Liste wie a, c ist eine Kopie.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 33,
+  "chapter": "Listen"
+}

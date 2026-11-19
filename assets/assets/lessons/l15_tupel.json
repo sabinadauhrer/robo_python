@@ -1,0 +1,88 @@
+{
+  "id": "l15_tupel",
+  "title": "Tupel",
+  "icon": "lock",
+  "intro": "Ein Tupel ist wie eine Liste, aber in runden Klammern – und es kann NICHT verändert werden. Das ist praktisch für Werte, die zusammengehören und gleich bleiben sollen, z. B. Koordinaten.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Erstelle ein Tupel mit drei Farben.",
+      "code": "farben = ___\"rot\", \"gelb\", \"grün\")\nprint(farben)",
+      "answers": [
+        [
+          "("
+        ]
+      ],
+      "explain": "Tupel stehen in runden Klammern ( ). Listen dagegen in eckigen [ ].",
+      "notes": {},
+      "hint": "",
+      "output": "('rot', 'gelb', 'grün')"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "punkt = (3, 7)\nprint(punkt[1])",
+      "options": [
+        "7",
+        "3",
+        "(3, 7)"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Auf Elemente eines Tupels greift man genauso zu wie bei einer Liste – mit Index ab 0.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "punkt = (3, 7)\npunkt[0] = 5",
+      "options": [
+        "Python meldet einen TypeError",
+        "punkt wird zu (5, 7)",
+        "punkt wird zu (3, 5)"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Tupel sind unveränderlich. Der Versuch, ein Element zu ändern, führt zu einem Fehler.",
+      "notes": {
+        "2": "Hier versucht der Code, das Tupel zu ändern."
+      },
+      "hint": "",
+      "why": "Wenn du doch etwas ändern musst: liste = list(punkt), ändern, dann punkt = tuple(liste)."
+    },
+    {
+      "type": "fill",
+      "task": "Packe das Tupel in zwei Variablen aus.",
+      "code": "tier = (\"Hund\", 4)\nname, ___ = tier\nprint(name, \"hat\", beine, \"Beine\")",
+      "answers": [
+        [
+          "beine"
+        ]
+      ],
+      "explain": "Beim Auspacken bekommt jede Variable links der Reihe nach einen Wert aus dem Tupel. Links müssen gleich viele Namen stehen wie Werte im Tupel.",
+      "notes": {
+        "2": "name bekommt \"Hund\", die zweite Variable bekommt 4."
+      },
+      "hint": "",
+      "output": "Hund hat 4 Beine"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = (\"allein\",)\nprint(type(x))",
+      "options": [
+        "<class 'tuple'>",
+        "<class 'str'>",
+        "<class 'list'>"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ein Tupel mit nur einem Element braucht ein Komma! Ohne Komma wären die Klammern nur normale Klammern um einen Text.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 36,
+  "chapter": "Tupel"
+}

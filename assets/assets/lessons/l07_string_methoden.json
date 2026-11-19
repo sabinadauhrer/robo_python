@@ -1,0 +1,91 @@
+{
+  "id": "l07_string_methoden",
+  "title": "String-Methoden",
+  "icon": "auto_fix",
+  "intro": "Strings haben eingebaute Werkzeuge, sogenannte Methoden. Man schreibt sie mit Punkt: text.upper(). Wichtig: Sie verändern den alten Text nicht, sondern liefern einen NEUEN.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Gib den Text in GROSSBUCHSTABEN aus.",
+      "code": "gruss = \"hallo\"\nprint(gruss.___())",
+      "answers": [
+        [
+          "upper"
+        ]
+      ],
+      "explain": "Der Punkt bedeutet: „Benutze das Werkzeug von gruss“. upper heißt auf Englisch „oben“ – wie Großbuchstaben auf der Tastatur.",
+      "notes": {
+        "2": "Methode = Punkt + Name + Klammern."
+      },
+      "hint": "",
+      "output": "HALLO"
+    },
+    {
+      "type": "fill",
+      "task": "Entferne die Leerzeichen am Anfang und Ende.",
+      "code": "name = \"   Mia   \"\nprint(name.___())",
+      "answers": [
+        [
+          "strip"
+        ]
+      ],
+      "explain": "strip() schneidet Leerzeichen an den Rändern ab. Das ist praktisch, wenn jemand aus Versehen Leerzeichen eingetippt hat.",
+      "notes": {},
+      "hint": "",
+      "output": "Mia"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "text = \"Ich mag Äpfel\"\nprint(text.replace(\"Äpfel\", \"Kekse\"))",
+      "options": [
+        "Ich mag Kekse",
+        "Ich mag Äpfel",
+        "Kekse"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "replace(alt, neu) ersetzt jedes Vorkommen von alt durch neu.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = \"Apfel,Kiwi,Mango\"\nprint(obst.split(\",\"))",
+      "options": [
+        "['Apfel', 'Kiwi', 'Mango']",
+        "Apfel Kiwi Mango",
+        "['Apfel,Kiwi,Mango']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "split() zerteilt einen Text an einem Trennzeichen und liefert eine Liste der Teile.",
+      "notes": {
+        "2": "Am Komma wird getrennt."
+      },
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "wort = \"robo\"\nwort.upper()\nprint(wort)",
+      "options": [
+        "robo",
+        "ROBO",
+        "Robo"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ein Text kann nicht verändert werden. upper() erzeugt einen neuen Text – aber in Zeile 2 wird er nirgends gespeichert!",
+      "notes": {
+        "2": "Das Ergebnis \"ROBO\" wird nicht gespeichert und geht verloren.",
+        "3": "wort ist immer noch \"robo\"."
+      },
+      "hint": "",
+      "why": "Richtig wäre: wort = wort.upper()"
+    }
+  ],
+  "order": 16,
+  "chapter": "Strings"
+}

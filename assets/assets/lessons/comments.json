@@ -1,0 +1,91 @@
+{
+  "id": "comments",
+  "title": "Kommentare",
+  "icon": "comment",
+  "intro": "Kommentare sind Notizen im Code für Menschen. Python überspringt sie. Ein Kommentar beginnt mit #. Alles nach dem # in dieser Zeile wird ignoriert. Für längere Notizen kann man auch einen Text in \"\"\" drei Anführungszeichen \"\"\" schreiben.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Mache aus der ersten Zeile einen Kommentar.",
+      "code": "___ Das ist eine Notiz\nprint(\"Hallo!\")",
+      "answers": [
+        [
+          "#"
+        ]
+      ],
+      "explain": "Mit # beginnt ein Kommentar. Python liest ihn nicht – er ist nur für Menschen, die den Code lesen.",
+      "notes": {
+        "1": "Ein Kommentar – Python überspringt diese Zeile."
+      },
+      "hint": "",
+      "output": "Hallo!"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(\"Hallo\")  # sagt Hallo\n# print(\"Tschüss\")",
+      "options": [
+        "Hallo",
+        "Hallo\nTschüss",
+        "Hallo  # sagt Hallo"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ein # kann auch am Ende einer Zeile stehen. Die zweite Zeile ist komplett auskommentiert – sie läuft nicht.",
+      "notes": {
+        "1": "Der Teil ab # wird ignoriert.",
+        "2": "Auskommentiert → wird nicht ausgeführt."
+      },
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "\"\"\"\nDas ist ein langer Kommentar\nüber mehrere Zeilen.\n\"\"\"\nprint(\"Fertig\")",
+      "options": [
+        "Fertig",
+        "Das ist ein langer Kommentar",
+        "Nichts"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ein Text in \"\"\" … \"\"\", der nirgends gespeichert wird, macht nichts. Deshalb benutzt man ihn gern als mehrzeiligen Kommentar.",
+      "notes": {
+        "1": "Hier beginnt der mehrzeilige Text.",
+        "5": "Nur diese Zeile erzeugt eine Ausgabe."
+      },
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Schalte die zweite print-Zeile ab, ohne sie zu löschen.",
+      "code": "print(\"Bleibt\")\n___print(\"Weg damit\")",
+      "answers": [
+        [
+          "#"
+        ]
+      ],
+      "explain": "Programmierer „kommentieren Code aus“, um ihn kurz abzuschalten. So kann man ihn später leicht wieder aktivieren.",
+      "notes": {},
+      "hint": "",
+      "output": "Bleibt"
+    },
+    {
+      "type": "choice",
+      "task": "Wofür sind Kommentare gut?",
+      "code": "# Berechnet den Preis mit Rabatt\npreis = 100 * 0.8",
+      "options": [
+        "Um Code zu erklären",
+        "Damit das Programm schneller läuft",
+        "Um Fehler automatisch zu reparieren"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Kommentare erklären, WARUM der Code etwas tut. Das hilft anderen – und dir selbst in ein paar Wochen.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 5,
+  "chapter": "Grundlagen"
+}

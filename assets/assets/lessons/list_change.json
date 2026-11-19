@@ -1,0 +1,83 @@
+{
+  "id": "list_change",
+  "title": "Listen ändern",
+  "icon": "edit",
+  "intro": "Listen sind veränderbar. Mit liste[1] = \"neu\" ersetzt du ein Element. Mit einem Ausschnitt wie liste[1:3] = [\"a\", \"b\"] ersetzt du gleich mehrere – auch durch mehr oder weniger Elemente.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ersetze das zweite Element durch „Johannisbeere“.",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\"]\nobst[___] = \"Johannisbeere\"\nprint(obst)",
+      "answers": [
+        [
+          "1"
+        ]
+      ],
+      "explain": "Das zweite Element hat den Index 1, weil Python bei 0 zu zählen beginnt.",
+      "notes": {},
+      "hint": "",
+      "output": "['Apfel', 'Johannisbeere', 'Kirsche']"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\", \"Orange\"]\nobst[1:3] = [\"Kiwi\", \"Melone\"]\nprint(obst)",
+      "options": [
+        "['Apfel', 'Kiwi', 'Melone', 'Orange']",
+        "['Kiwi', 'Melone', 'Kirsche', 'Orange']",
+        "['Apfel', 'Kiwi', 'Melone']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Der Ausschnitt [1:3] (Banane und Kirsche) wird durch die zwei neuen Elemente ersetzt.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\"]\nobst[1:2] = [\"Kiwi\", \"Melone\"]\nprint(obst)",
+      "options": [
+        "['Apfel', 'Kiwi', 'Melone', 'Kirsche']",
+        "['Apfel', 'Kiwi', 'Kirsche']",
+        "['Apfel', 'Kiwi', 'Melone']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ersetzt man EIN Element durch ZWEI, wird die Liste länger. Der Rest rückt nach hinten.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\"]\nobst[1:3] = [\"Kiwi\"]\nprint(obst)",
+      "options": [
+        "['Apfel', 'Kiwi']",
+        "['Apfel', 'Kiwi', 'Kirsche']",
+        "['Kiwi']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Zwei Elemente werden durch eines ersetzt – die Liste wird kürzer.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Füge „Wassermelone“ an Position 2 ein, ohne etwas zu ersetzen.",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\"]\nobst.___(2, \"Wassermelone\")\nprint(obst)",
+      "answers": [
+        [
+          "insert"
+        ]
+      ],
+      "explain": "insert(position, wert) schiebt ein neues Element an die Stelle. Alles dahinter rückt eins weiter.",
+      "notes": {},
+      "hint": "",
+      "output": "['Apfel', 'Banane', 'Wassermelone', 'Kirsche']"
+    }
+  ],
+  "order": 27,
+  "chapter": "Listen"
+}

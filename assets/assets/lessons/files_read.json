@@ -1,0 +1,98 @@
+{
+  "id": "files_read",
+  "title": "Dateien lesen",
+  "icon": "menu_book",
+  "intro": "read() liest die ganze Datei als Text, read(5) nur die ersten 5 Zeichen. readline() liest eine Zeile. Mit for zeile in f: gehst du Zeile für Zeile durch. Jede Zeile endet mit \\n – mit strip() entfernst du es.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Lies die ganze Datei.",
+      "code": "with open(\"gedicht.txt\") as f:\n    print(f.___())",
+      "answers": [
+        [
+          "read"
+        ]
+      ],
+      "explain": "read() liefert den kompletten Inhalt als einen Text.",
+      "notes": {},
+      "hint": "",
+      "output": "Rosen sind rot,\nVeilchen sind blau.",
+      "files": {
+        "gedicht.txt": "Rosen sind rot,\nVeilchen sind blau."
+      }
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "with open(\"gedicht.txt\") as f:\n    print(f.read(5))",
+      "options": [
+        "Rosen",
+        "Rosen sind rot,",
+        "R"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "read(5) liest nur die ersten 5 Zeichen.",
+      "notes": {},
+      "hint": "",
+      "files": {
+        "gedicht.txt": "Rosen sind rot,\nVeilchen sind blau."
+      }
+    },
+    {
+      "type": "fill",
+      "task": "Lies nur die erste Zeile.",
+      "code": "with open(\"gedicht.txt\") as f:\n    print(f.___(), end=\"\")",
+      "answers": [
+        [
+          "readline"
+        ]
+      ],
+      "explain": "readline() liest bis einschließlich zum nächsten Zeilenumbruch.",
+      "notes": {},
+      "hint": "",
+      "output": "Rosen sind rot,",
+      "files": {
+        "gedicht.txt": "Rosen sind rot,\nVeilchen sind blau."
+      }
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "with open(\"liste.txt\") as f:\n    for zeile in f:\n        print(zeile.strip().upper())",
+      "options": [
+        "MILCH\nBROT",
+        "milch\nbrot",
+        "MILCH BROT"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Schleife liefert jede Zeile. strip() entfernt das \\n am Ende, upper() macht alles groß.",
+      "notes": {},
+      "hint": "",
+      "files": {
+        "liste.txt": "milch\nbrot\n"
+      }
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "with open(\"liste.txt\") as f:\n    zeilen = f.readlines()\nprint(len(zeilen), zeilen[0])",
+      "options": [
+        "2 milch\n",
+        "2 milch",
+        "1 milch\n"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "readlines() liefert eine Liste aller Zeilen – jede noch mit \\n am Ende. Darum folgt nach „milch“ ein Zeilenumbruch.",
+      "notes": {},
+      "hint": "",
+      "files": {
+        "liste.txt": "milch\nbrot\n"
+      }
+    }
+  ],
+  "order": 105,
+  "chapter": "Dateien"
+}

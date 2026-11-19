@@ -1,0 +1,83 @@
+{
+  "id": "generators",
+  "title": "Generatoren",
+  "icon": "factory",
+  "intro": "Ein Generator liefert Werte einen nach dem anderen – statt alle auf einmal. Man baut ihn wie eine Funktion, aber mit yield statt return. Jedes yield gibt den nächsten Wert heraus. Mit for oder next() holst du die Werte ab.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze das Schlüsselwort, das einen Wert herausgibt.",
+      "code": "def meine_zahlen():\n    ___ 1\n    yield 2\n    yield 3\n\nfor z in meine_zahlen():\n    print(z)",
+      "answers": [
+        [
+          "yield"
+        ]
+      ],
+      "explain": "Jedes yield liefert einen Wert. Die for-Schleife holt sie der Reihe nach ab.",
+      "notes": {},
+      "hint": "",
+      "output": "1\n2\n3"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def bis(n):\n    i = 1\n    while i <= n:\n        yield i\n        i += 1\n\nprint(list(bis(4)))",
+      "options": [
+        "[1, 2, 3, 4]",
+        "[4]",
+        "[1, 2, 3]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "list() holt alle Werte aus dem Generator ab und packt sie in eine Liste.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Hole den nächsten Wert aus dem Generator.",
+      "code": "def farben():\n    yield \"rot\"\n    yield \"grün\"\n\ng = farben()\nprint(next(g))\nprint(___(g))",
+      "answers": [
+        [
+          "next"
+        ]
+      ],
+      "explain": "next() holt immer den nächsten Wert. Der Generator merkt sich, wo er war.",
+      "notes": {},
+      "hint": "",
+      "output": "rot\ngrün"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "quadrate = (x * x for x in range(4))\nprint(sum(quadrate))",
+      "options": [
+        "14",
+        "[0, 1, 4, 9]",
+        "6"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "In runden Klammern ist das ein Generator-Ausdruck. sum() addiert 0 + 1 + 4 + 9 = 14.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def fib():\n    a, b = 0, 1\n    for _ in range(6):\n        yield a\n        a, b = b, a + b\n\nprint(list(fib()))",
+      "options": [
+        "[0, 1, 1, 2, 3, 5]",
+        "[1, 1, 2, 3, 5, 8]",
+        "[0, 1, 2, 3, 4, 5]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Der Generator liefert die ersten 6 Fibonacci-Zahlen.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 80,
+  "chapter": "Funktionen"
+}

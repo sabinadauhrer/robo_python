@@ -1,0 +1,83 @@
+{
+  "id": "math",
+  "title": "Mathe",
+  "icon": "functions",
+  "intro": "Python hat eingebaute Rechenfunktionen: min(), max(), abs() und pow(). Das Modul math bietet mehr: math.sqrt() (Wurzel), math.ceil() (aufrunden), math.floor() (abrunden) und die Zahl math.pi.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(min(5, 10, 25))\nprint(max(5, 10, 25))",
+      "options": [
+        "5\n25",
+        "25\n5",
+        "5\n10"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "min() findet den kleinsten, max() den größten Wert.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Berechne 4 hoch 3 mit einer eingebauten Funktion.",
+      "code": "print(___(4, 3))",
+      "answers": [
+        [
+          "pow"
+        ]
+      ],
+      "explain": "pow(4, 3) ist dasselbe wie 4 ** 3 = 64.",
+      "notes": {},
+      "hint": "",
+      "output": "64"
+    },
+    {
+      "type": "fill",
+      "task": "Ziehe die Wurzel aus 64.",
+      "code": "import math\nprint(math.___(64))",
+      "answers": [
+        [
+          "sqrt"
+        ]
+      ],
+      "explain": "sqrt steht für „square root“ (Quadratwurzel). Das Ergebnis ist eine Kommazahl: 8.0.",
+      "notes": {},
+      "hint": "",
+      "output": "8.0"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "import math\nprint(math.ceil(1.4))\nprint(math.floor(1.4))",
+      "options": [
+        "2\n1",
+        "1\n1",
+        "1\n2"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "ceil() rundet immer AUF (Decke), floor() immer AB (Boden).",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "import math\nprint(abs(-7.25))\nprint(round(math.pi, 2))",
+      "options": [
+        "7.25\n3.14",
+        "-7.25\n3.14",
+        "7\n3.1"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "abs() macht eine Zahl positiv. math.pi ist 3.14159…, gerundet auf 2 Stellen: 3.14.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 85,
+  "chapter": "Werkzeugkiste"
+}

@@ -1,0 +1,86 @@
+{
+  "id": "l09_booleans",
+  "title": "Booleans & Vergleiche",
+  "icon": "toggle",
+  "intro": "Vergleiche ergeben True oder False: == (gleich), != (ungleich), <, >, <=, >=. Mit and (beides), or (mindestens eins) und not (Gegenteil) verknüpfst du sie.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(10 > 9)\nprint(10 == 9)",
+      "options": [
+        "True\nFalse",
+        "False\nTrue",
+        "True\nTrue"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ein Vergleich ist wie eine Frage an Python: „Ist 10 größer als 9?“ – Python antwortet mit True oder False.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Prüfe, ob a und b gleich sind.",
+      "code": "a = 5\nb = 5\nprint(a ___ b)",
+      "answers": [
+        [
+          "=="
+        ]
+      ],
+      "explain": "Zum Vergleichen braucht man ZWEI Gleichheitszeichen. Eines allein würde etwas speichern.",
+      "notes": {
+        "3": "== fragt: Sind beide Werte gleich?"
+      },
+      "hint": "Zwei Gleichheitszeichen.",
+      "output": "True"
+    },
+    {
+      "type": "fill",
+      "task": "Das Ergebnis soll nur True sein, wenn BEIDE Bedingungen stimmen.",
+      "code": "alter = 12\nhat_ticket = True\nprint(alter >= 10 ___ hat_ticket)",
+      "answers": [
+        [
+          "and"
+        ]
+      ],
+      "explain": "and ist nur True, wenn links UND rechts True ist. Wie bei: „Du darfst rein, wenn du alt genug bist und ein Ticket hast.“",
+      "notes": {},
+      "hint": "",
+      "output": "True"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "regen = False\nprint(not regen)",
+      "options": [
+        "True",
+        "False",
+        "regen"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "not dreht einen Wahrheitswert um: aus False wird True und umgekehrt.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(bool(0), bool(7), bool(\"\"), bool(\"Hi\"))",
+      "options": [
+        "False True False True",
+        "True True True True",
+        "False False False False"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Für Python zählen 0 und leere Texte als „falsch“. Alles andere zählt als „wahr“.",
+      "notes": {},
+      "hint": "",
+      "why": "Das ist praktisch bei if: if name: prüft, ob name nicht leer ist."
+    }
+  ],
+  "order": 21,
+  "chapter": "Booleans & Operatoren"
+}

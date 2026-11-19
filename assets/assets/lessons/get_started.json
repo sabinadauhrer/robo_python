@@ -1,0 +1,83 @@
+{
+  "id": "get_started",
+  "title": "Los geht's",
+  "icon": "rocket",
+  "intro": "Python-Code schreibt man in eine Datei, die auf .py endet, z. B. hallo.py. Dann startet man sie, und Python führt den Code aus. Hier im Spiel läuft Python direkt in der App – du musst nichts installieren.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Wie endet der Name einer Python-Datei?",
+      "code": "# Datei: hallo.py\nprint(\"Hallo, Welt!\")",
+      "options": [
+        ".py",
+        ".txt",
+        ".python"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Python-Dateien enden auf .py. So erkennen Computer und Editoren, dass darin Python-Code steht.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Schreibe das klassische erste Programm: Es soll „Hello, World!“ ausgeben.",
+      "code": "print(\"___\")",
+      "answers": [
+        [
+          "Hello, World!"
+        ]
+      ],
+      "explain": "Fast jeder Programmierer startet mit „Hello, World!“. Es zeigt: Python läuft und kann etwas ausgeben.",
+      "notes": {},
+      "hint": "",
+      "output": "Hello, World!"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(\"Hello, World!\")",
+      "options": [
+        "Hello, World!",
+        "\"Hello, World!\"",
+        "print(\"Hello, World!\")"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Anführungszeichen gehören nicht zur Ausgabe. Sie zeigen Python nur, wo der Text anfängt und aufhört.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Mit welchem Befehl prüft man im Terminal, welche Python-Version installiert ist?",
+      "code": "# im Terminal (nicht in Python):\n# python --version",
+      "options": [
+        "python --version",
+        "print(version)",
+        "python start"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Im Terminal (der schwarzen Befehlszeile) zeigt python --version die installierte Version, z. B. Python 3.12. Das ist kein Python-Code, sondern ein Befehl für das Terminal.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Python kann auch rechnen. Lass es 5 + 3 ausrechnen und ausgeben.",
+      "code": "print(5 ___ 3)",
+      "answers": [
+        [
+          "+"
+        ]
+      ],
+      "explain": "Ohne Anführungszeichen rechnet Python zuerst und zeigt dann das Ergebnis an.",
+      "notes": {},
+      "hint": "",
+      "output": "8"
+    }
+  ],
+  "order": 2,
+  "chapter": "Grundlagen"
+}

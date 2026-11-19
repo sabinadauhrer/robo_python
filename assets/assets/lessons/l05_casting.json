@@ -1,0 +1,91 @@
+{
+  "id": "l05_casting",
+  "title": "Umwandeln (Casting)",
+  "icon": "swap",
+  "intro": "Manchmal muss man einen Wert in einen anderen Typ umwandeln: int() macht eine ganze Zahl, float() eine Kommazahl und str() einen Text.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Wandle den Text „5“ in eine Zahl um, damit gerechnet werden kann.",
+      "code": "x = \"5\"\ny = ___(x) + 3\nprint(y)",
+      "answers": [
+        [
+          "int"
+        ]
+      ],
+      "explain": "Mit einem Text kann man nicht rechnen. int() verwandelt „5“ in die Zahl 5 – danach klappt + 3.",
+      "notes": {
+        "1": "x ist ein Text!",
+        "2": "int(x) macht daraus die Zahl 5, dann wird 3 addiert."
+      },
+      "hint": "Die Abkürzung für ganze Zahl (integer).",
+      "output": "8"
+    },
+    {
+      "type": "fill",
+      "task": "Verbinde Text und Zahl richtig mit +.",
+      "code": "alter = 9\nprint(\"Ich bin \" + ___(alter) + \" Jahre alt\")",
+      "answers": [
+        [
+          "str"
+        ]
+      ],
+      "explain": "Text + Zahl geht nicht – Python weiß nicht, ob du rechnen oder zusammenkleben willst. Mit str() wird die Zahl zum Text, und + klebt Texte zusammen.",
+      "notes": {
+        "2": "Drei Texte werden mit + zusammengeklebt."
+      },
+      "hint": "Die Abkürzung für string (Text).",
+      "output": "Ich bin 9 Jahre alt"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(int(7.9))",
+      "options": [
+        "7",
+        "8",
+        "7.9"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "int() rundet NICHT, sondern schneidet alles nach dem Punkt einfach ab.",
+      "notes": {},
+      "hint": "",
+      "why": "Zum Runden gibt es round(7.9) – das ergibt 8."
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(\"3\" + \"4\")\nprint(int(\"3\") + int(\"4\"))",
+      "options": [
+        "34\n7",
+        "7\n7",
+        "34\n34"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Bei Texten bedeutet + „zusammenkleben“, bei Zahlen „addieren“. Der Typ entscheidet!",
+      "notes": {
+        "1": "Zwei Texte → zusammenkleben.",
+        "2": "Zwei Zahlen → addieren."
+      },
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Wandle die ganze Zahl in eine Kommazahl um.",
+      "code": "x = 4\nprint(___(x))",
+      "answers": [
+        [
+          "float"
+        ]
+      ],
+      "explain": "float() macht aus 4 die Kommazahl 4.0.",
+      "notes": {},
+      "hint": "Kommazahlen heißen in Python …",
+      "output": "4.0"
+    }
+  ],
+  "order": 13,
+  "chapter": "Datentypen"
+}

@@ -1,0 +1,90 @@
+{
+  "id": "l10_if",
+  "title": "if / elif / else",
+  "icon": "call_split",
+  "intro": "Mit if entscheidet dein Programm: Wenn die Bedingung True ist, läuft der eingerückte Code. elif prüft eine weitere Bedingung, else fängt alle anderen Fälle auf. Die Einrückung (4 Leerzeichen) zeigt, was dazugehört!",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze das Schlüsselwort, damit die Bedingung geprüft wird.",
+      "code": "temperatur = 30\n___ temperatur > 25:\n    print(\"Ab ins Freibad!\")",
+      "answers": [
+        [
+          "if"
+        ]
+      ],
+      "explain": "Nach if kommt die Bedingung und dann ein Doppelpunkt. Der eingerückte Teil läuft nur, wenn die Bedingung True ist.",
+      "notes": {
+        "2": "Bedingung + Doppelpunkt am Ende.",
+        "3": "Eingerückt → gehört zum if."
+      },
+      "hint": "",
+      "output": "Ab ins Freibad!"
+    },
+    {
+      "type": "fill",
+      "task": "Ergänze, was am Ende der if-Zeile fehlt.",
+      "code": "punkte = 100\nif punkte == 100___\n    print(\"Volle Punktzahl!\")",
+      "answers": [
+        [
+          ":"
+        ]
+      ],
+      "explain": "Jede if-Zeile endet mit einem Doppelpunkt. Er sagt: „Jetzt kommt der Block, der dazugehört.“",
+      "notes": {},
+      "hint": "Ein Satzzeichen mit zwei Punkten übereinander.",
+      "output": "Volle Punktzahl!"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = 7\nif x > 10:\n    print(\"groß\")\nelif x > 5:\n    print(\"mittel\")\nelse:\n    print(\"klein\")",
+      "options": [
+        "mittel",
+        "groß",
+        "klein"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Python prüft von oben nach unten. Sobald eine Bedingung True ist, wird NUR dieser Teil ausgeführt – der Rest wird übersprungen.",
+      "notes": {
+        "2": "7 > 10? Nein → weiter.",
+        "4": "7 > 5? Ja! → dieser Teil läuft.",
+        "6": "else wird übersprungen, weil schon ein Teil gepasst hat."
+      },
+      "hint": "",
+      "why": "Probier den Probelauf: Du siehst genau, welche Bedingung True ist."
+    },
+    {
+      "type": "fill",
+      "task": "Ergänze den Teil für alle anderen Fälle.",
+      "code": "alter = 8\nif alter >= 18:\n    print(\"Erwachsen\")\n___:\n    print(\"Kind\")",
+      "answers": [
+        [
+          "else"
+        ]
+      ],
+      "explain": "else hat KEINE Bedingung. Es läuft immer dann, wenn alle Bedingungen davor False waren.",
+      "notes": {},
+      "hint": "",
+      "output": "Kind"
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen: Wenn zahl gerade ist, soll „gerade“ erscheinen, sonst „ungerade“.",
+      "lines": [
+        "zahl = 4",
+        "if zahl % 2 == 0:",
+        "    print(\"gerade\")",
+        "else:",
+        "    print(\"ungerade\")"
+      ],
+      "output": "gerade",
+      "explain": "Zuerst braucht die Variable einen Wert. Dann kommt if mit seinem eingerückten Teil, danach else mit seinem.",
+      "hint": "Die eingerückten Zeilen gehören direkt unter die Zeile mit Doppelpunkt.",
+      "notes": {}
+    }
+  ],
+  "order": 60,
+  "chapter": "Entscheidungen"
+}

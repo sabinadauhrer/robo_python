@@ -1,0 +1,98 @@
+{
+  "id": "l02_variablen",
+  "title": "Variablen",
+  "icon": "inventory",
+  "intro": "Eine Variable ist wie eine beschriftete Box: Sie hat einen Namen und speichert einen Wert. Mit = legst du einen Wert hinein, z. B. alter = 9. Später kannst du den Namen benutzen, um den Wert wiederzubekommen.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Erstelle eine Variable namens tier mit dem Text „Katze“.",
+      "code": "___ = \"Katze\"\nprint(tier)",
+      "answers": [
+        [
+          "tier"
+        ]
+      ],
+      "explain": "Links vom = steht der Name der Box, rechts der Wert, der hineinkommt. Das = bedeutet hier nicht „ist gleich“, sondern „speichere“.",
+      "notes": {
+        "1": "Hier wird die Box tier angelegt und „Katze“ hineingelegt.",
+        "2": "print(tier) – OHNE Anführungszeichen! Python schaut in die Box und gibt den Inhalt aus."
+      },
+      "hint": "In Zeile 2 siehst du, wie die Variable heißen muss.",
+      "output": "Katze"
+    },
+    {
+      "type": "fill",
+      "task": "Speichere die Zahl 10 in der Variablen punkte.",
+      "code": "punkte ___ 10\nprint(punkte)",
+      "answers": [
+        [
+          "="
+        ]
+      ],
+      "explain": "Das Zeichen für „speichere in“ ist ein einzelnes Gleichheitszeichen.",
+      "notes": {
+        "1": "Name = Wert. Die Zahl 10 braucht keine Anführungszeichen."
+      },
+      "hint": "Es ist nur ein Zeichen.",
+      "output": "10"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = 5\nx = 8\nprint(x)",
+      "options": [
+        "8",
+        "5",
+        "5 8"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Eine Variable merkt sich immer nur EINEN Wert. Wenn du einen neuen Wert hineinlegst, ist der alte weg.",
+      "notes": {
+        "1": "x bekommt 5.",
+        "2": "x bekommt 8 – die 5 wird überschrieben.",
+        "3": "Jetzt ist nur noch 8 in der Box."
+      },
+      "hint": "",
+      "why": "Starte den Probelauf, um zu sehen, wie sich das Kästchen x verändert."
+    },
+    {
+      "type": "fill",
+      "task": "Erhöhe den Wert von leben um 1.",
+      "code": "leben = 3\nleben = ___ + 1\nprint(leben)",
+      "answers": [
+        [
+          "leben"
+        ]
+      ],
+      "explain": "Rechts vom = rechnet Python zuerst: alter Wert + 1. Das Ergebnis wird dann wieder in dieselbe Box gelegt.",
+      "notes": {
+        "2": "Erst wird rechts gerechnet (3 + 1 = 4), dann kommt das Ergebnis zurück in leben."
+      },
+      "hint": "Du brauchst den alten Wert derselben Variablen.",
+      "output": "4"
+    },
+    {
+      "type": "choice",
+      "task": "Welcher Variablenname ist in Python ERLAUBT?",
+      "code": "# Welche Zeile funktioniert?\n2spieler = \"Tom\"\nmein-name = \"Tom\"\nmein_name = \"Tom\"",
+      "options": [
+        "2spieler",
+        "mein-name",
+        "mein_name"
+      ],
+      "correct": 2,
+      "isOutput": false,
+      "explain": "Variablennamen dürfen Buchstaben, Ziffern und _ enthalten. Sie dürfen aber NICHT mit einer Ziffer beginnen und keine Bindestriche haben (das wäre ein Minus!).",
+      "notes": {
+        "2": "Beginnt mit einer Ziffer → nicht erlaubt.",
+        "3": "Der Bindestrich ist für Python ein Minuszeichen → Fehler.",
+        "4": "Unterstrich statt Leerzeichen – so schreibt man es in Python."
+      },
+      "hint": ""
+    }
+  ],
+  "order": 6,
+  "chapter": "Variablen"
+}

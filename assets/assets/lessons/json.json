@@ -1,0 +1,83 @@
+{
+  "id": "json",
+  "title": "JSON",
+  "icon": "data_object",
+  "intro": "JSON ist ein Textformat, um Daten zu speichern und zu verschicken – es sieht fast aus wie ein Python-Dictionary. Mit json.loads() wird aus einem JSON-Text ein Dictionary, mit json.dumps() wird aus Python-Daten ein JSON-Text. Dabei wird True zu true und None zu null.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Wandle den JSON-Text in ein Dictionary um.",
+      "code": "import json\nx = '{\"name\": \"John\", \"alter\": 30}'\ny = json.___(x)\nprint(y[\"alter\"])",
+      "answers": [
+        [
+          "loads"
+        ]
+      ],
+      "explain": "loads = „load string“: Liest einen JSON-Text und macht Python-Daten daraus.",
+      "notes": {},
+      "hint": "",
+      "output": "30"
+    },
+    {
+      "type": "fill",
+      "task": "Wandle das Dictionary in einen JSON-Text um.",
+      "code": "import json\nx = {\"name\": \"John\", \"alter\": 30}\nprint(json.___(x))",
+      "answers": [
+        [
+          "dumps"
+        ]
+      ],
+      "explain": "dumps = „dump string“: Schreibt Python-Daten als JSON-Text.",
+      "notes": {},
+      "hint": "",
+      "output": "{\"name\": \"John\", \"alter\": 30}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "import json\nprint(json.dumps({\"ok\": True, \"wert\": None}))",
+      "options": [
+        "{\"ok\": true, \"wert\": null}",
+        "{'ok': True, 'wert': None}",
+        "{\"ok\": True, \"wert\": None}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "In JSON heißt True klein true und None heißt null. Texte stehen immer in doppelten Anführungszeichen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "import json\nprint(json.dumps({\"b\": 1, \"a\": 2}, sort_keys=True))",
+      "options": [
+        "{\"a\": 2, \"b\": 1}",
+        "{\"b\": 1, \"a\": 2}",
+        "[2, 1]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "sort_keys=True sortiert die Schlüssel alphabetisch.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "import json\nprint(json.dumps([1, 2], indent=2))",
+      "options": [
+        "[\n  1,\n  2\n]",
+        "[1, 2]",
+        "[  1,  2]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "indent rückt den JSON-Text ein – so wird er für Menschen leichter lesbar.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 86,
+  "chapter": "Werkzeugkiste"
+}

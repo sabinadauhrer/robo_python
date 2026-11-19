@@ -1,0 +1,82 @@
+{
+  "id": "list_sort",
+  "title": "Listen sortieren",
+  "icon": "sort",
+  "intro": "sort() sortiert eine Liste – Texte alphabetisch, Zahlen der Größe nach. Mit sort(reverse=True) wird absteigend sortiert. Mit key= bestimmst du, WONACH sortiert wird. Achtung: Großbuchstaben kommen vor Kleinbuchstaben!",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Sortiere die Liste alphabetisch.",
+      "code": "obst = [\"Orange\", \"Mango\", \"Kiwi\", \"Ananas\"]\nobst.___()\nprint(obst)",
+      "answers": [
+        [
+          "sort"
+        ]
+      ],
+      "explain": "sort() verändert die Liste selbst – danach steht alles in der richtigen Reihenfolge.",
+      "notes": {},
+      "hint": "",
+      "output": "['Ananas', 'Kiwi', 'Mango', 'Orange']"
+    },
+    {
+      "type": "fill",
+      "task": "Sortiere die Zahlen absteigend (größte zuerst).",
+      "code": "zahlen = [100, 50, 65, 82, 23]\nzahlen.sort(reverse=___)\nprint(zahlen)",
+      "answers": [
+        [
+          "True"
+        ]
+      ],
+      "explain": "reverse=True dreht die Sortierreihenfolge um.",
+      "notes": {},
+      "hint": "",
+      "output": "[100, 82, 65, 50, 23]"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "tiere = [\"zebra\", \"Affe\", \"biber\"]\ntiere.sort()\nprint(tiere)",
+      "options": [
+        "['Affe', 'biber', 'zebra']",
+        "['biber', 'zebra', 'Affe']",
+        "['Affe', 'zebra', 'biber']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Großbuchstaben stehen im Alphabet des Computers VOR allen Kleinbuchstaben. Hier ist das zufällig auch alphabetisch.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Sortiere ohne Rücksicht auf Groß- und Kleinschreibung.",
+      "code": "tiere = [\"banane\", \"Orange\", \"Kiwi\", \"kirsche\"]\ntiere.sort(key=str.___)\nprint(tiere)",
+      "answers": [
+        [
+          "lower"
+        ]
+      ],
+      "explain": "key=str.lower vergleicht alle Wörter kleingeschrieben – die Liste selbst behält aber ihre Schreibweise.",
+      "notes": {},
+      "hint": "",
+      "output": "['banane', 'kirsche', 'Kiwi', 'Orange']"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "z = [3, 1, 2]\nz.reverse()\nprint(z)\nprint(sorted(z))",
+      "options": [
+        "[2, 1, 3]\n[1, 2, 3]",
+        "[3, 2, 1]\n[1, 2, 3]",
+        "[1, 2, 3]\n[3, 2, 1]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "reverse() dreht die Reihenfolge einfach um (ohne zu sortieren). sorted() liefert eine NEUE sortierte Liste.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 32,
+  "chapter": "Listen"
+}

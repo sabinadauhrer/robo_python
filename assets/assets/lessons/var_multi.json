@@ -1,0 +1,88 @@
+{
+  "id": "var_multi",
+  "title": "Mehrere Werte zuweisen",
+  "icon": "call_merge",
+  "intro": "Python kann mehreren Variablen in einer Zeile Werte geben: x, y, z = 1, 2, 3. Mit x = y = z = 0 bekommen alle denselben Wert. Und aus einer Liste kann man die Werte direkt „auspacken“.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Gib den drei Variablen in einer Zeile ihre Werte.",
+      "code": "x, y, z = \"Orange\", \"Banane\", ___\nprint(z)",
+      "answers": [
+        [
+          "\"Kirsche\"",
+          "'Kirsche'"
+        ]
+      ],
+      "explain": "Links stehen drei Namen, rechts drei Werte. Python verteilt sie der Reihe nach: x bekommt den ersten, y den zweiten, z den dritten.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = y = z = \"Orange\"\nprint(y)",
+      "options": [
+        "Orange",
+        "x",
+        "Fehler"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Mit x = y = z = … bekommen alle drei Variablen denselben Wert.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\"]\nx, y, z = obst\nprint(y)",
+      "options": [
+        "Banane",
+        "Apfel",
+        "['Apfel', 'Banane', 'Kirsche']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Man kann eine Liste „auspacken“: Jede Variable bekommt ein Element – der Reihe nach.",
+      "notes": {
+        "2": "Auspacken: x = Apfel, y = Banane, z = Kirsche."
+      },
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a, b = 1, 2\na, b = b, a\nprint(a, b)",
+      "options": [
+        "2 1",
+        "1 2",
+        "2 2"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ein Python-Trick: a, b = b, a tauscht die beiden Werte – ganz ohne Hilfsvariable.",
+      "notes": {
+        "2": "Rechts wird zuerst (2, 1) gebildet, dann verteilt."
+      },
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "x, y = 1, 2, 3",
+      "options": [
+        "ValueError: zu viele Werte",
+        "x ist 1, y ist 2",
+        "x ist 1, y ist 23"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Links und rechts müssen gleich viele Dinge stehen. Sonst weiß Python nicht, wohin mit dem Rest.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 8,
+  "chapter": "Variablen"
+}

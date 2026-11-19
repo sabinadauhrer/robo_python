@@ -1,0 +1,83 @@
+{
+  "id": "while_more",
+  "title": "while: break, continue, else",
+  "icon": "loop",
+  "intro": "break beendet eine Schleife sofort. continue überspringt den Rest der aktuellen Runde. Ein else nach der Schleife läuft, wenn die Bedingung falsch geworden ist – aber nicht nach einem break.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Beende die Schleife, wenn i 3 ist.",
+      "code": "i = 1\nwhile i < 6:\n    print(i)\n    if i == 3:\n        ___\n    i += 1",
+      "answers": [
+        [
+          "break"
+        ]
+      ],
+      "explain": "break springt sofort aus der Schleife – egal, was die Bedingung sagt.",
+      "notes": {},
+      "hint": "",
+      "output": "1\n2\n3"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "i = 0\nwhile i < 5:\n    i += 1\n    if i == 3:\n        continue\n    print(i)",
+      "options": [
+        "1\n2\n4\n5",
+        "1\n2\n3\n4\n5",
+        "1\n2"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Bei i == 3 überspringt continue das print – es geht direkt mit der nächsten Runde weiter.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Ergänze den Teil, der läuft, wenn die Bedingung falsch wird.",
+      "code": "i = 1\nwhile i < 3:\n    print(i)\n    i += 1\n___:\n    print(\"i ist nicht mehr kleiner als 3\")",
+      "answers": [
+        [
+          "else"
+        ]
+      ],
+      "explain": "else bei Schleifen läuft einmal am Ende – wenn die Schleife normal endet.",
+      "notes": {},
+      "hint": "",
+      "output": "1\n2\ni ist nicht mehr kleiner als 3"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "i = 0\nwhile i < 10:\n    i += 1\n    if i == 2:\n        break\nelse:\n    print(\"normal zu Ende\")\nprint(\"i =\", i)",
+      "options": [
+        "i = 2",
+        "normal zu Ende\ni = 2",
+        "normal zu Ende\ni = 10"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Wegen break endet die Schleife vorzeitig – dann wird das else übersprungen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen für einen Countdown 3, 2, 1 und dann „Start!“.",
+      "lines": [
+        "n = 3",
+        "while n > 0:",
+        "    print(n)",
+        "    n -= 1",
+        "print(\"Start!\")"
+      ],
+      "output": "3\n2\n1\nStart!",
+      "explain": "Die Zahl wird ausgegeben und dann verkleinert. Nach der Schleife kommt „Start!“.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 69,
+  "chapter": "Schleifen"
+}

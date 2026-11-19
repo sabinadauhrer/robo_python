@@ -1,0 +1,83 @@
+{
+  "id": "match",
+  "title": "match",
+  "icon": "rule_folder",
+  "intro": "Mit match vergleichst du einen Wert mit mehreren Möglichkeiten (case). Das ist übersichtlicher als viele elif. Mit | verbindest du mehrere Werte in einem case, und case _ fängt alle übrigen Fälle auf (wie else).",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze das Schlüsselwort für einen Fall.",
+      "code": "tag = 4\nmatch tag:\n    ___ 4:\n        print(\"Donnerstag\")\n    case 5:\n        print(\"Freitag\")",
+      "answers": [
+        [
+          "case"
+        ]
+      ],
+      "explain": "match vergleicht tag mit jedem case – der erste passende wird ausgeführt.",
+      "notes": {},
+      "hint": "",
+      "output": "Donnerstag"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "tag = 9\nmatch tag:\n    case 6:\n        print(\"Samstag\")\n    case 7:\n        print(\"Sonntag\")\n    case _:\n        print(\"Werktag?\")",
+      "options": [
+        "Werktag?",
+        "Samstag",
+        "(nichts)"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Kein case passt zur 9, also läuft case _ – der Platzhalter für alle anderen Fälle.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Verbinde die beiden Werte, damit 6 UND 7 „Wochenende“ ergeben.",
+      "code": "tag = 7\nmatch tag:\n    case 6 ___ 7:\n        print(\"Wochenende\")\n    case _:\n        print(\"Unter der Woche\")",
+      "answers": [
+        [
+          "|"
+        ]
+      ],
+      "explain": "Mit | (sprich „oder“) passt ein case zu mehreren Werten.",
+      "notes": {},
+      "hint": "",
+      "output": "Wochenende"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "befehl = \"stop\"\nmatch befehl:\n    case \"start\":\n        print(\"Los!\")\n    case \"stop\":\n        print(\"Halt!\")",
+      "options": [
+        "Halt!",
+        "Los!",
+        "Los!\nHalt!"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "match funktioniert auch mit Texten.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "monat = 5\ntag = 4\nmatch tag:\n    case 1 | 2 | 3 | 4 | 5 if monat == 4:\n        print(\"Werktag im April\")\n    case 1 | 2 | 3 | 4 | 5 if monat == 5:\n        print(\"Werktag im Mai\")\n    case _:\n        print(\"Kein Treffer\")",
+      "options": [
+        "Werktag im Mai",
+        "Werktag im April",
+        "Kein Treffer"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Hinter einem case darf ein if stehen (eine „Wache“). Der case passt nur, wenn auch diese Bedingung stimmt.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 67,
+  "chapter": "Entscheidungen"
+}

@@ -1,0 +1,83 @@
+{
+  "id": "encapsulation",
+  "title": "Kapselung",
+  "icon": "lock",
+  "intro": "Kapselung schützt die Daten eines Objekts. Eigenschaften mit zwei Unterstrichen (self.__stand) sind privat: Von außen kommt man nicht heran, nur Methoden der Klasse dürfen sie benutzen. Ein Unterstrich (self._hinweis) bedeutet „bitte nur intern benutzen“ – ist aber nur eine Absprache.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Mache den Kontostand privat.",
+      "code": "class Konto:\n    def __init__(self, stand):\n        self.___stand = stand\n\n    def zeige(self):\n        return self.__stand\n\nk = Konto(100)\nprint(k.zeige())",
+      "answers": [
+        [
+          "__"
+        ]
+      ],
+      "explain": "Zwei Unterstriche vor dem Namen machen die Eigenschaft privat.",
+      "notes": {},
+      "hint": "",
+      "output": "100"
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "class Konto:\n    def __init__(self):\n        self.__stand = 100\n\nk = Konto()\nprint(k.__stand)",
+      "options": [
+        "AttributeError: privat",
+        "100",
+        "None"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Von außen gibt es k.__stand nicht – Python versteckt private Eigenschaften.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Konto:\n    def __init__(self):\n        self.__stand = 0\n\n    def einzahlen(self, betrag):\n        if betrag > 0:\n            self.__stand += betrag\n\n    def stand(self):\n        return self.__stand\n\nk = Konto()\nk.einzahlen(50)\nk.einzahlen(-20)\nprint(k.stand())",
+      "options": [
+        "50",
+        "30",
+        "0"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Weil man nur über einzahlen() an den Stand kommt, kann die Klasse ungültige Werte (negative Beträge) abwehren.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Erstelle eine Methode, die das private Alter zurückgibt (ein „Getter“).",
+      "code": "class Person:\n    def __init__(self, alter):\n        self.__alter = alter\n\n    def get_alter(self):\n        ___ self.__alter\n\np = Person(25)\nprint(p.get_alter())",
+      "answers": [
+        [
+          "return"
+        ]
+      ],
+      "explain": "Getter-Methoden geben private Werte kontrolliert heraus.",
+      "notes": {},
+      "hint": "",
+      "output": "25"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Spiel:\n    def __init__(self):\n        self._level = 1\n\ns = Spiel()\nprint(s._level)",
+      "options": [
+        "1",
+        "AttributeError",
+        "None"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ein einzelner Unterstrich ist nur ein Hinweis („intern“). Python verhindert den Zugriff nicht.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 102,
+  "chapter": "Klassen & Objekte"
+}

@@ -1,0 +1,86 @@
+{
+  "id": "init",
+  "title": "__init__()",
+  "icon": "construction",
+  "intro": "Die besondere Methode __init__() läuft automatisch, wenn ein neues Objekt gebaut wird. Dort gibst du dem Objekt seine Startwerte: def __init__(self, name, alter): self.name = name. Die Werte übergibst du beim Bauen: Person(\"Mia\", 9).",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze den Namen der Methode, die beim Erstellen läuft.",
+      "code": "class Person:\n    def ___(self, name, alter):\n        self.name = name\n        self.alter = alter\n\np1 = Person(\"John\", 36)\nprint(p1.name)",
+      "answers": [
+        [
+          "__init__"
+        ]
+      ],
+      "explain": "__init__ (zwei Unterstriche vorn und hinten) wird automatisch aufgerufen, wenn man Person(...) schreibt.",
+      "notes": {
+        "2": "Läuft automatisch beim Erstellen.",
+        "3": "Speichert den Namen im Objekt."
+      },
+      "hint": "Zwei Unterstriche, init, zwei Unterstriche.",
+      "output": "John"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Person:\n    def __init__(self, name, alter):\n        self.name = name\n        self.alter = alter\n\np1 = Person(\"John\", 36)\nprint(p1.alter)",
+      "options": [
+        "36",
+        "John",
+        "alter"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Beim Erstellen landet 36 im Parameter alter und wird als self.alter gespeichert.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Speichere den Namen im Objekt.",
+      "code": "class Hund:\n    def __init__(self, name):\n        ___.name = name\n\nh = Hund(\"Bello\")\nprint(h.name)",
+      "answers": [
+        [
+          "self"
+        ]
+      ],
+      "explain": "self ist das Objekt, das gerade gebaut wird. self.name = name hängt den Namen an dieses Objekt.",
+      "notes": {},
+      "hint": "",
+      "output": "Bello"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "class Person:\n    def __init__(self, name, alter=18):\n        self.name = name\n        self.alter = alter\n\na = Person(\"Tom\")\nb = Person(\"Ida\", 9)\nprint(a.alter, b.alter)",
+      "options": [
+        "18 9",
+        "9 18",
+        "18 18"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Auch __init__ kann Standardwerte haben.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "class Person:\n    def __init__(self, name):\n        self.name = name\n\np = Person()",
+      "options": [
+        "TypeError: name fehlt",
+        "Ein Objekt ohne Namen",
+        "None"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "__init__ braucht einen Wert für name – beim Erstellen wurde aber nichts übergeben.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 96,
+  "chapter": "Klassen & Objekte"
+}

@@ -1,0 +1,83 @@
+{
+  "id": "func_args",
+  "title": "Argumente",
+  "icon": "input",
+  "intro": "Werte, die du einer Funktion übergibst, heißen Argumente. Du kannst sie der Reihe nach übergeben (Position) oder mit Namen: f(name=\"Mia\"). Parameter können Standardwerte haben, und man kann auch Listen übergeben.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Übergib das Argument mit Namen.",
+      "code": "def tier(art, name):\n    print(name, \"ist ein\", art)\n\ntier(art=\"Hund\", ___=\"Bello\")",
+      "answers": [
+        [
+          "name"
+        ]
+      ],
+      "explain": "Mit Namen ist die Reihenfolge egal – Python weiß genau, welcher Wert wohin gehört.",
+      "notes": {},
+      "hint": "",
+      "output": "Bello ist ein Hund"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def herkunft(land=\"Norwegen\"):\n    print(\"Ich komme aus\", land)\n\nherkunft(\"Schweden\")\nherkunft()",
+      "options": [
+        "Ich komme aus Schweden\nIch komme aus Norwegen",
+        "Ich komme aus Schweden\nIch komme aus Schweden",
+        "Fehler"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Ohne Argument nimmt die Funktion den Standardwert \"Norwegen\".",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def essen(liste):\n    for x in liste:\n        print(x)\n\nessen([\"Apfel\", \"Brot\"])",
+      "options": [
+        "Apfel\nBrot",
+        "['Apfel', 'Brot']",
+        "liste"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Man kann jeden Datentyp übergeben – auch eine Liste. In der Funktion ist sie dann ganz normal benutzbar.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Gib das Ergebnis zurück.",
+      "code": "def mal5(x):\n    ___ 5 * x\n\nprint(mal5(3))",
+      "answers": [
+        [
+          "return"
+        ]
+      ],
+      "explain": "return liefert den Wert an den Aufrufer zurück.",
+      "notes": {},
+      "hint": "",
+      "output": "15"
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "def plus(a, b):\n    return a + b\n\nprint(plus(1))",
+      "options": [
+        "TypeError: b fehlt",
+        "1",
+        "None"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Die Funktion hat zwei Parameter ohne Standardwert. Wird nur einer übergeben, fehlt b.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 74,
+  "chapter": "Funktionen"
+}

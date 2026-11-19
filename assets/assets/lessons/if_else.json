@@ -1,0 +1,83 @@
+{
+  "id": "if_else",
+  "title": "else",
+  "icon": "call_split",
+  "intro": "else fängt alle Fälle auf, die vorher nicht gepasst haben. Es hat keine Bedingung und steht immer am Ende. Man kann else auch direkt nach if benutzen – ganz ohne elif.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze den Teil für alle anderen Fälle.",
+      "code": "a = 200\nb = 33\nif b > a:\n    print(\"b ist größer\")\n___:\n    print(\"b ist nicht größer\")",
+      "answers": [
+        [
+          "else"
+        ]
+      ],
+      "explain": "else hat keine Bedingung – es läuft, wenn nichts davor gepasst hat.",
+      "notes": {},
+      "hint": "",
+      "output": "b ist nicht größer"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = 200\nb = 33\nif b > a:\n    print(\"b größer\")\nelif a == b:\n    print(\"gleich\")\nelse:\n    print(\"a größer\")",
+      "options": [
+        "a größer",
+        "b größer",
+        "gleich"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Weder b > a noch a == b stimmt – also läuft else.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "x = 5\nif x > 3:\n    print(\"groß\")\nelse x < 3:\n    print(\"klein\")",
+      "options": [
+        "SyntaxError: else hat keine Bedingung",
+        "groß",
+        "klein"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "else darf keine Bedingung haben. Für eine weitere Bedingung braucht man elif.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Gib „gerade“ oder „ungerade“ aus.",
+      "code": "zahl = 7\nif zahl % 2 == 0:\n    print(\"gerade\")\n___\n    print(\"ungerade\")",
+      "answers": [
+        [
+          "else:"
+        ]
+      ],
+      "explain": "Vergiss den Doppelpunkt hinter else nicht!",
+      "notes": {},
+      "hint": "",
+      "output": "ungerade"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "alter = 16\nif alter >= 18:\n    print(\"darf wählen\")\nelse:\n    print(\"noch\", 18 - alter, \"Jahre\")",
+      "options": [
+        "noch 2 Jahre",
+        "darf wählen",
+        "noch 18 Jahre"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Bedingung ist falsch, also läuft else. Dort wird ausgerechnet, wie viele Jahre noch fehlen.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 62,
+  "chapter": "Entscheidungen"
+}

@@ -1,0 +1,86 @@
+{
+  "id": "operators",
+  "title": "Operatoren",
+  "icon": "calculate",
+  "intro": "Operatoren sind Zeichen für Rechnungen und Zuweisungen: + - * / für die Grundrechenarten, // für ganzzahliges Teilen, % für den Rest und ** für hoch. Mit += -= *= usw. veränderst du eine Variable direkt: x += 3 heißt x = x + 3.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(10 // 3)\nprint(10 % 3)",
+      "options": [
+        "3\n1",
+        "3.33\n1",
+        "3\n0"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "// teilt und wirft den Rest weg (10 // 3 = 3). % liefert genau diesen Rest (10 = 3·3 + 1).",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Erhöhe x um 3 – in Kurzschreibweise.",
+      "code": "x = 5\nx ___ 3\nprint(x)",
+      "answers": [
+        [
+          "+="
+        ]
+      ],
+      "explain": "x += 3 ist die Kurzform von x = x + 3.",
+      "notes": {},
+      "hint": "",
+      "output": "8"
+    },
+    {
+      "type": "fill",
+      "task": "Verdopple x mit dem passenden Zuweisungs-Operator.",
+      "code": "x = 7\nx ___ 2\nprint(x)",
+      "answers": [
+        [
+          "*="
+        ]
+      ],
+      "explain": "x *= 2 bedeutet x = x * 2.",
+      "notes": {},
+      "hint": "",
+      "output": "14"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(2 + 3 * 4)\nprint((2 + 3) * 4)",
+      "options": [
+        "14\n20",
+        "20\n14",
+        "20\n20"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Wie in Mathe: Punkt vor Strich. Klammern werden zuerst ausgerechnet.",
+      "notes": {
+        "1": "Erst 3 * 4 = 12, dann + 2.",
+        "2": "Erst die Klammer (5), dann * 4."
+      },
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(2 ** 3)\nprint(9 / 3)",
+      "options": [
+        "8\n3.0",
+        "6\n3",
+        "8\n3"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "** heißt „hoch“: 2·2·2 = 8. Normales Teilen mit / ergibt immer eine Kommazahl (float), also 3.0.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 22,
+  "chapter": "Booleans & Operatoren"
+}

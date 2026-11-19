@@ -1,0 +1,82 @@
+{
+  "id": "list_remove",
+  "title": "Elemente entfernen",
+  "icon": "remove_circle",
+  "intro": "remove(\"x\") entfernt das erste Element mit diesem Wert. pop(i) entfernt das Element an Position i (ohne Zahl: das letzte) und gibt es zurück. del liste[i] löscht eine Position, und clear() leert die ganze Liste.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Entferne „Banane“ über ihren Wert.",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\"]\nobst.___(\"Banane\")\nprint(obst)",
+      "answers": [
+        [
+          "remove"
+        ]
+      ],
+      "explain": "remove() sucht den Wert und entfernt das erste passende Element.",
+      "notes": {},
+      "hint": "",
+      "output": "['Apfel', 'Kirsche']"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\", \"Banane\"]\nobst.remove(\"Banane\")\nprint(obst)",
+      "options": [
+        "['Apfel', 'Kirsche', 'Banane']",
+        "['Apfel', 'Kirsche']",
+        "['Apfel', 'Banane', 'Kirsche']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "remove() entfernt nur das ERSTE passende Element. Die zweite Banane bleibt.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\"]\nweg = obst.pop()\nprint(weg)\nprint(obst)",
+      "options": [
+        "Kirsche\n['Apfel', 'Banane']",
+        "Apfel\n['Banane', 'Kirsche']",
+        "None\n['Apfel', 'Banane']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "pop() ohne Zahl entfernt das letzte Element und gibt es zurück – man kann es also noch benutzen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Lösche das erste Element mit del.",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kirsche\"]\n___ obst[0]\nprint(obst)",
+      "answers": [
+        [
+          "del"
+        ]
+      ],
+      "explain": "del liste[i] löscht das Element an Position i. Mit del liste würde sogar die ganze Variable verschwinden.",
+      "notes": {},
+      "hint": "",
+      "output": "['Banane', 'Kirsche']"
+    },
+    {
+      "type": "fill",
+      "task": "Leere die Liste komplett – die Liste selbst soll bleiben.",
+      "code": "obst = [\"Apfel\", \"Banane\"]\nobst.___()\nprint(obst)",
+      "answers": [
+        [
+          "clear"
+        ]
+      ],
+      "explain": "clear() entfernt alle Elemente. Übrig bleibt eine leere Liste [].",
+      "notes": {},
+      "hint": "",
+      "output": "[]"
+    }
+  ],
+  "order": 29,
+  "chapter": "Listen"
+}

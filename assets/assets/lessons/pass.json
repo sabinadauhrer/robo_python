@@ -1,0 +1,83 @@
+{
+  "id": "pass",
+  "title": "pass",
+  "icon": "more_horiz",
+  "intro": "Ein if, eine Funktion oder eine Schleife darf nicht leer sein. Wenn du noch nicht weißt, was hinein soll, schreibst du pass. pass bedeutet: „Hier passiert (noch) nichts.“",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze das Wort, damit der leere if-Teil keinen Fehler macht.",
+      "code": "a = 33\nb = 200\nif b > a:\n    ___\nprint(\"fertig\")",
+      "answers": [
+        [
+          "pass"
+        ]
+      ],
+      "explain": "pass ist ein Platzhalter. Python springt einfach darüber.",
+      "notes": {},
+      "hint": "",
+      "output": "fertig"
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "if 5 > 2:\n\nprint(\"fertig\")",
+      "options": [
+        "IndentationError: der if-Teil ist leer",
+        "fertig",
+        "Es passiert nichts"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Nach dem Doppelpunkt muss etwas Eingerücktes kommen. Ein leerer Block ist verboten – dafür gibt es pass.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "for i in range(3):\n    pass\nprint(\"Schleife fertig\", i)",
+      "options": [
+        "Schleife fertig 2",
+        "Schleife fertig 3",
+        "0\n1\n2"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Schleife läuft dreimal, macht aber nichts. Danach hat i den letzten Wert 2.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Definiere eine Funktion, die noch nichts tut.",
+      "code": "def spaeter():\n    ___\n\nspaeter()\nprint(\"ok\")",
+      "answers": [
+        [
+          "pass"
+        ]
+      ],
+      "explain": "Auch Funktionen können mit pass erst einmal leer bleiben.",
+      "notes": {},
+      "hint": "",
+      "output": "ok"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = 7\nif x > 5:\n    pass\nelse:\n    print(\"klein\")\nprint(\"Ende\")",
+      "options": [
+        "Ende",
+        "klein\nEnde",
+        "(nichts)"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Der if-Teil läuft (macht aber nichts). else wird übersprungen.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 66,
+  "chapter": "Entscheidungen"
+}

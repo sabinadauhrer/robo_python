@@ -1,0 +1,82 @@
+{
+  "id": "modules",
+  "title": "Module",
+  "icon": "extension",
+  "intro": "Ein Modul ist eine Sammlung fertiger Funktionen, die du mit import laden kannst – wie eine Werkzeugkiste. import math lädt das Modul math, dann benutzt du math.sqrt(). Mit import math as m gibst du ihm einen kürzeren Namen, mit from math import sqrt holst du nur eine Funktion. In diesem Spiel gibt es: math, json, datetime, re und os.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Lade das Modul math.",
+      "code": "___ math\nprint(math.sqrt(25))",
+      "answers": [
+        [
+          "import"
+        ]
+      ],
+      "explain": "Nach import math stehen alle Funktionen aus math bereit – mit math. davor.",
+      "notes": {},
+      "hint": "",
+      "output": "5.0"
+    },
+    {
+      "type": "fill",
+      "task": "Gib dem Modul den kurzen Namen m.",
+      "code": "import math ___ m\nprint(m.floor(2.7))",
+      "answers": [
+        [
+          "as"
+        ]
+      ],
+      "explain": "Mit as bekommt ein Modul einen anderen Namen. Das spart Tipparbeit.",
+      "notes": {},
+      "hint": "",
+      "output": "2"
+    },
+    {
+      "type": "fill",
+      "task": "Importiere nur die Funktion sqrt.",
+      "code": "from math ___ sqrt\nprint(sqrt(9))",
+      "answers": [
+        [
+          "import"
+        ]
+      ],
+      "explain": "Mit from … import … holst du einzelne Teile. Dann schreibst du sqrt() ohne math. davor.",
+      "notes": {},
+      "hint": "",
+      "output": "3.0"
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "print(math.pi)",
+      "options": [
+        "NameError: math wurde nicht importiert",
+        "3.141592653589793",
+        "pi"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Ohne import math kennt Python den Namen math nicht.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Wie heißt die Datei, wenn man ein eigenes Modul „meinmodul“ erstellen will?",
+      "code": "# Datei meinmodul.py:\ndef gruss(name):\n    print(\"Hallo, \" + name)",
+      "options": [
+        "meinmodul.py",
+        "meinmodul.txt",
+        "import.py"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Jede .py-Datei ist ein Modul. In einer anderen Datei im selben Ordner schreibt man dann: import meinmodul.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 83,
+  "chapter": "Werkzeugkiste"
+}

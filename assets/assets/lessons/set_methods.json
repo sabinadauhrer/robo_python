@@ -1,0 +1,83 @@
+{
+  "id": "set_methods",
+  "title": "Set-Methoden",
+  "icon": "construction",
+  "intro": "Sets können vergleichen: issubset() prüft, ob alle Elemente auch im anderen Set sind (Teilmenge). issuperset() prüft das Umgekehrte, isdisjoint() prüft, ob sie gar nichts gemeinsam haben. Und copy() erstellt eine Kopie.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Prüfe, ob a eine Teilmenge von b ist.",
+      "code": "a = {1, 2}\nb = {1, 2, 3, 4}\nprint(a.___(b))",
+      "answers": [
+        [
+          "issubset"
+        ]
+      ],
+      "explain": "Alle Elemente von a stecken auch in b – a ist also eine Teilmenge.",
+      "notes": {},
+      "hint": "",
+      "output": "True"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = {1, 2, 3}\nprint(a.issuperset({1, 3}))",
+      "options": [
+        "True",
+        "False",
+        "{1, 3}"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "a enthält alle Elemente von {1, 3} – a ist eine Obermenge (superset).",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = {1, 2}\nb = {3, 4}\nprint(a.isdisjoint(b))",
+      "options": [
+        "True",
+        "False",
+        "set()"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "isdisjoint() ist True, wenn die Sets kein einziges gemeinsames Element haben.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Entferne alles aus a, was auch in b vorkommt – direkt in a.",
+      "code": "a = {1, 2, 3}\nb = {2}\na.___(b)\nprint(a)",
+      "answers": [
+        [
+          "difference_update"
+        ]
+      ],
+      "explain": "Methoden mit _update verändern das Set selbst, statt ein neues zu liefern.",
+      "notes": {},
+      "hint": "",
+      "output": "{1, 3}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = {1, 2}\nb = a.copy()\nb.add(3)\nprint(len(a), len(b))",
+      "options": [
+        "2 3",
+        "3 3",
+        "2 2"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "copy() erstellt ein unabhängiges Set. Was man zu b hinzufügt, landet nicht in a.",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 50,
+  "chapter": "Sets"
+}

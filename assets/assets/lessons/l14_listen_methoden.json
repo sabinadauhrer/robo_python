@@ -1,0 +1,85 @@
+{
+  "id": "l14_listen_methoden",
+  "title": "Listen-Methoden",
+  "icon": "playlist_add",
+  "intro": "Listen haben viele Methoden: append() hängt hinten an, insert() fügt an einer Stelle ein, remove() entfernt, pop() nimmt ein Element heraus und sort() sortiert. Anders als bei Texten ändern sie die Liste direkt!",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Hänge „Kiwi“ hinten an die Liste an.",
+      "code": "obst = [\"Apfel\", \"Banane\"]\nobst.___(\"Kiwi\")\nprint(obst)",
+      "answers": [
+        [
+          "append"
+        ]
+      ],
+      "explain": "append heißt „anhängen“. Das neue Element kommt immer ans Ende.",
+      "notes": {
+        "2": "Die Liste obst wird direkt verändert."
+      },
+      "hint": "",
+      "output": "['Apfel', 'Banane', 'Kiwi']"
+    },
+    {
+      "type": "fill",
+      "task": "Entferne „Banane“ aus der Liste.",
+      "code": "obst = [\"Apfel\", \"Banane\", \"Kiwi\"]\nobst.___(\"Banane\")\nprint(obst)",
+      "answers": [
+        [
+          "remove"
+        ]
+      ],
+      "explain": "remove(wert) sucht den Wert und entfernt ihn. Gibt es ihn nicht, meldet Python einen Fehler.",
+      "notes": {},
+      "hint": "",
+      "output": "['Apfel', 'Kiwi']"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "z = [5, 2, 9, 1]\nz.sort()\nprint(z)",
+      "options": [
+        "[1, 2, 5, 9]",
+        "[9, 5, 2, 1]",
+        "[5, 2, 9, 1]"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "sort() sortiert die Liste aufsteigend – also vom kleinsten zum größten Wert.",
+      "notes": {},
+      "hint": "",
+      "why": "Für absteigend: z.sort(reverse=True)"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "l = [\"a\", \"b\", \"c\"]\nx = l.pop()\nprint(x, l)",
+      "options": [
+        "c ['a', 'b']",
+        "a ['b', 'c']",
+        "c ['a', 'b', 'c']"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "pop() ohne Index nimmt das LETZTE Element heraus und gibt es zurück. Die Liste wird dabei kürzer.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "order",
+      "task": "Ordne: Erst eine leere Liste, dann zwei Namen anhängen, dann ausgeben – sodass ['Ali', 'Bea'] herauskommt.",
+      "lines": [
+        "namen = []",
+        "namen.append(\"Ali\")",
+        "namen.append(\"Bea\")",
+        "print(namen)"
+      ],
+      "output": "['Ali', 'Bea']",
+      "explain": "Eine Variable muss existieren, bevor man sie benutzt. Und append() hängt immer hinten an – die Reihenfolge der Zeilen bestimmt die Reihenfolge in der Liste.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 35,
+  "chapter": "Listen"
+}

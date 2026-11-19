@@ -1,0 +1,83 @@
+{
+  "id": "set_loop",
+  "title": "Sets durchlaufen",
+  "icon": "sync",
+  "intro": "Mit for x in set: gehst du alle Elemente durch. Die Reihenfolge ist dabei nicht festgelegt. Brauchst du eine feste Reihenfolge, benutze sorted(set).",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Gehe alle Elemente des Sets durch.",
+      "code": "zahlen = {1, 2, 3}\nfor z ___ zahlen:\n    print(z)",
+      "answers": [
+        [
+          "in"
+        ]
+      ],
+      "explain": "Die for-Schleife funktioniert mit jeder Sammlung.",
+      "notes": {},
+      "hint": "",
+      "output": "1\n2\n3"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "namen = {\"Zoe\", \"Ali\", \"Max\"}\nfor n in sorted(namen):\n    print(n)",
+      "options": [
+        "Ali\nMax\nZoe",
+        "Zoe\nAli\nMax",
+        "Zoe\nMax\nAli"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "sorted() macht aus dem Set eine sortierte Liste – so ist die Reihenfolge immer gleich.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "zahlen = {1, 2, 3, 4}\nsumme = 0\nfor z in zahlen:\n    summe += z\nprint(summe)",
+      "options": [
+        "10",
+        "4",
+        "1234"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Beim Addieren ist die Reihenfolge egal – das Ergebnis ist immer 10.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "woerter = [\"hi\", \"du\", \"hi\", \"du\", \"ok\"]\nprint(len(set(woerter)))",
+      "options": [
+        "3",
+        "5",
+        "2"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "set() entfernt die Doppelten. Übrig bleiben hi, du und ok.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen, damit nur die geraden Zahlen (2, dann 4) erscheinen.",
+      "lines": [
+        "zahlen = {1, 2, 3, 4}",
+        "for z in sorted(zahlen):",
+        "    if z % 2 == 0:",
+        "        print(z)"
+      ],
+      "output": "2\n4",
+      "explain": "Die Schleife geht alle Zahlen durch, das if lässt nur gerade Zahlen durch.",
+      "hint": "",
+      "notes": {}
+    }
+  ],
+  "order": 47,
+  "chapter": "Sets"
+}

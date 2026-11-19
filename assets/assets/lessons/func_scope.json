@@ -1,0 +1,83 @@
+{
+  "id": "func_scope",
+  "title": "Gültigkeitsbereich (Scope)",
+  "icon": "visibility",
+  "intro": "Eine Variable, die in einer Funktion entsteht, ist lokal: Es gibt sie nur dort. Eine Funktion in einer Funktion kann die Variablen der äußeren lesen. Mit global meinst du die Variable des Hauptprogramms, mit nonlocal die der äußeren Funktion.",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "def f():\n    x = 300\n\nf()\nprint(x)",
+      "options": [
+        "NameError: x gibt es außerhalb nicht",
+        "300",
+        "None"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "x ist lokal in f(). Außerhalb der Funktion existiert es nicht.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def aussen():\n    x = 300\n    def innen():\n        print(x)\n    innen()\n\naussen()",
+      "options": [
+        "300",
+        "Fehler",
+        "None"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die innere Funktion darf die Variablen der äußeren Funktion lesen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = 300\n\ndef f():\n    x = 200\n    print(x)\n\nf()\nprint(x)",
+      "options": [
+        "200\n300",
+        "200\n200",
+        "300\n300"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Innen gibt es ein eigenes, lokales x. Das globale x bleibt 300.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Ändere die Variable der äußeren Funktion.",
+      "code": "def aussen():\n    x = \"Jane\"\n    def innen():\n        ___ x\n        x = \"hallo\"\n    innen()\n    return x\n\nprint(aussen())",
+      "answers": [
+        [
+          "nonlocal"
+        ]
+      ],
+      "explain": "nonlocal x bedeutet: Gemeint ist das x der äußeren Funktion. Dadurch ändert innen() es wirklich.",
+      "notes": {},
+      "hint": "",
+      "output": "hallo"
+    },
+    {
+      "type": "fill",
+      "task": "Ändere die globale Variable in der Funktion.",
+      "code": "x = 300\n\ndef f():\n    ___ x\n    x = 200\n\nf()\nprint(x)",
+      "answers": [
+        [
+          "global"
+        ]
+      ],
+      "explain": "global x verbindet die Funktion mit dem x des Hauptprogramms.",
+      "notes": {},
+      "hint": "",
+      "output": "200"
+    }
+  ],
+  "order": 76,
+  "chapter": "Funktionen"
+}

@@ -1,0 +1,83 @@
+{
+  "id": "tuple_join",
+  "title": "Tupel verbinden",
+  "icon": "merge",
+  "intro": "Zwei Tupel verbindest du mit + zu einem neuen Tupel. Mit * wiederholst du den Inhalt eines Tupels mehrmals.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Verbinde die beiden Tupel.",
+      "code": "t1 = (\"a\", \"b\")\nt2 = (1, 2)\nt3 = t1 ___ t2\nprint(t3)",
+      "answers": [
+        [
+          "+"
+        ]
+      ],
+      "explain": "Mit + entsteht ein neues Tupel – die alten bleiben unverändert.",
+      "notes": {},
+      "hint": "",
+      "output": "('a', 'b', 1, 2)"
+    },
+    {
+      "type": "fill",
+      "task": "Verdopple den Inhalt des Tupels.",
+      "code": "obst = (\"Apfel\", \"Kiwi\")\nmehr = obst ___ 2\nprint(mehr)",
+      "answers": [
+        [
+          "*"
+        ]
+      ],
+      "explain": "Tupel * Zahl wiederholt alle Elemente so oft.",
+      "notes": {},
+      "hint": "",
+      "output": "('Apfel', 'Kiwi', 'Apfel', 'Kiwi')"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print((1, 2) + (3,))",
+      "options": [
+        "(1, 2, 3)",
+        "(1, 2, (3,))",
+        "(4, 2)"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Die Elemente werden einfach aneinandergereiht.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(len((0,) * 4))",
+      "options": [
+        "4",
+        "1",
+        "0"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "(0,) * 4 ergibt (0, 0, 0, 0) – also 4 Elemente.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "t = (1, 2)\nt.append(3)",
+      "options": [
+        "AttributeError: Tupel haben kein append",
+        "(1, 2, 3)",
+        "Es passiert nichts"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Tupel haben keine Methoden zum Verändern. Statt append() benutzt man t = t + (3,).",
+      "notes": {},
+      "hint": ""
+    }
+  ],
+  "order": 41,
+  "chapter": "Tupel"
+}

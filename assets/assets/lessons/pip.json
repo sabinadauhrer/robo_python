@@ -1,0 +1,84 @@
+{
+  "id": "pip",
+  "title": "PIP",
+  "icon": "inventory_2",
+  "intro": "PIP ist der Paket-Manager von Python. Damit installierst du Pakete (Module von anderen Leuten) aus dem Internet, z. B. mit pip install camelcase im Terminal. Danach kannst du sie mit import benutzen. pip list zeigt alle installierten Pakete, pip uninstall entfernt eines. (Im Spiel kannst du nichts installieren.)",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Mit welchem Befehl installiert man das Paket „camelcase“?",
+      "code": "# im Terminal (nicht in Python):\n# pip install camelcase",
+      "options": [
+        "pip install camelcase",
+        "import camelcase",
+        "python camelcase"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "pip install lädt das Paket herunter und installiert es. Danach kann man es in Python importieren.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was ist ein Paket?",
+      "code": "# Ein Paket enthält fertigen Code,\n# den andere geschrieben haben.",
+      "options": [
+        "Fertiger Code zum Wiederverwenden",
+        "Ein Fehler im Programm",
+        "Eine Python-Version"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Pakete enthalten Module, die man nicht selbst schreiben muss – z. B. für Bilder, Spiele oder Webseiten.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Welcher Befehl zeigt alle installierten Pakete?",
+      "code": "# im Terminal:\n# pip ...",
+      "options": [
+        "pip list",
+        "pip show all",
+        "pip print"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "pip list zeigt eine Liste aller Pakete mit ihren Versionen.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Wie benutzt man ein installiertes Paket im Code?",
+      "code": "# Das Paket camelcase ist installiert.\n# Wie lädt man es?",
+      "options": [
+        "import camelcase",
+        "pip camelcase",
+        "load camelcase"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Installierte Pakete lädt man wie jedes Modul mit import.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Lade das eingebaute Modul json – dafür braucht man kein pip.",
+      "code": "___ json\nprint(json.dumps([1, 2]))",
+      "answers": [
+        [
+          "import"
+        ]
+      ],
+      "explain": "Module wie json, math oder datetime sind schon in Python eingebaut. pip braucht man nur für zusätzliche Pakete.",
+      "notes": {},
+      "hint": "",
+      "output": "[1, 2]"
+    }
+  ],
+  "order": 88,
+  "chapter": "Werkzeugkiste"
+}
