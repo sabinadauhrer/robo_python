@@ -21,7 +21,18 @@ flutter test                 # alle Tests
 flutter analyze
 ```
 
-## Veröffentlichen
+## Online spielen
+
+**https://sabinadauhrer.github.io/robo_python/** – auf dem Handy im Browser öffnen und
+über „Zum Startbildschirm hinzufügen“ wie eine App installieren.
+
+Änderungen veröffentlichen (Tests, Build und Upload auf GitHub Pages):
+
+```bash
+sh tool/deploy.sh
+```
+
+## Selbst bauen
 
 ```bash
 flutter build web --release                     # Ergebnis: build/web/ (statische Website)
