@@ -8,6 +8,12 @@ NAME=$(basename -s .git "$REPO_URL")
 flutter test
 flutter build web --release --base-href "/$NAME/"
 
+# Versionsnummer an die Dateien hängen, damit Browser (vor allem auf dem Handy)
+# nach einem Update nicht die alte Version aus dem Zwischenspeicher nehmen.
+V=$(date +%s)
+perl -pi -e "s#\"mainJsPath\":\"main.dart.js\"#\"mainJsPath\":\"main.dart.js?v=$V\"#" build/web/flutter_bootstrap.js
+perl -pi -e "s#flutter_bootstrap.js\"#flutter_bootstrap.js?v=$V\"#; s#sfx.js\"#sfx.js?v=$V\"#" build/web/index.html
+
 TMP=$(mktemp -d)
 cp -R build/web/. "$TMP"
 touch "$TMP/.nojekyll"
