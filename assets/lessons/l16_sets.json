@@ -1,0 +1,82 @@
+{
+  "id": "l16_sets",
+  "order": 16,
+  "title": "Sets",
+  "icon": "bubble_chart",
+  "intro": "Ein Set (Menge) speichert jeden Wert nur EINMAL und hat keine feste Reihenfolge. Man schreibt es in geschweiften Klammern: {\"a\", \"b\"}. Praktisch zum Entfernen von Doppelten!",
+  "exercises": [
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "zahlen = {1, 2, 2, 3, 3, 3}\nprint(len(zahlen))",
+      "options": [
+        "3",
+        "6",
+        "1"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "In einem Set gibt es keine Doppelten. Aus 1, 2, 2, 3, 3, 3 bleiben nur 1, 2 und 3 übrig.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Füge „Kiwi“ zum Set hinzu.",
+      "code": "obst = {\"Apfel\"}\nobst.___(\"Kiwi\")\nprint(len(obst))",
+      "answers": [
+        [
+          "add"
+        ]
+      ],
+      "explain": "Bei Sets heißt die Methode add() – nicht append(), weil es kein „hinten“ gibt.",
+      "notes": {},
+      "hint": "",
+      "output": "2"
+    },
+    {
+      "type": "fill",
+      "task": "Prüfe, ob „Mango“ im Set ist.",
+      "code": "obst = {\"Apfel\", \"Kiwi\"}\nprint(\"Mango\" ___ obst)",
+      "answers": [
+        [
+          "in"
+        ]
+      ],
+      "explain": "Mit in kann man sehr schnell prüfen, ob etwas in einem Set enthalten ist.",
+      "notes": {},
+      "hint": "",
+      "output": "False"
+    },
+    {
+      "type": "fill",
+      "task": "Entferne die doppelten Namen, indem du die Liste in ein Set umwandelst.",
+      "code": "namen = [\"Ali\", \"Bea\", \"Ali\"]\neinmalig = ___(namen)\nprint(len(einmalig))",
+      "answers": [
+        [
+          "set"
+        ]
+      ],
+      "explain": "set(liste) macht aus einer Liste ein Set – dabei verschwinden alle Doppelten automatisch.",
+      "notes": {},
+      "hint": "",
+      "output": "2"
+    },
+    {
+      "type": "choice",
+      "task": "Was passiert bei diesem Code?",
+      "code": "farben = {\"rot\", \"blau\"}\nprint(farben[0])",
+      "options": [
+        "Python meldet einen TypeError",
+        "rot",
+        "blau"
+      ],
+      "correct": 0,
+      "isOutput": false,
+      "explain": "Sets haben keine Reihenfolge – deshalb gibt es auch keinen Index wie [0].",
+      "notes": {},
+      "hint": "",
+      "why": "Um alle Elemente zu sehen, nimmst du eine for-Schleife: for f in farben: print(f)"
+    }
+  ]
+}

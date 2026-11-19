@@ -1,0 +1,88 @@
+{
+  "id": "l08_fstrings",
+  "order": 8,
+  "title": "f-Strings",
+  "icon": "format_quote",
+  "intro": "Mit einem f vor dem Text kannst du Variablen direkt einsetzen: f\"Hallo {name}\". Alles in geschweiften Klammern wird ausgerechnet und eingefügt.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze den Buchstaben, damit {name} ersetzt wird.",
+      "code": "name = \"Lea\"\nprint(___\"Hallo {name}!\")",
+      "answers": [
+        [
+          "f"
+        ]
+      ],
+      "explain": "Ohne das f vor dem Anführungszeichen würde Python {name} einfach als Text ausgeben.",
+      "notes": {
+        "2": "f-String: Variablen in { } werden eingesetzt."
+      },
+      "hint": "Ein einziger Buchstabe – f wie format.",
+      "output": "Hallo Lea!"
+    },
+    {
+      "type": "fill",
+      "task": "Setze die Variable alter in den Text ein.",
+      "code": "alter = 10\nprint(f\"Ich bin ___ Jahre alt.\")",
+      "answers": [
+        [
+          "{alter}"
+        ]
+      ],
+      "explain": "In einem f-String schreibt man den Variablennamen in geschweifte Klammern { }.",
+      "notes": {},
+      "hint": "Geschweifte Klammern um den Namen.",
+      "output": "Ich bin 10 Jahre alt."
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "a = 4\nb = 5\nprint(f\"{a} + {b} = {a + b}\")",
+      "options": [
+        "4 + 5 = 9",
+        "a + b = a + b",
+        "4 + 5 = 45"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "In den geschweiften Klammern darf auch gerechnet werden. Außerhalb der Klammern ist alles normaler Text.",
+      "notes": {
+        "3": "Nur das in { } wird ausgerechnet, das + und = dazwischen ist Text."
+      },
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Zeige den Preis mit genau 2 Nachkommastellen.",
+      "code": "preis = 2.5\nprint(f\"Preis: {preis:___} Euro\")",
+      "answers": [
+        [
+          ".2f"
+        ]
+      ],
+      "explain": "Nach einem Doppelpunkt in { } kommt ein Format: .2f bedeutet „Kommazahl mit 2 Stellen nach dem Punkt“.",
+      "notes": {
+        "2": "Aus 2.5 wird 2.50."
+      },
+      "hint": "Punkt, Anzahl der Stellen, f.",
+      "output": "Preis: 2.50 Euro"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "name = \"Max\"\nprint(\"Hallo {name}\")",
+      "options": [
+        "Hallo {name}",
+        "Hallo Max",
+        "Fehler"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Vorsicht Falle: Hier fehlt das f! Deshalb ist {name} nur ganz normaler Text.",
+      "notes": {},
+      "hint": "",
+      "why": "Mit print(f\"Hallo {name}\") käme Hallo Max heraus."
+    }
+  ]
+}

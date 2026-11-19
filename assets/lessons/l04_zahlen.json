@@ -1,0 +1,89 @@
+{
+  "id": "l04_zahlen",
+  "order": 4,
+  "title": "Zahlen & Rechnen",
+  "icon": "calculate",
+  "intro": "Python kann rechnen wie ein Taschenrechner: + - * / . Dazu gibt es // (ganzzahlig teilen), % (Rest beim Teilen) und ** (hoch).",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze den Operator, damit 12 ausgegeben wird.",
+      "code": "print(3 ___ 4)",
+      "answers": [
+        [
+          "*"
+        ]
+      ],
+      "explain": "Malnehmen schreibt man in Python mit einem Sternchen *, nicht mit x oder ·.",
+      "notes": {
+        "1": "3 ? 4 soll 12 ergeben."
+      },
+      "hint": "Welche Rechenart macht aus 3 und 4 die 12?",
+      "output": "12"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(7 / 2)",
+      "options": [
+        "3.5",
+        "3",
+        "3 Rest 1"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Der normale Schrägstrich / teilt genau – das Ergebnis ist immer eine Kommazahl.",
+      "notes": {},
+      "hint": "",
+      "why": "Selbst 8 / 2 ergibt 4.0 und nicht 4."
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "print(17 // 5)\nprint(17 % 5)",
+      "options": [
+        "3\n2",
+        "3.4\n2",
+        "2\n3"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "// teilt und schneidet die Nachkommastellen ab (wie viele Male passt 5 in 17?). % gibt den Rest, der übrig bleibt.",
+      "notes": {
+        "1": "5 passt 3-mal in 17 (3 · 5 = 15).",
+        "2": "17 - 15 = 2 bleibt übrig."
+      },
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Berechne 2 hoch 5 (also 2·2·2·2·2).",
+      "code": "print(2 ___ 5)",
+      "answers": [
+        [
+          "**"
+        ]
+      ],
+      "explain": "Für „hoch“ benutzt man zwei Sternchen **. Ein Sternchen wäre nur malnehmen.",
+      "notes": {},
+      "hint": "Zwei Mal das Mal-Zeichen.",
+      "output": "32"
+    },
+    {
+      "type": "fill",
+      "task": "Prüfe mit dem Rest-Operator, ob 14 gerade ist (Rest 0 bei Teilen durch 2).",
+      "code": "zahl = 14\nprint(zahl ___ 2)",
+      "answers": [
+        [
+          "%"
+        ]
+      ],
+      "explain": "Gerade Zahlen haben beim Teilen durch 2 den Rest 0, ungerade den Rest 1. Das ist ein beliebter Trick!",
+      "notes": {
+        "2": "Rest von 14 geteilt durch 2."
+      },
+      "hint": "Das Zeichen sieht aus wie ein Prozentzeichen.",
+      "output": "0"
+    }
+  ]
+}

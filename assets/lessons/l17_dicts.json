@@ -1,0 +1,83 @@
+{
+  "id": "l17_dicts",
+  "order": 17,
+  "title": "Dictionaries",
+  "icon": "menu_book",
+  "intro": "Ein Dictionary (Wörterbuch) speichert Paare aus Schlüssel und Wert: {\"name\": \"Mia\", \"alter\": 9}. Über den Schlüssel findest du den Wert – wie in einem Wörterbuch über das Stichwort.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Gib den Wert zum Schlüssel „name“ aus.",
+      "code": "person = {\"name\": \"Mia\", \"alter\": 9}\nprint(person[___])",
+      "answers": [
+        [
+          "\"name\"",
+          "'name'"
+        ]
+      ],
+      "explain": "Statt einer Nummer steht in den eckigen Klammern der Schlüssel – hier ein Text, also mit Anführungszeichen.",
+      "notes": {
+        "1": "Schlüssel : Wert, getrennt durch Kommas."
+      },
+      "hint": "",
+      "output": "Mia"
+    },
+    {
+      "type": "fill",
+      "task": "Ändere das Alter auf 10.",
+      "code": "person = {\"name\": \"Mia\", \"alter\": 9}\nperson[\"alter\"] ___ 10\nprint(person)",
+      "answers": [
+        [
+          "="
+        ]
+      ],
+      "explain": "Mit dict[schlüssel] = wert änderst du einen Wert. Gibt es den Schlüssel noch nicht, wird er neu angelegt.",
+      "notes": {},
+      "hint": "",
+      "output": "{'name': 'Mia', 'alter': 10}"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "tier = {\"art\": \"Hund\"}\ntier[\"farbe\"] = \"braun\"\nprint(len(tier))",
+      "options": [
+        "2",
+        "1",
+        "3"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Den Schlüssel „farbe“ gab es noch nicht – also wird ein neues Paar hinzugefügt. Jetzt sind es zwei Paare.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Hole den Wert sicher – ohne Fehler, falls der Schlüssel fehlt.",
+      "code": "auto = {\"marke\": \"VW\"}\nprint(auto.___(\"farbe\"))",
+      "answers": [
+        [
+          "get"
+        ]
+      ],
+      "explain": "auto[\"farbe\"] würde einen KeyError auslösen. get() gibt stattdessen None zurück, wenn der Schlüssel fehlt.",
+      "notes": {},
+      "hint": "",
+      "output": "None",
+      "why": "Mit auto.get(\"farbe\", \"unbekannt\") bekommst du statt None einen eigenen Ersatzwert."
+    },
+    {
+      "type": "order",
+      "task": "Ordne die Zeilen, damit jedes Paar als „name: Mia“ und „alter: 9“ erscheint.",
+      "lines": [
+        "person = {\"name\": \"Mia\", \"alter\": 9}",
+        "for schluessel, wert in person.items():",
+        "    print(f\"{schluessel}: {wert}\")"
+      ],
+      "output": "name: Mia\nalter: 9",
+      "explain": "items() liefert alle Paare. In der for-Schleife packst du jedes Paar in zwei Variablen aus: Schlüssel und Wert.",
+      "hint": "",
+      "notes": {}
+    }
+  ]
+}

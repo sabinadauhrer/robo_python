@@ -1,0 +1,86 @@
+{
+  "id": "l19_lambda",
+  "order": 19,
+  "title": "Lambda",
+  "icon": "bolt",
+  "intro": "Ein lambda ist eine kleine Funktion ohne Namen in einer einzigen Zeile: lambda x: x * 2. Vor dem Doppelpunkt stehen die Parameter, dahinter das Ergebnis – ganz ohne return.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze das Schlüsselwort für eine Mini-Funktion.",
+      "code": "mal3 = ___ x: x * 3\nprint(mal3(4))",
+      "answers": [
+        [
+          "lambda"
+        ]
+      ],
+      "explain": "Mit lambda baust du eine Funktion in einer Zeile. Sie wird hier in der Variable mal3 gespeichert und dann wie eine normale Funktion aufgerufen.",
+      "notes": {
+        "1": "x ist der Parameter, x * 3 das Ergebnis."
+      },
+      "hint": "",
+      "output": "12"
+    },
+    {
+      "type": "fill",
+      "task": "Die Funktion soll zwei Zahlen addieren.",
+      "code": "addiere = lambda a, ___: a + b\nprint(addiere(2, 5))",
+      "answers": [
+        [
+          "b"
+        ]
+      ],
+      "explain": "Ein lambda kann mehrere Parameter haben. Sie werden durch Kommas getrennt – genau wie bei def.",
+      "notes": {},
+      "hint": "",
+      "output": "7"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "quadrat = lambda n: n * n\nprint(quadrat(6))",
+      "options": [
+        "36",
+        "12",
+        "66"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Das lambda rechnet n * n. Mit 6 aufgerufen ergibt das 36.",
+      "notes": {},
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def macher(n):\n    return lambda a: a * n\n\nverdreifacher = macher(3)\nprint(verdreifacher(5))",
+      "options": [
+        "15",
+        "8",
+        "3"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "macher(3) liefert ein lambda, das sich n = 3 merkt. Ruft man es mit 5 auf, rechnet es 5 * 3.",
+      "notes": {
+        "2": "Das lambda wird zurückgegeben – und merkt sich n.",
+        "4": "verdreifacher ist jetzt eine Funktion!"
+      },
+      "hint": ""
+    },
+    {
+      "type": "fill",
+      "task": "Sortiere die Wörter nach ihrer Länge.",
+      "code": "woerter = [\"Elefant\", \"Hai\", \"Katze\"]\nprint(sorted(woerter, key=lambda w: ___(w)))",
+      "answers": [
+        [
+          "len"
+        ]
+      ],
+      "explain": "key= sagt sorted(), wonach sortiert werden soll. Das lambda liefert für jedes Wort seine Länge.",
+      "notes": {},
+      "hint": "",
+      "output": "['Hai', 'Katze', 'Elefant']"
+    }
+  ]
+}

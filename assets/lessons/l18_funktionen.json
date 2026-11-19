@@ -1,0 +1,95 @@
+{
+  "id": "l18_funktionen",
+  "order": 18,
+  "title": "Funktionen",
+  "icon": "functions",
+  "intro": "Eine Funktion ist ein Stück Code mit Namen, das du immer wieder aufrufen kannst. Mit def definierst du sie, mit name() rufst du sie auf. Parameter sind Werte, die du mitgibst, und return gibt ein Ergebnis zurück.",
+  "exercises": [
+    {
+      "type": "fill",
+      "task": "Ergänze das Schlüsselwort, mit dem man eine Funktion definiert.",
+      "code": "___ winken():\n    print(\"Hallo! *wink*\")\n\nwinken()",
+      "answers": [
+        [
+          "def"
+        ]
+      ],
+      "explain": "def kommt von define (festlegen). Der Code in der Funktion läuft erst, wenn sie aufgerufen wird – hier in Zeile 4.",
+      "notes": {
+        "1": "Hier wird die Funktion nur festgelegt – noch nicht ausgeführt!",
+        "4": "Erst hier wird sie aufgerufen."
+      },
+      "hint": "",
+      "output": "Hallo! *wink*",
+      "why": "Im Probelauf siehst du: Python springt von Zeile 4 in die Funktion hinein."
+    },
+    {
+      "type": "fill",
+      "task": "Rufe die Funktion mit dem Namen „Ali“ auf.",
+      "code": "def begruesse(name):\n    print(\"Hallo\", name)\n\nbegruesse(___)",
+      "answers": [
+        [
+          "\"Ali\"",
+          "'Ali'"
+        ]
+      ],
+      "explain": "Der Wert in den Klammern beim Aufruf landet im Parameter name. So kann dieselbe Funktion verschiedene Leute begrüßen.",
+      "notes": {
+        "1": "name ist ein Parameter – ein Platzhalter für den Wert beim Aufruf."
+      },
+      "hint": "",
+      "output": "Hallo Ali"
+    },
+    {
+      "type": "fill",
+      "task": "Gib das Ergebnis der Rechnung aus der Funktion zurück.",
+      "code": "def doppelt(zahl):\n    ___ zahl * 2\n\nprint(doppelt(21))",
+      "answers": [
+        [
+          "return"
+        ]
+      ],
+      "explain": "return schickt einen Wert zurück an die Stelle, wo die Funktion aufgerufen wurde. Ohne return käme None zurück.",
+      "notes": {},
+      "hint": "",
+      "output": "42"
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "def plus(a, b=10):\n    return a + b\n\nprint(plus(5))\nprint(plus(5, 1))",
+      "options": [
+        "15\n6",
+        "5\n6",
+        "15\n15"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "b=10 ist ein Standardwert. Wird beim Aufruf nichts für b angegeben, nimmt Python die 10.",
+      "notes": {
+        "1": "b hat den Standardwert 10.",
+        "4": "Nur a wird übergeben → b ist 10.",
+        "5": "b wird übergeben → b ist 1."
+      },
+      "hint": ""
+    },
+    {
+      "type": "choice",
+      "task": "Was gibt dieser Code aus?",
+      "code": "x = 1\ndef aendern():\n    x = 99\n\naendern()\nprint(x)",
+      "options": [
+        "1",
+        "99",
+        "None"
+      ],
+      "correct": 0,
+      "isOutput": true,
+      "explain": "Eine Variable, die IN einer Funktion einen Wert bekommt, ist lokal – sie existiert nur in der Funktion. Das x draußen bleibt unverändert.",
+      "notes": {
+        "3": "Dieses x ist ein neues, lokales x – nur innerhalb von aendern()."
+      },
+      "hint": "",
+      "why": "Möchtest du das äußere x ändern, schreibe in der Funktion zuerst: global x"
+    }
+  ]
+}

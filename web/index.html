@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <!-- Wird beim Build durch --base-href ersetzt (z. B. für Hosting in einem Unterordner). -->
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Robo Python – lerne Python spielerisch: Reise über die Abenteuer-Karte, löse Lückentext-Aufgaben und sieh Schritt für Schritt, was jede Zeile tut.">
+  <meta name="theme-color" content="#FFD6E7">
+
+  <!-- Als App installierbar (Handy-Startbildschirm / Desktop) -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Robo Python">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="manifest" href="manifest.json">
+
+  <title>Robo Python – Python spielerisch lernen</title>
+
+  <style>
+    html, body { margin: 0; height: 100%; background: #FFF6FA; }
+    /* Ladebildschirm, bis Flutter das erste Bild zeichnet */
+    #loading {
+      position: fixed; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 18px;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif; color: #4A3B52;
+      transition: opacity .4s ease;
+    }
+    #loading img { width: 120px; height: 120px; border-radius: 32px;
+      box-shadow: 0 8px 24px rgba(247, 168, 200, .45); animation: hop 1s ease-in-out infinite; }
+    #loading .dots span { display: inline-block; width: 12px; height: 12px; margin: 0 4px;
+      border-radius: 50%; background: #F7A8C8; animation: blink 1.2s infinite; }
+    #loading .dots span:nth-child(2) { background: #9EE6CF; animation-delay: .2s; }
+    #loading .dots span:nth-child(3) { background: #C9B6F2; animation-delay: .4s; }
+    @keyframes hop { 0%, 100% { transform: translateY(0) } 50% { transform: translateY(-12px) } }
+    @keyframes blink { 0%, 80%, 100% { opacity: .25 } 40% { opacity: 1 } }
+    @media (prefers-reduced-motion: reduce) { #loading img, #loading .dots span { animation: none; } }
+    #loading.hidden { opacity: 0; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <div id="loading" role="status" aria-live="polite">
+    <img src="icons/Icon-192.png" alt="">
+    <div style="font-size: 22px;">Robo Python startet …</div>
+    <div class="dots"><span></span><span></span><span></span></div>
+  </div>
+  <noscript>Robo Python braucht JavaScript. Bitte aktiviere es in deinem Browser.</noscript>
+
+  <!-- Der Ladebildschirm wird in flutter_bootstrap.js ausgeblendet. -->
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
