@@ -108,3 +108,16 @@ class SoundSetting extends Notifier<bool> {
 }
 
 final soundEnabledProvider = NotifierProvider<SoundSetting, bool>(SoundSetting.new);
+
+/// Alle Inseln frei wählbar (statt der Reihe nach freizuschalten).
+class AllUnlockedSetting extends Notifier<bool> {
+  @override
+  bool build() => ref.watch(profileRepositoryProvider).loadAllUnlocked();
+
+  void set(bool value) {
+    state = value;
+    ref.read(profileRepositoryProvider).saveAllUnlocked(value);
+  }
+}
+
+final allUnlockedProvider = NotifierProvider<AllUnlockedSetting, bool>(AllUnlockedSetting.new);

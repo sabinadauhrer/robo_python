@@ -173,6 +173,28 @@ void main() {
     expect(find.text('Lücke füllen'), findsOneWidget); // nächste Aufgabe statt Neustart
   });
 
+  testWidgets('gesperrte Insel: trotzdem starten oder alle freischalten', (tester) async {
+    final prefs = await pumpApp(tester);
+    await tester.ensureVisible(find.text('Ausgabe mit print'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Ausgabe mit print'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Diese Insel ist noch gesperrt'), findsOneWidget);
+    await tester.tap(find.byKey(const Key('start-anyway')));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('Mit print() zeigt Python'), findsOneWidget); // Einführung der Insel
+    expect(prefs.getBool('settings.allUnlocked'), isNull); // nur einmalig
+
+    await tester.tapAt(const Offset(5, 5)); // Einführung schließen
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Ausgabe mit print'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('unlock-all')));
+    await tester.pumpAndSettle();
+    expect(prefs.getBool('settings.allUnlocked'), isTrue);
+    expect(find.byIcon(Icons.lock_rounded), findsNothing);
+  });
+
   testWidgets('Spielstand-Code sichern und wiederherstellen', (tester) async {
     final prefs = await pumpApp(tester, prefs: unlockedPrint);
     await tester.tap(find.byTooltip('Spielstand sichern'));

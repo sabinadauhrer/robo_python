@@ -11,6 +11,7 @@ class ProfileRepository {
   final SharedPreferences _prefs;
   static const _profileKey = 'profile.v1';
   static const _soundKey = 'settings.sound';
+  static const _allUnlockedKey = 'settings.allUnlocked';
 
   Profile load() {
     final raw = _prefs.getString(_profileKey);
@@ -27,4 +28,8 @@ class ProfileRepository {
   bool loadSoundEnabled() => _prefs.getBool(_soundKey) ?? true;
 
   Future<void> saveSoundEnabled(bool value) => _prefs.setBool(_soundKey, value);
+
+  bool loadAllUnlocked() => _prefs.getBool(_allUnlockedKey) ?? false;
+
+  Future<void> saveAllUnlocked(bool value) => _prefs.setBool(_allUnlockedKey, value);
 }

@@ -36,12 +36,10 @@ class LessonNode extends StatelessWidget {
       label:
           '${lesson.title}${locked ? ', gesperrt' : ', $stars von 3 Sternen'}',
       child: GestureDetector(
-        onTap: locked ? null : onTap,
+        onTap: onTap,
         behavior: HitTestBehavior.opaque,
         child: MouseRegion(
-          cursor: locked
-              ? SystemMouseCursors.forbidden
-              : SystemMouseCursors.click,
+          cursor: SystemMouseCursors.click,
           child: SizedBox(
             width: 150,
             child: Column(

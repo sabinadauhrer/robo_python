@@ -14,12 +14,16 @@ class LessonMap extends StatelessWidget {
     required this.stars,
     required this.isUnlocked,
     required this.onOpen,
+    required this.onLocked,
   });
 
   final List<Lesson> lessons;
   final Map<String, int> stars;
   final bool Function(int index) isUnlocked;
   final ValueChanged<Lesson> onOpen;
+
+  /// Tipp auf eine gesperrte Insel.
+  final ValueChanged<Lesson> onLocked;
 
   static const rowHeight = 150.0;
 
@@ -77,7 +81,7 @@ class LessonMap extends StatelessWidget {
                       stars: stars[lessons[i].id] ?? 0,
                       locked: !isUnlocked(i),
                       isNext: i == next,
-                      onTap: () => onOpen(lessons[i]),
+                      onTap: () => isUnlocked(i) ? onOpen(lessons[i]) : onLocked(lessons[i]),
                     ),
                   ),
               ],
